@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
@@ -19,7 +21,8 @@ Future<void> main() async {
   );
   channel.watch();
 
-  runApp(Chat(client, channel));
+  runApp(Chat());
+  // client, channel
 }
 
 class Chat extends StatefulWidget {

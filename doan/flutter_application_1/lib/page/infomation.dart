@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, prefer_const_constructors_in_immutables, prefer_final_fields, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class Infomation extends StatefulWidget {
@@ -78,7 +80,7 @@ class _InformationState extends State<Infomation> {
               const SizedBox(
                 height: 35,
               ),
-              // ignore: prefer_const_constructors
+
               newMethod('Họ tên', 'Trần Quang Vũ'),
               newMethod('Email', 'vutran.300101@gmail.com'),
               newMethod('SDT', '0967218557'),

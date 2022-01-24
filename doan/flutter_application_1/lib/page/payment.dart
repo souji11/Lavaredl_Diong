@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -44,6 +46,7 @@ class _PageThanhToan extends State<PageThanhToan> {
       ),
       body: ListView(
         children: [
+          // ignore: prefer_const_constructors
           Padding(padding: EdgeInsets.all(10)),
           Column(
             children: [

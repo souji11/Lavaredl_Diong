@@ -1,9 +1,9 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unused_import, prefer_const_constructors, non_constant_identifier_names, prefer_const_literals_to_create_immutables
 
 // import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-// ignore: unused_import
+
 import '../Models/cart.dart';
 import '../Models/product.dart';
 import '../page/payment.dart';

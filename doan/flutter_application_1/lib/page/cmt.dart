@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -18,7 +20,6 @@ class _PageBinhLuan extends State<PageBinhLuan> {
         centerTitle: true,
         backgroundColor: Colors.green,
         title: Column(
-          // ignore: prefer_const_literals_to_create_immutables
           children: [
             const Text(
               "Bình luận",

@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_new, override_on_non_overriding_member, prefer_const_constructors, prefer_typing_uninitialized_variables, prefer_const_literals_to_create_immutables, avoid_print
+
 import 'package:flutter/material.dart';
 import '../Models/login.dart';
 import '../api/api_service.dart';

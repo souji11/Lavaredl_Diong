@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, unnecessary_new, file_names
+
 import 'package:flutter/material.dart';
 
 class ProgressHUD extends StatelessWidget {
