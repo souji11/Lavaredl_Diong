@@ -31,12 +31,12 @@ class _Favorite_screen extends State<Favorite>
     return Container(
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ProductDetailScreen(product: products[index]),
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (_) => ProductDetailScreen(product: products[index]),
+          //   ),
+          // );
         },
         child: Stack(
           alignment: Alignment.topCenter,

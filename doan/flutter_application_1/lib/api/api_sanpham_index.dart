@@ -9,33 +9,48 @@ import 'dart:convert';
 import '../Models/product.dart';
 import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
-class Api extends ChangeNotifier{
+
+class Api extends ChangeNotifier {
   List<Product_main> lst = [];
+  List<Product_main> lsta = [];
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
-  final response = await http.get(Uri.parse('http://192.168.1.9:8000/api/SanPham'));
-  if (response.statusCode == 200) {
-   try{
-     dynamic object = json.decode(response.body);
-     dynamic data = object['data'];
-     data.forEach((item){
-       tmpList.add(Product_main.fromJson(item));
-     });
-   }
-   catch(e)
-   {
-     print(e);
-   }
-    // List ProductMains = jsonDecode(response.body);
-    // return ProductMains.map<Product_main>((json) => Product_main.fromJson(json))
-    //     .toList();
-    lst = tmpList;
-    notifyListeners();
-    print(lst[0].tenSanPham);
-  } 
-  else {
+    List<Product_main> tmpLista = [];
+    final response =
+        await http.get(Uri.parse('http://192.168.1.9:8000/api/SanPham'));
+    if (response.statusCode == 200) {
+      try {
+        dynamic object = json.decode(response.body);
+        dynamic data = object['data'];
+        data.forEach((item) {
+          tmpList.add(Product_main.fromJson(item));
+        });
+      } catch (e) {
+        print(e);
+      }
+
+      lst = tmpList;
+      notifyListeners();
+    }
+    // final response2 =
+    //     await http.get(Uri.parse('http://192.168.1.9:8000/api/SanPham/ao'));
+    // if (response2.statusCode == 200) {
+    //   try {
+    //     dynamic object = json.decode(response2.body);
+    //     dynamic dataao = object['dataao'];
+    //     dataao.forEach((item) {
+    //       tmpLista.add(Product_main.fromJson(item));
+    //     });
+    //   } catch (e) {
+    //     print(e);
+    //   }
+    //   lsta = tmpLista;
+    //   notifyListeners();
+    // } 
+    else {
+      throw Exception('Failed to load data');
+    }
     
-    throw Exception('Failed to load data');
   }
-}
+  
 }

@@ -12,12 +12,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Models/product.dart';
+import '../Models/Product_main.dart';
+
 import '../Navbar.dart';
 import 'cmt.dart';
 // import '../Page/products.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  final Product product;
+  final Product_main product;
   const ProductDetailScreen({Key? key, required this.product})
       : super(key: key);
 
@@ -116,8 +118,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             child: Image(
                               height: 400,
                               width: 400,
-                              image: AssetImage(
-                                'images/' + widget.product.ImgUrl,
+                              image: NetworkImage(
+                                'images/' + widget.product.hinhAnh,
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -130,7 +132,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text(
-                                  '${widget.product.Gia} VNĐ',
+                                  '${widget.product.gia} VNĐ',
                                   style: const TextStyle(
                                     color: Colors.red,
                                     fontSize: 30,
@@ -149,7 +151,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               children: <Widget>[
                                 const SizedBox(height: 5.0),
                                 Text(
-                                  widget.product.TenSanPham,
+                                  widget.product.tenSanPham,
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 25.0,
@@ -398,7 +400,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ),
                           const SizedBox(height: 10.0),
                           Text(
-                            widget.product.Mota,
+                            widget.product.moTa,
                             style: const TextStyle(
                               color: Colors.black87,
                               fontSize: 16.0,

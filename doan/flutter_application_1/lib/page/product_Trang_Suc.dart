@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:provider/provider.dart';
 import '../Models/product.dart';
 import 'product_detail.dart';
 import 'products.dart';
@@ -39,85 +41,12 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
     super.initState();
   }
 
-  _ChonTrangSuc1(int index) {
-    return Container(
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ProductDetailScreen(product: products[index]),
-            ),
-          );
-        },
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.all(5),
-              child: SizedBox(
-                height: Curves.easeInOut.transform(1) * 600,
-                width: Curves.easeInOut.transform(1) * 300,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: 0,
-                      child: Image(
-                        height: 130,
-                        width: 150,
-                        image: AssetImage(
-                          'images/' + products[index].ImgUrl,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      left: 10.0,
-                      bottom: 0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            '${products[index].Gia} VNĐ',
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 17.0,
-                      left: 10.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const SizedBox(height: 5.0),
-                          Text(
-                            products[index].TenSanPham,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+ 
   @override
-  Widget build(BuildContext context) {
+  
+     Widget build(BuildContext context) {
+    Provider.of<Api>(context, listen: false).fetchProduct_main();
+    var api = Provider.of<Api>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -271,29 +200,102 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
             ),
             // het button
             Expanded(
-              child: GridView.count(
-                padding: const EdgeInsets.only(
-                  left: 30.0,
-                  right: 30.0,
-                  top: 50,
-                ),
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
-                crossAxisCount: 2,
-                children: <Widget>[
-                  _ChonTrangSuc1(0),
-                  _ChonTrangSuc1(1),
-                  _ChonTrangSuc1(2),
-                  _ChonTrangSuc1(3),
-                  _ChonTrangSuc1(1),
-                  _ChonTrangSuc1(0),
-                  _ChonTrangSuc1(0),
-                  _ChonTrangSuc1(1),
-                  _ChonTrangSuc1(2),
-                  _ChonTrangSuc1(3),
-                  _ChonTrangSuc1(1),
-                  _ChonTrangSuc1(0),
-                ],
+              child: Consumer<Api>(
+                builder: (_, value, child) {
+                  return GridView.count(
+                    padding: const EdgeInsets.only(
+                      left: 30.0,
+                      right: 30.0,
+                      top: 50,
+                    ),
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    crossAxisCount: 2,
+                    children: List.generate(
+                      api.lst.length,
+                      (index) {
+                        return Container(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ProductDetailScreen(
+                                      product: api.lst[index]),
+                                ),
+                              );
+                            },
+                            child: Stack(
+                              alignment: Alignment.topCenter,
+                              children: <Widget>[
+                                Container(
+                                  margin: const EdgeInsets.all(5),
+                                  child: SizedBox(
+                                    height: Curves.easeInOut.transform(1) * 600,
+                                    width: Curves.easeInOut.transform(1) * 300,
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Positioned(
+                                          top: 0,
+                                          child: Image(
+                                            height: 130,
+                                            width: 150,
+                                            image: NetworkImage(
+                                              'images/' +
+                                                  api.lst[index].hinhAnh,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 10.0,
+                                          bottom: 0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(
+                                                '${api.lst[index].gia} VNĐ',
+                                                style: const TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 17.0,
+                                          left: 10.0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              const SizedBox(height: 5.0),
+                                              Text(
+                                                api.lst[index].tenSanPham,
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ),
           ],

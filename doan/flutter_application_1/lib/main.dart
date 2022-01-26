@@ -22,7 +22,9 @@
 
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import
 
+import 'package:flutter_application_1/Models/Product_main.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:provider/provider.dart';
 
 import 'appbar/appbar_main.dart';
@@ -38,9 +40,17 @@ import 'Navbar.dart';
 import 'Models/product.dart';
 
 void main() {
-  runApp(MultiProvider(providers:[
-    ChangeNotifierProvider(create:(_)=>Api())
-  ],child: MyApp(),));
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => Api(), 
+      ),
+      ChangeNotifierProvider(create: (_)=>Apiao())
+      
+    ],
+    
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -49,7 +59,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      // title: 'GUCCI',
+      title: 'GUCCI',
       home: MyHomePage(),
     );
   }
@@ -67,16 +77,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentTab = 0;
 
-  //final List<Widget> screent = [
-  //const Home(),
-  //const Chat(),
-  // const Setting(),
-  //const Account(),
-  //const Favorite(),
-  //const Cart(),
-  //const Notifi(),
-  //];
-
+ 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
   @override
