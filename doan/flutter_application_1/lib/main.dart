@@ -22,6 +22,9 @@
 
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import
 
+import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:provider/provider.dart';
+
 import 'appbar/appbar_main.dart';
 import 'package:flutter/material.dart';
 import 'appbar/cart.dart';
@@ -35,7 +38,9 @@ import 'Navbar.dart';
 import 'Models/product.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(providers:[
+    ChangeNotifierProvider(create:(_)=>Api())
+  ],child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -167,7 +172,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentSceent = Chat();
+                    // currentSceent = Chat();
                     currentTab = 1;
                   });
                 },

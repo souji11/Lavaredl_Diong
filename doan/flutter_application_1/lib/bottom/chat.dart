@@ -1,47 +1,47 @@
-// ignore_for_file: unused_import, prefer_const_constructors
+// // ignore_for_file: unused_import, prefer_const_constructors
 
-import 'package:flutter/material.dart';
-import 'package:flutter_application_1/main.dart';
-import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_application_1/main.dart';
+// import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-Future<void> main() async {
-  const apiKey = "kaewdhm2t5ts";
-  const userToken =
-      "chgujj8v948enjpmbznzn22amxyje5cz4372bxyhmt24ny69x7jck8c9yqxk2r9p";
-  final client = StreamChatClient(apiKey, logLevel: Level.INFO);
+// Future<void> main() async {
+//   const apiKey = "kaewdhm2t5ts";
+//   const userToken =
+//       "chgujj8v948enjpmbznzn22amxyje5cz4372bxyhmt24ny69x7jck8c9yqxk2r9p";
+//   final client = StreamChatClient(apiKey, logLevel: Level.INFO);
 
-  await client.connectUser(
-    User(id: 'xxsouji'),
-    userToken,
-  );
+//   await client.connectUser(
+//     User(id: 'xxsouji'),
+//     userToken,
+//   );
 
-  final channel = client.channel(
-    'messaging',
-    id: 'coolkids',
-  );
-  channel.watch();
+//   final channel = client.channel(
+//     'messaging',
+//     id: 'coolkids',
+//   );
+//   channel.watch();
 
-  runApp(Chat());
-  // client, channel
-}
+//   runApp(Chat());
+//   // client, channel
+// }
 
-class Chat extends StatefulWidget {
-  const Chat({Key? key}) : super(key: key);
+// class Chat extends StatefulWidget {
+//   const Chat({Key? key}) : super(key: key);
 
-  @override
-  _ChatState createState() => _ChatState();
-}
+//   @override
+//   _ChatState createState() => _ChatState();
+// }
 
-class _ChatState extends State<Chat> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Center(
-        child: Text(
-          'Chat',
-          style: TextStyle(fontSize: 40),
-        ),
-      ),
-    );
-  }
-}
+// class _ChatState extends State<Chat> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: Center(
+//         child: Text(
+//           'Chat',
+//           style: TextStyle(fontSize: 40),
+//         ),
+//       ),
+//     );
+//   }
+// }

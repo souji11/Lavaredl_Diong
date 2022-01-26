@@ -457,7 +457,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentSceent = Chat();
+                    // currentSceent = Chat();
                     currentTab = 1;
                   });
                 },

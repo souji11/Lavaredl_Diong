@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors_in_immutables, prefer_const_constructors, sized_box_for_whitespace, unused_import
 
 import 'package:flutter/material.dart';
 import 'bottom/account.dart';
@@ -17,7 +17,7 @@ class _BottomState extends State<Bottoms> {
   int currentTab = 0;
   final List<Widget> screens = [
     Home(),
-    const Chat(),
+    // const Chat(),
     const Setting(),
     const AccountS(),
   ];
@@ -60,7 +60,7 @@ class _BottomState extends State<Bottoms> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentSceent = Chat();
+                    // currentSceent = Chat();
                     currentTab = 1;
                   });
                 },

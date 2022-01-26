@@ -1,13 +1,18 @@
-// ignore_for_file: unused_import, unused_field, prefer_final_fields, unused_element, avoid_print, sized_box_for_whitespace, prefer_const_constructors, non_constant_identifier_names, avoid_unnecessary_containers
+// ignore_for_file: unused_import, unused_field, prefer_final_fields, unused_element, avoid_print, sized_box_for_whitespace, prefer_const_constructors, non_constant_identifier_names, avoid_unnecessary_containers, avoid_web_libraries_in_flutter, unnecessary_new
 
 // import 'dart:html';
-
-import 'product_Tui_Sach.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../Models/product.dart';
-import 'product_detail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import 'product_Tui_Sach.dart';
+import '../Models/product.dart';
+import '../Models/Product_main.dart';
+import 'product_detail.dart';
+import '../api/api_sanpham_index.dart';
+
+
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -144,6 +149,7 @@ class _ProductScreenState extends State<ProductScreen>
                         ],
                       ),
                     ),
+                    new Text(products[index].TenSanPham,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16.0),),
                   ],
                 ),
               ),
@@ -403,7 +409,6 @@ class _ProductScreenState extends State<ProductScreen>
                 ],
               ),
             ),
-            //
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(
@@ -455,7 +460,7 @@ class _ProductScreenState extends State<ProductScreen>
                 ],
               ),
             ),
-
+// xuất ra sản phẩm mới
             Padding(
               padding: EdgeInsets.all(15),
               child: Text(
@@ -466,8 +471,6 @@ class _ProductScreenState extends State<ProductScreen>
                 ),
               ),
             ),
-
-            // xuất ra sản phẩm mới
             Container(
               height: 200,
               width: double.infinity,
@@ -487,7 +490,7 @@ class _ProductScreenState extends State<ProductScreen>
                 ],
               ),
             ),
-            // Hết
+// xuất ra sản phẩm nổi bật
             Padding(
               padding: EdgeInsets.all(15),
               child: Text(
@@ -498,8 +501,6 @@ class _ProductScreenState extends State<ProductScreen>
                 ),
               ),
             ),
-
-            // xuất ra sản phẩm nổi bật
             Container(
               height: 200,
               width: double.infinity,
@@ -519,6 +520,7 @@ class _ProductScreenState extends State<ProductScreen>
                 ],
               ),
             ),
+// xuất ra sản phẩm Bán chạy
             Padding(
               padding: EdgeInsets.all(15),
               child: Text(
@@ -529,8 +531,6 @@ class _ProductScreenState extends State<ProductScreen>
                 ),
               ),
             ),
-
-            // xuất ra sản phẩm Bán chạy
             Container(
               height: 200,
               width: double.infinity,

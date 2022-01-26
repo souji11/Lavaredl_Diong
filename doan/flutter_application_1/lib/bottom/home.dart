@@ -1,6 +1,9 @@
-// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers
+// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:provider/provider.dart';
 import '../page/product_Ao_Quan.dart';
 import '../page/product_Giay_Dep.dart';
 import '../page/product_Trang_Suc.dart';
@@ -31,6 +34,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Api>(context,listen:false).fetchProduct_main();
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -63,6 +67,8 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   // ···
 }
 
+
+
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int _selectedPage = 0;
 
@@ -71,82 +77,84 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     super.initState();
   }
 
-  _ChonSanPhamMoi(int index) {
-    return Container(
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => ProductDetailScreen(product: products[index]),
-            ),
-          );
-        },
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.all(5),
-              child: SizedBox(
-                height: Curves.easeInOut.transform(1) * 440.0,
-                width: Curves.easeInOut.transform(1) * 100,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: 0,
-                      child: Image(
-                        height: 150,
-                        width: 100,
-                        image: AssetImage(
-                          'images/' + products[index].ImgUrl,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      left: 10.0,
-                      bottom: 0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            '${products[index].Gia} VNĐ',
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 20.0,
-                      left: 10.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const SizedBox(height: 5.0),
-                          Text(
-                            products[index].TenSanPham,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 13.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+  // _ChonSanPhamMoi(int index,List<Product_main> a) {
+  //   return Container(
+  //     child: GestureDetector(
+  //       onTap: () {
+  //         Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (_) => ProductDetailScreen(product: products[index]),
+  //           ),
+  //         );
+  //       },
+  //       child: Consumer<Api>(
+  //         builder:(_,value,child){
+  //           return Stack(
+  //         alignment: Alignment.topCenter,
+  //         children: <Widget>[
+  //           Container(
+  //             margin: const EdgeInsets.all(5),
+  //             child: SizedBox(
+  //               height: Curves.easeInOut.transform(1) * 440.0,
+  //               width: Curves.easeInOut.transform(1) * 100,
+  //               child: Stack(
+  //                 children: <Widget>[
+  //                   Positioned(
+  //                     top: 0,
+  //                     child: Image(
+  //                       height: 150,
+  //                       width: 100,
+  //                       image: NetworkImage('http://192.168.1.9:8000${a[index].hinhAnh}'),
+  //                       fit: BoxFit.cover,
+  //                     ),
+  //                   ),
+  //                   Positioned(
+  //                     left: 10.0,
+  //                     bottom: 0,
+  //                     child: Column(
+  //                       crossAxisAlignment: CrossAxisAlignment.center,
+  //                       children: <Widget>[
+  //                         Text(
+  //                           '${a[index].gia} VNĐ',
+  //                           style: const TextStyle(
+  //                             color: Colors.red,
+  //                             fontSize: 15,
+  //                             fontWeight: FontWeight.w600,
+  //                           ),
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                   Positioned(
+  //                     bottom: 20.0,
+  //                     left: 10.0,
+  //                     child: Column(
+  //                       crossAxisAlignment: CrossAxisAlignment.start,
+  //                       children: <Widget>[
+  //                         const SizedBox(height: 5.0),
+  //                         Text(
+  //                           a[index].tenSanPham,
+  //                           style: const TextStyle(
+  //                             color: Colors.black,
+  //                             fontSize: 13.0,
+  //                             fontWeight: FontWeight.w600,
+  //                           ),
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   ),
+  //                 ],
+  //               ),
+  //             ),
+  //           ),
+  //         ],
+  //       );
+  //         },
+  //       ),
+  //     ),
+  //   );
+  // }
 
   _ChonSanPhamBanChay(int index) {
     return Container(
@@ -304,9 +312,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Api>(context,listen:false).fetchProduct_main();
+    var api = Provider.of<Api>(context,listen:false);
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
+      body: Consumer<Api>(
+        builder:(_,value,child){
+          return AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.dark,
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 60.0),
@@ -393,7 +406,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-            //
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Row(
@@ -452,7 +464,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
-
+// xuất ra sản phẩm mới
             Padding(
               padding: EdgeInsets.all(15),
               child: Text(
@@ -463,28 +475,95 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-
-            // xuất ra sản phẩm mới
             Container(
               height: 200,
               width: double.infinity,
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  _ChonSanPhamMoi(0),
-                  _ChonSanPhamMoi(1),
-                  _ChonSanPhamMoi(2),
-                  _ChonSanPhamMoi(3),
-                  _ChonSanPhamMoi(1),
-                  _ChonSanPhamMoi(3),
-                  _ChonSanPhamMoi(2),
-                  _ChonSanPhamMoi(0),
-                  _ChonSanPhamMoi(3),
-                  _ChonSanPhamMoi(1),
-                ],
+                children:List.generate(api.lst.length, (index){
+                  return Container(
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ProductDetailScreen(product: products[index]),
+            ),
+          );
+        },
+        child: Consumer<Api>(
+          builder:(_,value,child){
+            return Stack(
+          alignment: Alignment.topCenter,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.all(5),
+              child: SizedBox(
+                height: Curves.easeInOut.transform(1) * 440.0,
+                width: Curves.easeInOut.transform(1) * 100,
+                child: Stack(
+                  children: <Widget>[
+                    Positioned(
+                      top: 0,
+                      child: Image(
+                        height: 150,
+                        width: 100,
+                        image: NetworkImage('images/${api.lst[index].hinhAnh}'),
+                      //  image: AssetImage(
+                      //     'images/' + api.lst[index].hinhAnh,
+                      //   ),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      left: 10.0,
+                      bottom: 0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            '${api.lst[index].gia} VNĐ',
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 20.0,
+                      left: 10.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          const SizedBox(height: 5.0),
+                          Text(
+                            api.lst[index].tenSanPham,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            // Hết
+          ],
+        );
+          },
+        ),
+      ),
+    );
+                }),
+              ),
+            ),
+// xuất ra sản phẩm nổi bật
             Padding(
               padding: EdgeInsets.all(15),
               child: Text(
@@ -495,8 +574,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-
-            // xuất ra sản phẩm nổi bật
             Container(
               height: 200,
               width: double.infinity,
@@ -516,6 +593,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
+// xuất ra sản phẩm Bán chạy
             Padding(
               padding: EdgeInsets.all(15),
               child: Text(
@@ -526,14 +604,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ),
               ),
             ),
-
-            // xuất ra sản phẩm Bán chạy
             Container(
               height: 200,
               width: double.infinity,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
+                 
                   _ChonSanPhamBanChay(0),
                   _ChonSanPhamBanChay(1),
                   _ChonSanPhamBanChay(2),
@@ -547,8 +624,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 ],
               ),
             ),
+          
           ],
         ),
+      );
+        },
       ),
     );
   }
