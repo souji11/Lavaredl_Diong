@@ -21,6 +21,42 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPham,
         ]);
     }
+    public function chonAo()
+    {
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->get();
+
+        return json_encode([
+            'ThanhCong'=>true,
+            'dataao'=>$dsSanPham,
+        ]);
+    }
+    public function chonTrangSuc()
+    {
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->get();
+
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
+    public function chonGiay()
+    {
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->get();
+
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
+    public function chonTui()
+    {
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->get();
+
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
 
     /**
      * Store a newly created resource in storage.
