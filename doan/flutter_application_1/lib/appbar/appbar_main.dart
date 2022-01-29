@@ -46,7 +46,7 @@ class _AppBar_MainState extends State<AppBar_Main> {
 
       actions: [
         TextButton(
-          child: Text('home'),
+          child: Text('Trang chủ'),
           style: TextButton.styleFrom(
             textStyle: const TextStyle(fontSize: 20),
           ),

@@ -9,7 +9,7 @@ import 'dart:convert';
 import '../Models/product.dart';
 import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
-class Api extends ChangeNotifier{
+class Apigiay extends ChangeNotifier{
   List<Product_main> lst = [];
   Future<void> fetchProduct_giay() async {
     List<Product_main> tmpList = [];

@@ -41,7 +41,7 @@ class _NavbarState extends State<Navbar> {
           ),
           ListTile(
             leading: Icon(Icons.login),
-            title: Text('Login'),
+            title: Text('Đăng nhập'),
             onTap: () {
               Navigator.push(
                 context,
@@ -51,7 +51,7 @@ class _NavbarState extends State<Navbar> {
           ),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text('Register'),
+            title: Text('Đăng ký'),
             onTap: () {
               Navigator.push(
                 context,
@@ -61,42 +61,42 @@ class _NavbarState extends State<Navbar> {
           ),
           ListTile(
             leading: Icon(Icons.payment),
-            title: Text('Payment'),
+            title: Text('Thanh toán'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.people),
-            title: Text('Friend'),
+            title: Text('Bạn'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.share),
-            title: Text('Share'),
+            title: Text('Chia sẽ'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.update),
-            title: Text('Update'),
+            title: Text('Nâng cấp'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.help),
-            title: Text('Help'),
+            title: Text('Trợ giúp'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.info),
-            title: Text('About us'),
+            title: Text('Thông tin nhà phát triển'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.star_outline),
-            title: Text('Rate us'),
+            title: Text('Đánh giá'),
             onTap: () => null,
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
-            title: Text('Exit'),
+            title: Text('Thoát'),
             onTap: () => null,
           ),
         ],

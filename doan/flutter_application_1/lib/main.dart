@@ -23,10 +23,13 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import
 
 import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
+import 'package:flutter_application_1/api/api_sanpham_tui.dart';
 import 'package:provider/provider.dart';
 
+import 'api/api_sanpham_trangsuc.dart';
 import 'appbar/appbar_main.dart';
 import 'package:flutter/material.dart';
 import 'appbar/cart.dart';
@@ -45,8 +48,10 @@ void main() {
       ChangeNotifierProvider(
         create: (_) => Api(), 
       ),
-      ChangeNotifierProvider(create: (_)=>Apiao())
-      
+      ChangeNotifierProvider(create: (_)=>Apiao()),
+      ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
+      ChangeNotifierProvider(create: (_)=>Apigiay()),
+      ChangeNotifierProvider(create: (_)=>Apitui()),
     ],
     
     child: MyApp(),
@@ -162,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: currentTab == 0 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Home',
+                      'Trang chủ',
                       style: TextStyle(
                           color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),
@@ -185,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: currentTab == 1 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Chat',
+                      'Trò chuyện',
                       style: TextStyle(
                           color: currentTab == 1 ? Colors.blue : Colors.green),
                     ),
@@ -208,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: currentTab == 2 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Setting',
+                      'Cài đặt',
                       style: TextStyle(
                           color: currentTab == 2 ? Colors.blue : Colors.green),
                     ),
@@ -231,7 +236,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: currentTab == 3 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Profile',
+                      'Tài khoản',
                       style: TextStyle(
                           color: currentTab == 3 ? Colors.blue : Colors.green),
                     ),

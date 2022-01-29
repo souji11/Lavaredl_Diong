@@ -13,7 +13,7 @@ class _NotificationState extends State<Notifi> {
     return const Scaffold(
       body: Center(
         child: Text(
-          'Nottification',
+          'Thông báo',
           style: TextStyle(fontSize: 40),
         ),
       ),

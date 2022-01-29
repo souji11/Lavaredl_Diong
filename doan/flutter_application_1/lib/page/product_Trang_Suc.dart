@@ -2,7 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/api/api_sanpham_index.dart';
+// import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:flutter_application_1/api/api_sanpham_trangsuc.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
 import 'product_detail.dart';
@@ -45,8 +46,8 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
   @override
   
      Widget build(BuildContext context) {
-    Provider.of<Api>(context, listen: false).fetchProduct_main();
-    var api = Provider.of<Api>(context, listen: false);
+    Provider.of<Apitrangsuc>(context, listen: false).fetchProduct_trangsuc();
+    var api = Provider.of<Apitrangsuc>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -200,7 +201,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
             ),
             // het button
             Expanded(
-              child: Consumer<Api>(
+              child: Consumer<Apitrangsuc>(
                 builder: (_, value, child) {
                   return GridView.count(
                     padding: const EdgeInsets.only(

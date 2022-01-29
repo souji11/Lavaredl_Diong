@@ -49,7 +49,7 @@ class _BottomState extends State<Bottoms> {
                       color: currentTab == 0 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Home',
+                      'Trang Chủ',
                       style: TextStyle(
                           color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),
@@ -72,7 +72,7 @@ class _BottomState extends State<Bottoms> {
                       color: currentTab == 1 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Chat',
+                      'Trò chuyện',
                       style: TextStyle(
                           color: currentTab == 1 ? Colors.blue : Colors.green),
                     ),
@@ -95,7 +95,7 @@ class _BottomState extends State<Bottoms> {
                       color: currentTab == 2 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Setting',
+                      'Cài đặt',
                       style: TextStyle(
                           color: currentTab == 2 ? Colors.blue : Colors.green),
                     ),
@@ -118,7 +118,7 @@ class _BottomState extends State<Bottoms> {
                       color: currentTab == 3 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Profile',
+                      'Tài khoản',
                       style: TextStyle(
                           color: currentTab == 3 ? Colors.blue : Colors.green),
                     ),

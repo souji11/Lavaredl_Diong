@@ -15,7 +15,7 @@ class _SettingState extends State<Setting> {
     return Scaffold(
       body: Center(
         child: Text(
-          'Setting',
+          'Cài đặt',
           style: TextStyle(fontSize: 40),
         ),
       ),
