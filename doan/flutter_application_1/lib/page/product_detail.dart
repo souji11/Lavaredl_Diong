@@ -275,6 +275,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ),
                 ],
               ),
+              // Nút thao tác
               Container(
                 margin: EdgeInsets.all(50),
                 height: 400.0,
@@ -448,7 +449,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       color: currentTab == 0 ? Colors.blue : Colors.green,
                     ),
                     Text(
-                      'Home',
+                      'Trang chủ',
                       style: TextStyle(
                           color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),

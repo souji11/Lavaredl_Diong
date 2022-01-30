@@ -23,6 +23,7 @@ class Home extends StatefulWidget {
 }
 
 class FavoriteWidget extends StatefulWidget {
+  
   const FavoriteWidget({Key? key}) : super(key: key);
 
   @override
