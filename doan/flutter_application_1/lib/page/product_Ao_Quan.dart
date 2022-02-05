@@ -236,7 +236,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                                 height: 130,
                                                 width: 150,
                                                 image: NetworkImage(
-                                                  'images/' +
+                                                 
                                                       apiao.lsta[index].hinhAnh,
                                                 ),
                                                 fit: BoxFit.cover,

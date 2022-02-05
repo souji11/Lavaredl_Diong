@@ -276,7 +276,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                               image: NetworkImage(
-                                                  '${api.lst[index].hinhAnh}'),
+                                                  api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -382,7 +382,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                               image: NetworkImage(
-                                                  'images/${api.lst[index].hinhAnh}'),
+                                                  api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -489,7 +489,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                               image: NetworkImage(
-                                                  'images/${api.lst[index].hinhAnh}'),
+                                                 api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),

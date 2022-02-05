@@ -244,7 +244,7 @@ class _Product_TuiSach_screen extends State<Product_TuiSach_screen>
                                             height: 130,
                                             width: 150,
                                             image: NetworkImage(
-                                              'images/' +
+                                              
                                                   api.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,

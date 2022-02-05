@@ -119,7 +119,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               height: 400,
                               width: 400,
                               image: NetworkImage(
-                                'images/' + widget.product.hinhAnh,
+                                 widget.product.hinhAnh,
                               ),
                               fit: BoxFit.cover,
                             ),
