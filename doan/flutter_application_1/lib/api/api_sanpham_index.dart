@@ -17,7 +17,7 @@ class Api extends ChangeNotifier {
     List<Product_main> tmpList = [];
     List<Product_main> tmpLista = [];
     final response =
-        await http.get(Uri.parse('http://192.168.1.9:8000/api/SanPham'));
+        await http.get(Uri.parse('http://127.0.0.1:8000/api/SanPham'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);

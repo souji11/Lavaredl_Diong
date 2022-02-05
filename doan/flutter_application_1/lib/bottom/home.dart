@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new
+// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new, unnecessary_string_interpolations
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -276,7 +276,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                               image: NetworkImage(
-                                                  'images/${api.lst[index].hinhAnh}'),
+                                                  '${api.lst[index].hinhAnh}'),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),

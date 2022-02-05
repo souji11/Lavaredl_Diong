@@ -13,7 +13,7 @@ class Apiao extends ChangeNotifier{
   List<Product_main> lsta = [];
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
-  final response = await http.get(Uri.parse('http://192.168.1.9:8000/api/SanPham/ao'));
+  final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/SanPham/ao'));
   if (response.statusCode == 200) {
    try{
      dynamic object = json.decode(response.body);

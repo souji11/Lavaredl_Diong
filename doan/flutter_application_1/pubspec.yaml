@@ -67,6 +67,7 @@ flutter:
   assets:
     - images/
     - images/faces/
+    - assets/
     # - images/Ao1.jpg
     # - images/momo.png
     # - images/momo2.png
