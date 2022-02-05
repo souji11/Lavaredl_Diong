@@ -7,6 +7,19 @@ use App\Models\SanPham;
 
 class APIsanphamController extends Controller
 {
+    protected function FixImage(SanPham $SanPham)   
+    {
+        if (Storage::disk('public')->exists($SanPham->HinhAnh)) {
+            $SanPham->HinhAnh= Storage::url('/'.$SanPham->HinhAnh);
+
+        }
+        else{
+            $SanPham->HinhAnh='/assets/images/faces/face20.jpg';
+
+            // $SanPham->HinhAnh=$SanPham->HinhAnh;
+
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +28,11 @@ class APIsanphamController extends Controller
     public function index()
     {
         $dsSanPham=SanPham::all();
+        // foreach($dsSanPham as $sp)
+        // {
+        //     $this->FixImage($sp);
 
+        // }
         return json_encode([
             'ThanhCong'=>true,
             'data'=>$dsSanPham,
