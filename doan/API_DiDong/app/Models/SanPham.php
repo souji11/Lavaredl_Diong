@@ -9,5 +9,6 @@ class SanPham extends Model
 {
     use HasFactory;
     protected $table = 'san_phams';
+    //asdasd
     //kakakkak
 }
