@@ -46,14 +46,13 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (_) => Api(), 
+        create: (_) => Api(),
       ),
-      ChangeNotifierProvider(create: (_)=>Apiao()),
-      ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
-      ChangeNotifierProvider(create: (_)=>Apigiay()),
-      ChangeNotifierProvider(create: (_)=>Apitui()),
+      ChangeNotifierProvider(create: (_) => Apiao()),
+      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
+      ChangeNotifierProvider(create: (_) => Apigiay()),
+      ChangeNotifierProvider(create: (_) => Apitui()),
     ],
-    
     child: MyApp(),
   ));
 }
@@ -65,6 +64,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -82,7 +82,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentTab = 0;
 
- 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
   @override
@@ -197,29 +196,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              MaterialButton(
-                minWidth: 40,
-                onPressed: () {
-                  setState(() {
-                    currentSceent = Setting();
-                    currentTab = 2;
-                  });
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      color: currentTab == 2 ? Colors.blue : Colors.green,
-                    ),
-                    Text(
-                      'Cài đặt',
-                      style: TextStyle(
-                          color: currentTab == 2 ? Colors.blue : Colors.green),
-                    ),
-                  ],
-                ),
-              ),
+              // MaterialButton(
+              //   minWidth: 40,
+              //   onPressed: () {
+              //     setState(() {
+              //       currentSceent = Setting();
+              //       currentTab = 2;
+              //     });
+              //   },
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Icon(
+              //         Icons.settings,
+              //         color: currentTab == 2 ? Colors.blue : Colors.green,
+              //       ),
+              //       Text(
+              //         'Cài đặt',
+              //         style: TextStyle(
+              //             color: currentTab == 2 ? Colors.blue : Colors.green),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               MaterialButton(
                 minWidth: 40,
                 onPressed: () {
