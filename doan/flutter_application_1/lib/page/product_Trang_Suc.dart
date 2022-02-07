@@ -216,6 +216,13 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                       api.lst.length,
                       (index) {
                         return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -237,7 +244,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                     child: Stack(
                                       children: <Widget>[
                                         Positioned(
-                                          top: 0,
+                                          top: 10,bottom: 40,left: 10,right: 10,
                                           child: Image(
                                             height: 130,
                                             width: 150,

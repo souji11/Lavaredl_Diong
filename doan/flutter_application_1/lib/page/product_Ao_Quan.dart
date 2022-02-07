@@ -195,102 +195,105 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                 // het button
 
                 Expanded(
-                  child:  GridView.count(
-                        padding: const EdgeInsets.only(
-                          left: 30.0,
-                          right: 30.0,
-                          top: 50,
-                        ),
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 5,
-                        crossAxisCount: 2,
-                        children: List.generate(
-                          apiao.lsta.length,
-                          (index) {
-                            return Container(
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => ProductDetailScreen(
-                                          product: apiao.lsta[index]),
-                                    ),
-                                  );
-                                },
-                                child: Stack(
-                                  alignment: Alignment.topCenter,
-                                  children: <Widget>[
-                                    Container(
-                                      margin: const EdgeInsets.all(5),
-                                      child: SizedBox(
-                                        height:
-                                            Curves.easeInOut.transform(1) * 600,
-                                        width:
-                                            Curves.easeInOut.transform(1) * 300,
-                                        child: Stack(
-                                          children: <Widget>[
-                                            Positioned(
-                                              top: 0,
-                                              child: Image(
-                                                height: 130,
-                                                width: 150,
-                                                image: NetworkImage(
-                                                 
-                                                      apiao.lsta[index].hinhAnh,
-                                                ),
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Positioned(
-                                              left: 10.0,
-                                              bottom: 0,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                children: <Widget>[
-                                                  Text(
-                                                    '${apiao.lsta[index].gia} VNĐ',
-                                                    style: const TextStyle(
-                                                      color: Colors.red,
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Positioned(
-                                              bottom: 17.0,
-                                              left: 10.0,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  const SizedBox(height: 5.0),
-                                                  Text(
-                                                    apiao.lsta[index].tenSanPham,
-                                                    style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 13.0,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                  child: GridView.count(
+                    padding: const EdgeInsets.only(
+                      left: 30.0,
+                      right: 30.0,
+                      top: 50,
+                    ),
+                    crossAxisSpacing: 5,
+                    mainAxisSpacing: 5,
+                    crossAxisCount: 2,
+                    children: List.generate(
+                      apiao.lsta.length,
+                      (index) {
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => ProductDetailScreen(
+                                      product: apiao.lsta[index]),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
+                              );
+                            },
+                            child: Stack(
+                              alignment: Alignment.topCenter,
+                              children: <Widget>[
+                                Container(
+                                  margin: const EdgeInsets.all(5),
+                                  child: SizedBox(
+                                    height: Curves.easeInOut.transform(1) * 600,
+                                    width: Curves.easeInOut.transform(1) * 300,
+                                    child: Stack(
+                                      children: <Widget>[
+                                        Positioned(
+                                          top: 10,bottom: 40,left: 10,right: 10,
+                                          
+                                          child: Image(
+                                            height: 150,
+                                            width: 150,
+                                            image: NetworkImage(
+                                              apiao.lsta[index].hinhAnh,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 10.0,
+                                          bottom: 0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Text(
+                                                '${apiao.lsta[index].gia} VNĐ',
+                                                style: const TextStyle(
+                                                  color: Colors.red,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 17.0,
+                                          left: 10.0,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              const SizedBox(height: 5.0),
+                                              Text(
+                                                apiao.lsta[index].tenSanPham,
+                                                style: const TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 13.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                     //   );
                     // },
                   ),

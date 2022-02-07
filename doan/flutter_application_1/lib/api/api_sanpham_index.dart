@@ -16,8 +16,9 @@ class Api extends ChangeNotifier {
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
     List<Product_main> tmpLista = [];
-    final response =
-        await http.get(Uri.parse('http://127.0.0.1:8000/api/SanPham'));
+    final response = await http.get(
+      Uri.parse('http://127.0.0.1:8000/api/SanPham'),
+    );
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
@@ -46,11 +47,9 @@ class Api extends ChangeNotifier {
     //   }
     //   lsta = tmpLista;
     //   notifyListeners();
-    // } 
+    // }
     else {
       throw Exception('Failed to load data');
     }
-    
   }
-  
 }

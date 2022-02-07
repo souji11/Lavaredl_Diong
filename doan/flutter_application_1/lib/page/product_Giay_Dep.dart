@@ -218,6 +218,13 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                       api.lst.length,
                       (index) {
                         return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                           child: GestureDetector(
                             onTap: () {
                               Navigator.push(
@@ -251,8 +258,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                           ),
                                         ),
                                         Positioned(
-                                          left: 10.0,
-                                          bottom: 0,
+                                          top: 10,bottom: 40,left: 10,right: 10,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,
