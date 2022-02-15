@@ -27,6 +27,9 @@ import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/api/api_sanpham_tui.dart';
+import 'package:flutter_application_1/page/login.dart';
+import 'api/api_dangnhap.dart';
+import 'api/api_dangky.dart';
 import 'package:provider/provider.dart';
 
 import 'api/api_sanpham_trangsuc.dart';
@@ -46,14 +49,14 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (_) => Api(), 
+        create: (_) => Api(),
       ),
-      ChangeNotifierProvider(create: (_)=>Apiao()),
-      ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
-      ChangeNotifierProvider(create: (_)=>Apigiay()),
-      ChangeNotifierProvider(create: (_)=>Apitui()),
+      ChangeNotifierProvider(create: (_) => Apiao()),
+      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
+      ChangeNotifierProvider(create: (_) => Apigiay()),
+      ChangeNotifierProvider(create: (_) => Apitui()),
+      ChangeNotifierProvider(create: (_) => Apidangky()),
     ],
-    
     child: MyApp(),
   ));
 }
@@ -65,7 +68,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
-      home: MyHomePage(),
+      home: Login(),
     );
   }
 }
@@ -82,7 +85,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentTab = 0;
 
- 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
   @override
