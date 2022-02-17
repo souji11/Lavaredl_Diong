@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIsanphamController;
+use App\Http\Controllers\APIuserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,11 @@ route::get('SanPham/giay', [APIsanphamController::class,'chonGiay']);
 route::get('SanPham/ao', [APIsanphamController::class,'chonAo']);
 route::get('SanPham/trangsuc', [APIsanphamController::class,'chonTrangSuc']);
 route::get('SanPham/tui', [APIsanphamController::class,'chonTui']);
+route::get('User', [APIuserController::class,'index']);
+route::post('User/register',[APIuserController::class,'register']);
+route::post('User/login',[APIuserController::class,'login']);
+route::get('User/user',[APIuserController::class,'user']);
+route::post('User/logout',[APIuserController::class,'logout']);
+route::post('User/update/{User}',[APIuserController::class,'update']);
+route::post('User/changepass/{User}',[APIuserController::class,'changepass']);
+route::post('User/forgotpass',[APIuserController::class,'forgotpass']);

@@ -1,6 +1,8 @@
 //import 'dart:html';
 // ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace
 
+import 'package:flutter_application_1/main.dart';
+
 import '../appbar/cart.dart';
 import '../appbar/favorite.dart';
 import '../appbar/notification.dart';
@@ -119,7 +121,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               height: 400,
                               width: 400,
                               image: NetworkImage(
-                                 widget.product.hinhAnh,
+                                widget.product.hinhAnh,
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -309,7 +311,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) => Home(),
+                                    builder: (_) => MyHomePage(),
                                   ),
                                 );
                               },

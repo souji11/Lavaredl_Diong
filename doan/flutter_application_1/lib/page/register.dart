@@ -2,10 +2,12 @@
 import 'dart:convert';
 
 import 'package:flutter_application_1/Models/user.dart';
+import 'package:flutter_application_1/api/URL.dart';
 import 'package:flutter_application_1/api/api_dangnhap.dart';
 import 'package:flutter_application_1/api/api_response.dart';
 import 'package:flutter_application_1/bottom/home.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -27,30 +29,10 @@ class _RegisterState extends State<Register> {
   // TextEditingController lastPassWord = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   TextEditingController txtSDT = TextEditingController();
+  TextEditingController txtEmail = TextEditingController();
   TextEditingController txtPassWord = TextEditingController();
   TextEditingController txtPassWordConfirm = TextEditingController();
   bool loading = false;
-
-  // void _registerUser() async {
-  //   ApiResponse response = await register(txtSDT.text, txtPassWord.text);
-  //   if (response.error == null) {
-  //     _saveAndGoHome(response.data as User);
-  //   } else {
-  //     setState(() {
-  //       loading = !loading;
-  //     });
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(SnackBar(content: Text("${response.error}")));
-  //   }
-  // }
-
-  // void _saveAndGoHome(User user) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   await pref.setString('token', user.token ?? '');
-  //   await pref.setInt('Id', user.id ?? 0);
-  //   Navigator.of(context).pushAndRemoveUntil(
-  //       MaterialPageRoute(builder: (context) => Home()), (route) => false);
-  // }
 
   String _sdt = "";
   String _password1 = "";
@@ -122,9 +104,52 @@ class _RegisterState extends State<Register> {
                               ]),
                           height: 60,
                           child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (val) => val!.isEmpty
+                                ? 'Email không được bỏ trống'
+                                : null,
+                            controller: txtEmail,
+                            style: TextStyle(
+                              color: Colors.black87,
+                            ),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              contentPadding: EdgeInsets.only(top: 14),
+                              prefixIcon: Icon(
+                                Icons.phone,
+                                color: Color(0xff99cccc),
+                              ),
+                              hintText: "Email",
+                              hintStyle: TextStyle(
+                                color: Colors.black87,
+                              ),
+                            ),
+                            onChanged: (value) {
+                              _sdt = value;
+                            },
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  blurRadius: 6,
+                                  offset: Offset(0, 2),
+                                ),
+                              ]),
+                          height: 60,
+                          child: TextFormField(
                             keyboardType: TextInputType.phone,
-                            validator: (val) =>
-                                val!.isEmpty ? 'Sdt khong duoc bo trong' : null,
+                            validator: (val) => val!.isEmpty
+                                ? 'Số điện thoại không được bỏ trống'
+                                : null,
                             controller: txtSDT,
                             style: TextStyle(
                               color: Colors.black87,
@@ -215,7 +240,7 @@ class _RegisterState extends State<Register> {
                           child: TextFormField(
                             controller: txtPassWord,
                             validator: (val) => val!.isEmpty
-                                ? 'Mat khau khong duoc bo trong'
+                                ? 'Mật khẩu không được bỏ trống'
                                 : null,
                             obscureText: isPassWord,
                             style: TextStyle(
@@ -269,7 +294,7 @@ class _RegisterState extends State<Register> {
                           child: TextFormField(
                             controller: txtPassWordConfirm,
                             validator: (val) => val != txtPassWord.text
-                                ? 'Mat khau khong khop'
+                                ? 'Mật khẩu không khớp'
                                 : null,
                             obscureText: isPassWord2,
                             style: TextStyle(
@@ -360,25 +385,37 @@ class _RegisterState extends State<Register> {
                                     backgroundColor: Colors.teal[300],
                                   ),
                                   onPressed: () {
-                                    // if (formkey.currentState!.validate()) {
-                                    //   if (txtSDT.text == null) {
-                                    //     ScaffoldMessenger.of(context)
-                                    //         .showSnackBar(SnackBar(
-                                    //             content: Text(
-                                    //                 "SDT khong duoc de trong")));
-                                    //   } else if (txtPassWord.text !=
-                                    //       txtPassWordConfirm.text) {
-                                    //     ScaffoldMessenger.of(context)
-                                    //         .showSnackBar(SnackBar(
-                                    //             content: Text(
-                                    //                 "Mat khau khong tru khop")));
-                                    //   } else {
-                                    //     setState(() {
-                                    //       loading = !loading;
-                                    //       _registerUser();
-                                    //     });
-                                    //   }
-                                    // }
+                                    if (formkey.currentState!.validate()) {
+                                      if (txtSDT.text == null) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "Số điện thoại không được bỏ trống")));
+                                      } else if (txtPassWord.text !=
+                                          txtPassWordConfirm.text) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    "Mật khẩu không khớp")));
+                                      } else {
+                                        setState(() {
+                                          showLoading();
+                                          // loading = !loading;
+                                          Provider.of<Apidangky>(context,
+                                                  listen: false)
+                                              .DangKyUser(
+                                                  txtSDT.text,
+                                                  txtPassWord.text,
+                                                  txtEmail.text);
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      Login()));
+                                        });
+                                      }
+                                      EasyLoading.dismiss();
+                                    }
                                   },
                                   child: const Text("Đăng ký"),
                                 ),
@@ -389,47 +426,47 @@ class _RegisterState extends State<Register> {
               Divider(
                 color: Colors.grey,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 5, bottom: 5, right: 100, left: 100),
-                child: SizedBox(
-                  height: 30,
-                  width: 100,
-                  child: ElevatedButton.icon(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.teal[300],
-                    ),
-                    onPressed: () {},
-                    label: const Text(
-                      "Đăng nhập Facebook",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    icon: const Icon(Icons.facebook),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 5, bottom: 5, right: 120, left: 120),
-                child: SizedBox(
-                  height: 30,
-                  child: ElevatedButton.icon(
-                    style: TextButton.styleFrom(
-                      backgroundColor: Colors.teal[300],
-                    ),
-                    onPressed: () {},
-                    label: const Text(
-                      "Đăng nhập Gmail",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    icon: const Icon(Icons.email),
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       top: 5, bottom: 5, right: 100, left: 100),
+              //   child: SizedBox(
+              //     height: 30,
+              //     width: 100,
+              //     child: ElevatedButton.icon(
+              //       style: TextButton.styleFrom(
+              //         backgroundColor: Colors.teal[300],
+              //       ),
+              //       onPressed: () {},
+              //       label: const Text(
+              //         "Đăng nhập Facebook",
+              //         style: TextStyle(
+              //           color: Colors.white,
+              //         ),
+              //       ),
+              //       icon: const Icon(Icons.facebook),
+              //     ),
+              //   ),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //       top: 5, bottom: 5, right: 120, left: 120),
+              //   child: SizedBox(
+              //     height: 30,
+              //     child: ElevatedButton.icon(
+              //       style: TextButton.styleFrom(
+              //         backgroundColor: Colors.teal[300],
+              //       ),
+              //       onPressed: () {},
+              //       label: const Text(
+              //         "Đăng nhập Gmail",
+              //         style: TextStyle(
+              //           color: Colors.white,
+              //         ),
+              //       ),
+              //       icon: const Icon(Icons.email),
+              //     ),
+              //   ),
+              // ),
               // Padding(
               //   padding: const EdgeInsets.only(
               //       top: 5, bottom: 5, right: 190, left: 190),
@@ -459,4 +496,20 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
+}
+
+void showLoading() {
+  EasyLoading.instance
+    ..loadingStyle = EasyLoadingStyle.custom
+    ..indicatorType = EasyLoadingIndicatorType.threeBounce
+    ..radius = 50
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.white
+    ..indicatorColor = Colors.indigo
+    ..textColor = Colors.indigo
+    ..fontSize = 20;
+  EasyLoading.show(
+    status: "Please wait...",
+    maskType: EasyLoadingMaskType.black,
+  );
 }

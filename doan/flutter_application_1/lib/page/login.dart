@@ -6,6 +6,7 @@ import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/URL.dart';
 import 'package:flutter_application_1/api/api_response.dart';
 import 'package:flutter_application_1/bottom/home.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../Models/login.dart';
@@ -27,8 +28,8 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  TextEditingController txtSDT = TextEditingController();
-  TextEditingController txtPassWord = TextEditingController();
+  TextEditingController txtSDT = TextEditingController(text: "souji@gmail.com");
+  TextEditingController txtPassWord = TextEditingController(text: "123");
 
   // final scaffoldKey = GlobalKey<ScaffoldState>();
   // GlobalKey<FormState> globalFormKey = new GlobalKey();
@@ -81,16 +82,16 @@ class _LoginState extends State<Login> {
         ),
         child: ListView(
           children: <Widget>[
-            ListTile(
-              leading: const Icon(
-                Icons.reply,
-                size: 40,
-              ),
-              tileColor: Colors.black,
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
+            // ListTile(
+            //   leading: const Icon(
+            //     Icons.reply,
+            //     size: 40,
+            //   ),
+            //   tileColor: Colors.black,
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
             Padding(
               padding: const EdgeInsets.all(50),
               child: Image.asset('images/logo.png', height: 100, width: 350),
@@ -128,8 +129,9 @@ class _LoginState extends State<Login> {
                       child: TextFormField(
                         keyboardType: TextInputType.phone,
                         controller: txtSDT,
-                        validator: (val) =>
-                            val!.isEmpty ? 'SDT không được để trống' : null,
+                        validator: (val) => val!.isEmpty
+                            ? 'Số điện thoại / Email không được bỏ trống'
+                            : null,
                         style: TextStyle(
                           color: Colors.black87,
                         ),
@@ -141,7 +143,7 @@ class _LoginState extends State<Login> {
                             Icons.phone,
                             color: Color(0xff99cccc),
                           ),
-                          hintText: "Số điện thoại",
+                          hintText: "Số điện thoại / Email",
                           hintStyle: TextStyle(
                             color: Colors.black87,
                           ),
@@ -169,6 +171,9 @@ class _LoginState extends State<Login> {
                       height: 60,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
+                        validator: (val) => val!.isEmpty
+                            ? 'Mật khẩu không được bỏ trống'
+                            : null,
                         controller: txtPassWord,
                         obscureText: isPassWord,
                         style: TextStyle(
@@ -204,84 +209,90 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
-                  loading
-                      ? Center(
-                          child: CircularProgressIndicator(
-                            color: Colors.green.shade300,
-                          ),
-                        )
-                      : Padding(
-                          padding: const EdgeInsets.only(
-                              top: 5, bottom: 5, right: 150, left: 150),
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 35,
-                            child: ElevatedButton(
-                              style: TextButton.styleFrom(
-                                backgroundColor: Colors.teal[300],
-                              ),
-                              onPressed: () async {
-                                final kq = await apiLogin(
-                                    txtSDT.text, txtPassWord.text);
-                                if (kq.SDT.isNotEmpty) {
-                                  Auth.user = kq;
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MyHomePage()));
-                                }
-                              },
-                              child: const Text("Đăng nhập"),
-                            ),
-                          ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        top: 5, bottom: 5, right: 150, left: 150),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 35,
+                      child: ElevatedButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Colors.teal[300],
                         ),
+                        onPressed: () async {
+                          // showLoading();
+                          if (txtSDT == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text(
+                                    "Số điện thoại / Email không được bỏ trống")));
+                          }
+                          if (txtPassWord == null) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("Mật khẩu không được bỏ trống")));
+                          } else {
+                            final kq =
+                                await apiLogin(txtSDT.text, txtPassWord.text);
+                            if (kq.SDT.isNotEmpty) {
+                              Auth.user = kq;
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MyHomePage()));
+                            }
+                          }
+                          // EasyLoading.dismiss();
+                        },
+                        child: const Text("Đăng nhập"),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
             Divider(
               color: Colors.grey,
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 5, bottom: 5, right: 100, left: 100),
-              child: SizedBox(
-                height: 30,
-                width: 100,
-                child: ElevatedButton.icon(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.teal[300],
-                  ),
-                  onPressed: () {},
-                  label: const Text(
-                    "Đăng nhập Facebook",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  icon: const Icon(Icons.facebook),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 5, bottom: 5, right: 120, left: 120),
-              child: SizedBox(
-                height: 30,
-                child: ElevatedButton.icon(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Colors.teal[300],
-                  ),
-                  onPressed: () {},
-                  label: const Text(
-                    "Đăng nhập Gmail",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  icon: const Icon(Icons.email),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       top: 5, bottom: 5, right: 100, left: 100),
+            //   child: SizedBox(
+            //     height: 30,
+            //     width: 100,
+            //     child: ElevatedButton.icon(
+            //       style: TextButton.styleFrom(
+            //         backgroundColor: Colors.teal[300],
+            //       ),
+            //       onPressed: () {},
+            //       label: const Text(
+            //         "Đăng nhập Facebook",
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //         ),
+            //       ),
+            //       icon: const Icon(Icons.facebook),
+            //     ),
+            //   ),
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(
+            //       top: 5, bottom: 5, right: 120, left: 120),
+            //   child: SizedBox(
+            //     height: 30,
+            //     child: ElevatedButton.icon(
+            //       style: TextButton.styleFrom(
+            //         backgroundColor: Colors.teal[300],
+            //       ),
+            //       onPressed: () {},
+            //       label: const Text(
+            //         "Đăng nhập Gmail",
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //         ),
+            //       ),
+            //       icon: const Icon(Icons.email),
+            //     ),
+            //   ),
+            // ),
             TextButton(
               child: const Text(
                 "Quên mật khẩu ?",
@@ -327,4 +338,20 @@ class _LoginState extends State<Login> {
       ),
     );
   }
+}
+
+void showLoading() {
+  EasyLoading.instance
+    ..loadingStyle = EasyLoadingStyle.custom
+    ..indicatorType = EasyLoadingIndicatorType.threeBounce
+    ..radius = 50
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.white
+    ..indicatorColor = Colors.indigo
+    ..textColor = Colors.indigo
+    ..fontSize = 20;
+  EasyLoading.show(
+    status: "Please wait...",
+    maskType: EasyLoadingMaskType.black,
+  );
 }
