@@ -43,14 +43,14 @@ class APIuserController extends Controller
 
     public function login(Request $request)
     {
-        $acc = User::where('password', $request->password)
+        $user = User::where('password', $request->password)
             ->Where(function ($query) use ($request) {
                 $query->orwhere('email', $request->email)
                     ->orwhere('SDT', $request->SDT);
             })
             ->first();
-        if (!empty($acc))
-            return response()->json($acc, 200);
+        if (!empty($user))
+            return response()->json($user, 200);
         return response()->json([], 404);
     }
 
@@ -119,26 +119,26 @@ class APIuserController extends Controller
         if($validate->fails())
         return response()->json($validate->errors(),400);
 
-        $acc = User::where('password', $request->oldPass)
+        $user = User::where('password', $request->oldPass)
         ->Where(function ($query) use ($request) {
             $query->orwhere('email', $request->email)
                 ->orwhere('SDT', $request->SDT);
         })
         ->first();
 
-        if ($acc->SDT != $request->SDT)
+        if ($user->SDT != $request->SDT)
         return response()->json(['oldPass' => "Số điện thoại không tồn tại"], 400);
-        else if ($acc->SDT != $request->SDT)
+        else if ($user->SDT != $request->SDT)
         return response()->json(['oldPass' => "Email không tồn tại"], 400);
-        else if ($acc->password != $request->oldPass)
+        else if ($user->password != $request->oldPass)
         return response()->json(['oldPass' => "Mật khẩu cũ không trùng khớp"], 400);
-        else if ($acc->password == $request->newPass)
+        else if ($user->password == $request->newPass)
         return response()->json(['newPass'=>"Mật khẩu cũ trùng với mật khẩu mới"], 400);
 
-        $acc->fill(["password" => $request->newPass]);
-        $acc->save();
-        if(!empty($acc))
-        return response()->json($acc,200);
+        $user->fill(["password" => $request->newPass]);
+        $user->save();
+        if(!empty($user))
+        return response()->json($user,200);
     }
     
     /**
