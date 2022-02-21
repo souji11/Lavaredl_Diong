@@ -10,7 +10,7 @@ Future<User> apiUpdate(User user) async {
   User acc;
   String url = "http://127.0.0.1:8000/api/User/update/${Auth.user.id}";
   var response = await http.post(Uri.parse(url),
-      headers: _setHeader(), body: jsonEncode(user.toJson()));
+      headers: _header(), body: jsonEncode(user.toJson()));
   if (response.statusCode == 200) {
     final jsondata = json.decode(response.body);
     acc = User.fromJson(jsondata);
@@ -20,7 +20,7 @@ Future<User> apiUpdate(User user) async {
   return acc;
 }
 
-_setHeader() => {
+_header() => {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json'
     };

@@ -23,7 +23,7 @@ Future<User> apiChangePass(
   return acc;
 }
 
-_setHeader() => {
+_header() => {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json'
     };

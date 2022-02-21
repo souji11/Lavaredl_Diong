@@ -22,7 +22,7 @@ Future<User> apiLogin(String emailSDT, String password) async {
   return acc;
 }
 
-_setHeader() => {
+_header() => {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json'
     };

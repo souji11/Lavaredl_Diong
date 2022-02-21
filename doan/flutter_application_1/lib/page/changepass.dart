@@ -29,22 +29,12 @@ class _ChangesPass extends State<ChangePass> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('images/dk2.jpg'), fit: BoxFit.cover),
+              image: AssetImage('images/qmk2.jpg'), fit: BoxFit.cover),
         ),
         child: ListView(
           children: <Widget>[
-            ListTile(
-              leading: const Icon(
-                Icons.reply,
-                size: 40,
-              ),
-              // tileColor: Colors.black,
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
             const Padding(
-              padding: EdgeInsets.all(15),
+              padding: EdgeInsets.only(top: 50, bottom: 75),
               child: Text(
                 "Thay đổi mật khẩu",
                 style: TextStyle(
@@ -290,43 +280,70 @@ class _ChangesPass extends State<ChangePass> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 20, bottom: 20, right: 150, left: 150),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 35,
-                      child: ElevatedButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.teal[300],
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // ignore: deprecated_member_use
+                        OutlineButton(
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context, true);
+                          },
+                          child: const Text(
+                            'Quay lại',
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 2.2,
+                                color: Colors.black),
+                          ),
                         ),
-                        onPressed: () async {
-                          if (formkey.currentState!.validate()) {
-                            if (txtOldPass.text == null ||
-                                txtNewPass.text == null) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text(
-                                          "Mật khẩu không được bỏ trống")));
-                            } else if (txtNewPass.text !=
-                                TxtNewPassConfirm.text) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text("Mật khẩu không khớp")));
-                            } else {
-                              Auth.user = await apiChangePass(txtOldPass.text,
-                                  txtNewPass.text, TxtNewPassConfirm.text);
-                              setState(() {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => MyHomePage()));
-                              });
+                        // ignore: deprecated_member_use
+                        RaisedButton(
+                          onPressed: () async {
+                            if (formkey.currentState!.validate()) {
+                              if (txtOldPass.text == null ||
+                                  txtNewPass.text == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(
+                                            "Mật khẩu không được bỏ trống")));
+                              } else if (txtNewPass.text !=
+                                  TxtNewPassConfirm.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text("Mật khẩu không khớp")));
+                              } else {
+                                Auth.user = await apiChangePass(txtOldPass.text,
+                                    txtNewPass.text, TxtNewPassConfirm.text);
+                                setState(() {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => MyHomePage()));
+                                });
+                              }
                             }
-                          }
-                          ;
-                        },
-                        child: const Text("Đổi mật khẩu"),
-                      ),
+                            ;
+                          },
+                          color: Colors.teal.shade300,
+                          padding: const EdgeInsets.symmetric(horizontal: 40),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: const Text(
+                            'Cập nhật',
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 2.2,
+                                color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],

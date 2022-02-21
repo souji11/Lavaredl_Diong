@@ -7,6 +7,7 @@ import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/api_capnhataikhoan.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/page/login.dart';
+import 'package:flutter_application_1/success/updatesuccess.dart';
 import 'package:intl/intl.dart';
 
 class Infomation extends StatefulWidget {
@@ -512,7 +513,7 @@ class _InformationState extends State<Infomation> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MyHomePage()));
+                                  builder: (context) => UpdateSuccess()));
                         });
                       },
                       color: Colors.teal.shade300,
