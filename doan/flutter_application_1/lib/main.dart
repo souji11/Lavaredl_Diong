@@ -55,7 +55,10 @@ void main() {
       ChangeNotifierProvider(create: (_) => Apitrangsuc()),
       ChangeNotifierProvider(create: (_) => Apigiay()),
       ChangeNotifierProvider(create: (_) => Apitui()),
+<<<<<<< HEAD
       ChangeNotifierProvider(create: (_) => Apidangky()),
+=======
+>>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
     ],
     child: MyApp(),
   ));
@@ -68,7 +71,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
+<<<<<<< HEAD
       home: Login(),
+=======
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
+>>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
     );
   }
 }
@@ -199,29 +207,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              MaterialButton(
-                minWidth: 40,
-                onPressed: () {
-                  setState(() {
-                    currentSceent = Setting();
-                    currentTab = 2;
-                  });
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      color: currentTab == 2 ? Colors.blue : Colors.green,
-                    ),
-                    Text(
-                      'Cài đặt',
-                      style: TextStyle(
-                          color: currentTab == 2 ? Colors.blue : Colors.green),
-                    ),
-                  ],
-                ),
-              ),
+              // MaterialButton(
+              //   minWidth: 40,
+              //   onPressed: () {
+              //     setState(() {
+              //       currentSceent = Setting();
+              //       currentTab = 2;
+              //     });
+              //   },
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Icon(
+              //         Icons.settings,
+              //         color: currentTab == 2 ? Colors.blue : Colors.green,
+              //       ),
+              //       Text(
+              //         'Cài đặt',
+              //         style: TextStyle(
+              //             color: currentTab == 2 ? Colors.blue : Colors.green),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               MaterialButton(
                 minWidth: 40,
                 onPressed: () {

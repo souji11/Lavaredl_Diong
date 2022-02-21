@@ -245,6 +245,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     scrollDirection: Axis.horizontal,
                     children: List.generate(api.lst.length, (index) {
                       return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(0),
+                          ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -351,6 +358,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     scrollDirection: Axis.horizontal,
                     children: List.generate(api.lst.length, (index) {
                       return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(0),
+                          ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -457,6 +471,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     scrollDirection: Axis.horizontal,
                     children: List.generate(api.lst.length, (index) {
                       return Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.red,
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(0),
+                          ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
