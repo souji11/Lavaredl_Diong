@@ -5,6 +5,7 @@ import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/api_capnhataikhoan.dart';
 import 'package:flutter_application_1/api/api_doimatkhau.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/success/updatesuccess.dart';
 
 class ChangePass extends StatefulWidget {
   const ChangePass({Key? key}) : super(key: key);
@@ -324,7 +325,8 @@ class _ChangesPass extends State<ChangePass> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => MyHomePage()));
+                                          builder: (context) =>
+                                              UpdateSuccess()));
                                 });
                               }
                             }

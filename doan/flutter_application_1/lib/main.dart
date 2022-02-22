@@ -23,6 +23,8 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import
 
 import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_cthoadon.dart';
+import 'package:flutter_application_1/api/api_hoadon.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
@@ -55,10 +57,9 @@ void main() {
       ChangeNotifierProvider(create: (_) => Apitrangsuc()),
       ChangeNotifierProvider(create: (_) => Apigiay()),
       ChangeNotifierProvider(create: (_) => Apitui()),
-<<<<<<< HEAD
-      ChangeNotifierProvider(create: (_) => Apidangky()),
-=======
->>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
+      // ChangeNotifierProvider(create: (_) => ApiHoaDon()),
+      // ChangeNotifierProvider(create: (_) => ApiHoaDonTrangThai()),
+      // ChangeNotifierProvider(create: (_) => ApiCTHoaDon()),
     ],
     child: MyApp(),
   ));
@@ -71,12 +72,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
-<<<<<<< HEAD
       home: Login(),
-=======
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
->>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
     );
   }
 }

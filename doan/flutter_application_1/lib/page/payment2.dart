@@ -245,7 +245,7 @@ class _Payment2 extends State<Payment2> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
-                        'Cập nhật',
+                        'Thanh toán',
                         style: TextStyle(
                             fontSize: 14,
                             letterSpacing: 2.2,
@@ -261,21 +261,4 @@ class _Payment2 extends State<Payment2> {
       ),
     );
   }
-
-  // Widget newMethod(String label, String ND) {
-  //   return Padding(
-  //     padding: const EdgeInsets.only(bottom: 35.0),
-  //     child: TextField(
-  //       //obscureText: ShowPass,
-  //       decoration: InputDecoration(
-  //         contentPadding: const EdgeInsets.only(bottom: 3),
-  //         labelText: label,
-  //         floatingLabelBehavior: FloatingLabelBehavior.always,
-  //         hintText: ND,
-  //         hintStyle: const TextStyle(
-  //             fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-  //       ),
-  //     ),
-  //   );
-  // }
 }

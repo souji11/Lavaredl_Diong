@@ -148,56 +148,6 @@ class _SetPassState extends State<SetPass> {
                             ),
                           ),
                         ),
-                        // Padding(
-                        //   padding: const EdgeInsets.only(
-                        //       top: 5, bottom: 5, right: 170, left: 170),
-                        //   child: SizedBox(
-                        //     width: double.infinity,
-                        //     height: 35,
-                        //     child: ElevatedButton(
-                        //       style: TextButton.styleFrom(
-                        //         backgroundColor: Colors.teal[300],
-                        //       ),
-                        //       onPressed: () {},
-                        //       child: const Text("Lấy mã OTD"),
-                        //     ),
-                        //   ),
-                        // ),
-                        // Padding(
-                        //   padding: EdgeInsets.all(5),
-                        //   child: Container(
-                        //     alignment: Alignment.centerLeft,
-                        //     decoration: BoxDecoration(
-                        //         color: Colors.white,
-                        //         borderRadius: BorderRadius.circular(10),
-                        //         boxShadow: [
-                        //           BoxShadow(
-                        //             color: Colors.black26,
-                        //             blurRadius: 6,
-                        //             offset: Offset(0, 2),
-                        //           ),
-                        //         ]),
-                        //     height: 60,
-                        //     child: TextField(
-                        //       keyboardType: TextInputType.number,
-                        //       style: TextStyle(
-                        //         color: Colors.black87,
-                        //       ),
-                        //       decoration: InputDecoration(
-                        //         border: InputBorder.none,
-                        //         contentPadding: EdgeInsets.only(top: 14),
-                        //         prefixIcon: Icon(
-                        //           Icons.sms,
-                        //           color: Color(0xff99cccc),
-                        //         ),
-                        //         hintText: "Nhập mã OTD",
-                        //         hintStyle: TextStyle(
-                        //           color: Colors.black87,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                         Padding(
                           padding: EdgeInsets.all(5),
                           child: Container(
@@ -408,29 +358,6 @@ class _SetPassState extends State<SetPass> {
                         ),
                       ],
                     )),
-                // Padding(
-                //   padding: const EdgeInsets.only(
-                //       top: 5, bottom: 5, right: 190, left: 190),
-                //   child: SizedBox(
-                //     height: 30,
-                //     child: ElevatedButton.icon(
-                //       style: TextButton.styleFrom(
-                //         backgroundColor: Colors.teal[300],
-                //       ),
-                //       onPressed: () {
-                //         Navigator.pop(context,
-                //             MaterialPageRoute(builder: (context) => Login()));
-                //       },
-                //       label: const Text(
-                //         "Quay lại",
-                //         style: TextStyle(
-                //           color: Colors.white,
-                //         ),
-                //       ),
-                //       icon: Icon(Icons.reply),
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

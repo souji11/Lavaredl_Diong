@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-class Order {
+class Order2 {
   late int ID;
   late String? Code;
   late int? IdTaiKhoan;
@@ -13,7 +13,7 @@ class Order {
   late double? TongTien;
   late int IDTrangThai;
 
-  Order(
+  Order2(
       {required this.ID,
       this.Code,
       this.NgayLap,
@@ -23,7 +23,7 @@ class Order {
       this.TongTien,
       required this.IDTrangThai});
 
-  Order.fromJson(Map<String, dynamic> json) {
+  Order2.fromJson(Map<String, dynamic> json) {
     ID = json['ID'] ?? 1;
     Code = json['Code'];
     NgayLap = json['NgayLap'] == null
@@ -49,7 +49,7 @@ class Order {
     return data;
   }
 
-  Order.empty() {
+  Order2.empty() {
     ID = -1;
     Code = "";
     NgayLap = null;

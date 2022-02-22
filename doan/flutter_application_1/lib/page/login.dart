@@ -76,22 +76,14 @@ class _LoginState extends State<Login> {
   Widget _uiSetup(BuildContext context) {
     return Scaffold(
       body: Container(
+        //background
         decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('images/body-iu.jpeg'), fit: BoxFit.cover),
         ),
         child: ListView(
           children: <Widget>[
-            // ListTile(
-            //   leading: const Icon(
-            //     Icons.reply,
-            //     size: 40,
-            //   ),
-            //   tileColor: Colors.black,
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            //logo
             Padding(
               padding: const EdgeInsets.all(50),
               child: Image.asset('images/logo.png', height: 100, width: 350),
@@ -100,6 +92,7 @@ class _LoginState extends State<Login> {
               key: formkey,
               child: Column(
                 children: [
+                  //chữ đăng nhập
                   const Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
@@ -111,6 +104,7 @@ class _LoginState extends State<Login> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  //SDT/Email
                   Padding(
                     padding: EdgeInsets.all(5),
                     child: Container(
@@ -135,7 +129,6 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                           color: Colors.black87,
                         ),
-                        // decoration: kInputDecoration('SDT'),
                         decoration: new InputDecoration(
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.only(top: 14),
@@ -154,6 +147,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+                  //Mật khẩu
                   Padding(
                     padding: EdgeInsets.all(5),
                     child: Container(
@@ -179,7 +173,6 @@ class _LoginState extends State<Login> {
                         style: TextStyle(
                           color: Colors.black87,
                         ),
-                        // decoration: kInputDecoration('PassWord'),
                         decoration: new InputDecoration(
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.only(top: 14),
@@ -209,6 +202,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+                  //nút đăng nhập
                   Padding(
                     padding: const EdgeInsets.only(
                         top: 5, bottom: 5, right: 150, left: 150),
@@ -220,7 +214,6 @@ class _LoginState extends State<Login> {
                           backgroundColor: Colors.teal[300],
                         ),
                         onPressed: () async {
-                          // showLoading();
                           if (txtSDT == null) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(
@@ -240,7 +233,6 @@ class _LoginState extends State<Login> {
                                       builder: (context) => MyHomePage()));
                             }
                           }
-                          // EasyLoading.dismiss();
                         },
                         child: const Text("Đăng nhập"),
                       ),
@@ -252,47 +244,7 @@ class _LoginState extends State<Login> {
             Divider(
               color: Colors.grey,
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(
-            //       top: 5, bottom: 5, right: 100, left: 100),
-            //   child: SizedBox(
-            //     height: 30,
-            //     width: 100,
-            //     child: ElevatedButton.icon(
-            //       style: TextButton.styleFrom(
-            //         backgroundColor: Colors.teal[300],
-            //       ),
-            //       onPressed: () {},
-            //       label: const Text(
-            //         "Đăng nhập Facebook",
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //       icon: const Icon(Icons.facebook),
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(
-            //       top: 5, bottom: 5, right: 120, left: 120),
-            //   child: SizedBox(
-            //     height: 30,
-            //     child: ElevatedButton.icon(
-            //       style: TextButton.styleFrom(
-            //         backgroundColor: Colors.teal[300],
-            //       ),
-            //       onPressed: () {},
-            //       label: const Text(
-            //         "Đăng nhập Gmail",
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //       icon: const Icon(Icons.email),
-            //     ),
-            //   ),
-            // ),
+            //nút quên mật khẩu
             TextButton(
               child: const Text(
                 "Quên mật khẩu ?",
@@ -318,6 +270,7 @@ class _LoginState extends State<Login> {
                 textAlign: TextAlign.center,
               ),
             ),
+            //nút đăng ký
             TextButton(
               child: const Text(
                 "Đăng ký ?",
@@ -338,20 +291,4 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-}
-
-void showLoading() {
-  EasyLoading.instance
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..indicatorType = EasyLoadingIndicatorType.threeBounce
-    ..radius = 50
-    ..progressColor = Colors.yellow
-    ..backgroundColor = Colors.white
-    ..indicatorColor = Colors.indigo
-    ..textColor = Colors.indigo
-    ..fontSize = 20;
-  EasyLoading.show(
-    status: "Please wait...",
-    maskType: EasyLoadingMaskType.black,
-  );
 }
