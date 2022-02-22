@@ -5,6 +5,8 @@ import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 
+import 'package:flutter_application_1/main.dart';
+
 import '../appbar/cart.dart';
 import '../appbar/favorite.dart';
 import '../appbar/notification.dart';
@@ -321,7 +323,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (_) => Home(),
+                                    builder: (_) => MyHomePage(),
                                   ),
                                 );
                               },

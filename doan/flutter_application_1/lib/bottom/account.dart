@@ -1,6 +1,8 @@
 // ignore_for_file: unused_import, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/page/changepass.dart';
+import 'package:flutter_application_1/page/setpass.dart';
 import '../page/infomation.dart';
 import '../appbar/cart.dart';
 import '../page/order.dart';
@@ -65,6 +67,40 @@ class _AccountState extends State<AccountS> {
                     Expanded(
                         child: Text(
                       'Thông tin cá nhân',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    )),
+                    const Icon(Icons.arrow_forward_ios)
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              // ignore: deprecated_member_use
+              child: FlatButton(
+                padding: EdgeInsets.all(20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15)),
+                color: const Color(0xFFF5F6F9),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChangePass()),
+                  );
+                },
+                child: Row(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    const Icon(
+                      Icons.password_outlined,
+                      color: Colors.green,
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                        child: Text(
+                      'Thay đổi mật khẩu',
                       style: Theme.of(context).textTheme.bodyText1,
                     )),
                     const Icon(Icons.arrow_forward_ios)

@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors_in_immutables, avoid_returning_null_for_void, file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/api/Auth.dart';
 import 'page/login.dart';
 import 'page/register.dart';
+import 'Models/user.dart';
 
 class Navbar extends StatefulWidget {
   Navbar({Key? key}) : super(key: key);
@@ -18,8 +20,8 @@ class _NavbarState extends State<Navbar> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: const Text('Trần Quang Vũ'),
-            accountEmail: const Text('vutran.300101@gmail.com'),
+            accountName: Text(Auth.user.name ?? ""),
+            accountEmail: Text(Auth.user.email),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.asset(
@@ -64,41 +66,48 @@ class _NavbarState extends State<Navbar> {
             title: Text('Thanh toán'),
             onTap: () => null,
           ),
+          // ListTile(
+          //   leading: Icon(Icons.people),
+          //   title: Text('Bạn'),
+          //   onTap: () => null,
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.share),
+          //   title: Text('Chia sẽ'),
+          //   onTap: () => null,
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.update),
+          //   title: Text('Nâng cấp'),
+          //   onTap: () => null,
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.help),
+          //   title: Text('Trợ giúp'),
+          //   onTap: () => null,
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.info),
+          //   title: Text('Thông tin nhà phát triển'),
+          //   onTap: () => null,
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.star_outline),
+          //   title: Text('Đánh giá'),
+          //   onTap: () => null,
+          // ),
           ListTile(
-            leading: Icon(Icons.people),
-            title: Text('Bạn'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.share),
-            title: Text('Chia sẽ'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.update),
-            title: Text('Nâng cấp'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.help),
-            title: Text('Trợ giúp'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.info),
-            title: Text('Thông tin nhà phát triển'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.star_outline),
-            title: Text('Đánh giá'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Thoát'),
-            onTap: () => null,
-          ),
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Thoát'),
+              onTap: () {
+                setState(() {
+                  Auth.user.logOut();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                });
+              }),
         ],
       ),
     );

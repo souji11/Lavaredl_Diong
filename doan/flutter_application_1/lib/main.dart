@@ -27,9 +27,15 @@ import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/api/api_sanpham_tui.dart';
+<<<<<<< HEAD
 import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
 import 'package:flutter_application_1/api/api_yeuthich_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
+=======
+import 'package:flutter_application_1/page/login.dart';
+import 'api/api_dangnhap.dart';
+import 'api/api_dangky.dart';
+>>>>>>> e86687157594d8d2077d121a736c2ac92d7c18d1
 import 'package:provider/provider.dart';
 
 import 'api/api_sanpham_trangsuc.dart';
@@ -49,8 +55,9 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
-        create: (_) => Api(), 
+        create: (_) => Api(),
       ),
+<<<<<<< HEAD
       ChangeNotifierProvider(create: (_)=>Apiao()),
       ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
       ChangeNotifierProvider(create: (_)=>Apigiay()),
@@ -58,8 +65,17 @@ void main() {
       ChangeNotifierProvider(create: (_)=>APIThemSPYT()),
       ChangeNotifierProvider(create: (_)=>APIXoaSPYT()),
       ChangeNotifierProvider(create: (_)=>ApiYT()),
+=======
+      ChangeNotifierProvider(create: (_) => Apiao()),
+      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
+      ChangeNotifierProvider(create: (_) => Apigiay()),
+      ChangeNotifierProvider(create: (_) => Apitui()),
+<<<<<<< HEAD
+      ChangeNotifierProvider(create: (_) => Apidangky()),
+=======
+>>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
+>>>>>>> e86687157594d8d2077d121a736c2ac92d7c18d1
     ],
-    
     child: MyApp(),
   ));
 }
@@ -71,7 +87,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
+<<<<<<< HEAD
+      home: Login(),
+=======
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
+>>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
     );
   }
 }
@@ -88,7 +109,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentTab = 0;
 
- 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
   @override
@@ -203,29 +223,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
-              MaterialButton(
-                minWidth: 40,
-                onPressed: () {
-                  setState(() {
-                    currentSceent = Setting();
-                    currentTab = 2;
-                  });
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      color: currentTab == 2 ? Colors.blue : Colors.green,
-                    ),
-                    Text(
-                      'Cài đặt',
-                      style: TextStyle(
-                          color: currentTab == 2 ? Colors.blue : Colors.green),
-                    ),
-                  ],
-                ),
-              ),
+              // MaterialButton(
+              //   minWidth: 40,
+              //   onPressed: () {
+              //     setState(() {
+              //       currentSceent = Setting();
+              //       currentTab = 2;
+              //     });
+              //   },
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Icon(
+              //         Icons.settings,
+              //         color: currentTab == 2 ? Colors.blue : Colors.green,
+              //       ),
+              //       Text(
+              //         'Cài đặt',
+              //         style: TextStyle(
+              //             color: currentTab == 2 ? Colors.blue : Colors.green),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               MaterialButton(
                 minWidth: 40,
                 onPressed: () {
