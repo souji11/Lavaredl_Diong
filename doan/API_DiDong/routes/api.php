@@ -4,11 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIsanphamController;
-<<<<<<< HEAD
-use App\Http\Controllers\SanPhamYeuThichController;
-=======
+use App\Http\Controllers\SanPhamYeuThichController; 
 use App\Http\Controllers\APIuserController;
->>>>>>> e86687157594d8d2077d121a736c2ac92d7c18d1
 
 /*
 |--------------------------------------------------------------------------
@@ -29,13 +26,11 @@ route::get('SanPham/giay', [APIsanphamController::class,'chonGiay']);
 route::get('SanPham/ao', [APIsanphamController::class,'chonAo']);
 route::get('SanPham/trangsuc', [APIsanphamController::class,'chonTrangSuc']);
 route::get('SanPham/tui', [APIsanphamController::class,'chonTui']);
-<<<<<<< HEAD
 
 route::post('SanPhamYeuThich/ThemMoi', [SanPhamYeuThichController::class,'create']);
 route::get('SanPhamYeuThich', [SanPhamYeuThichController::class,'index']);
 // route::delete('SanPhamYeuThich/Xoa', [SanPhamYeuThichController::class,'destroy']);
 route::delete('SanPhamYeuThich/Xoa/{IdSanPham}', [SanPhamYeuThichController::class,'xoa']);
-=======
 route::get('User', [APIuserController::class,'index']);
 route::post('User/register',[APIuserController::class,'register']);
 route::post('User/login',[APIuserController::class,'login']);
@@ -44,4 +39,3 @@ route::post('User/logout',[APIuserController::class,'logout']);
 route::post('User/update/{User}',[APIuserController::class,'update']);
 route::post('User/changepass/{User}',[APIuserController::class,'changepass']);
 route::post('User/forgotpass',[APIuserController::class,'forgotpass']);
->>>>>>> e86687157594d8d2077d121a736c2ac92d7c18d1
