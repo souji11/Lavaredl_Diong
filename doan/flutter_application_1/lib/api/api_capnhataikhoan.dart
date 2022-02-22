@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/URL.dart';
@@ -6,7 +8,7 @@ import 'dart:convert';
 import '../Models/user.dart';
 
 Future<User> apiUpdate(User user) async {
-  print("abc");
+ 
   User acc;
   String url = "http://127.0.0.1:8000/api/User/update/${Auth.user.id}";
   var response = await http.post(Uri.parse(url),

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/URL.dart';
 import 'package:http/http.dart' as http;
