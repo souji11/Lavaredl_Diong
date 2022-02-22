@@ -1,9 +1,13 @@
-// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new, unnecessary_string_interpolations
+// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new, unnecessary_string_interpolations, unused_local_variable
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Models/Product_main.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 import '../page/product_Ao_Quan.dart';
 import '../page/product_Giay_Dep.dart';
@@ -22,47 +26,73 @@ class Home extends StatefulWidget {
 }
 
 class FavoriteWidget extends StatefulWidget {
+<<<<<<< HEAD
   const FavoriteWidget({Key? key}) : super(key: key);
+=======
+  final Product_main product;
+  const FavoriteWidget({Key? key, required this.product}) : super(key: key);
+>>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
 
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
 }
 
 class _FavoriteWidgetState extends State<FavoriteWidget> {
-  bool _isFavorited = true;
+  bool _isFavorited = false;
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Api>(context, listen: false).fetchProduct_main();
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.centerRight,
-            icon: (_isFavorited
-                ? const Icon(Icons.favorite_border)
-                : const Icon(Icons.favorite)),
-            color: Colors.red[500],
-            iconSize: 30,
-            onPressed: _toggleFavorite,
-          ),
-        ),
-      ],
-    );
+    // Provider.of<Api>(context, listen: false).fetchProduct_main();
+    // Provider.of<APIThemSPYT>(context, listen: false).ThemSPyeuthich(1, widget.product.id);
+    var apithem = Provider.of<APIThemSPYT>(context, listen: false);
+    var apixoa = Provider.of<APIXoaSPYT>(context, listen: false);
+    // return Scaffold(body: Consumer<APIThemSPYT>(
+      // builder: (_, value, child) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(0),
+              child: IconButton(
+                padding: const EdgeInsets.all(0),
+                alignment: Alignment.centerRight,
+                icon: (_isFavorited
+                    ? const Icon(Icons.favorite)
+                    : const Icon(Icons.favorite_border)),
+                color: Colors.red[500],
+                iconSize: 30,
+                // onPressed: _toggleFavorite,
+                onPressed: () => setState(() {
+                  if (_isFavorited) {
+                    // apithem.ThemSPyeuthich(1, widget.product.id);
+                    apixoa.XoaSPYT(widget.product);
+                    _isFavorited = false;
+                  } else {
+                    // Provider.of<APIThemSPYT>(context, listen: false)
+                    //     .ThemSPyeuthich(1, widget.product.id);
+                    apithem.ThemSPyeuthich(1, widget.product.id);
+                    _isFavorited = true;
+                  }
+                }),
+              ),
+            ),
+          ],
+        );
+    //   },
+    // ));
+    
   }
 
-  void _toggleFavorite() {
-    setState(() {
-      if (_isFavorited) {
-        _isFavorited = false;
-      } else {
-        _isFavorited = true;
-      }
-    });
-  }
+  // void _toggleFavorite() {
+  //   setState(() {
+  //     if (_isFavorited) {
+  //       _isFavorited = false;
+  //       Provider.of<APIThemSPYT>(context, listen: false).ThemSPyeuthich(1, 2);
+  //     } else {
+  //       _isFavorited = true;
+  //     }
+  //   });
+  // }
   // ···
 }
 
@@ -260,6 +290,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           },
                           child: Consumer<Api>(
                             builder: (_, value, child) {
+                           
                               return Stack(
                                 alignment: Alignment.topCenter,
                                 children: <Widget>[
@@ -277,14 +308,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             child: Image(
                                               height: 150,
                                               width: 100,
-                                              // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                              image: NetworkImage(
-                                                  api.lst[index].hinhAnh),
-                                              //  image: AssetImage(
-                                              //     'images/' + api.lst[index].hinhAnh,
-                                              //   ),
+                                              image: AssetImage(
+                                               'assets'+api.lst[index].hinhAnh),
                                               fit: BoxFit.cover,
                                             ),
+                                            // child: Image.network('http://' + api.lst[index].hinhAnh),
                                           ),
                                           Positioned(
                                             left: 10.0,
@@ -391,8 +419,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                              image: NetworkImage(
-                                                  api.lst[index].hinhAnh),
+                                               image: AssetImage(
+                                               'assets'+api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -504,8 +532,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
+<<<<<<< HEAD
                                               image: NetworkImage(
                                                   api.lst[index].hinhAnh),
+=======
+                                               image: AssetImage(
+                                               'assets'+api.lst[index].hinhAnh),
+>>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),

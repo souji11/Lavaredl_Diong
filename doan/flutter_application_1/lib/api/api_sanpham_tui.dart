@@ -13,7 +13,7 @@ class Apitui extends ChangeNotifier{
   List<Product_main> lst = [];
   Future<void> fetchProduct_tui() async {
     List<Product_main> tmpList = [];
-  final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/SanPham/tui'));
+  final response = await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/tui'));
   if (response.statusCode == 200) {
    try{
      dynamic object = json.decode(response.body);

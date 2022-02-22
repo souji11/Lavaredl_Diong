@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // ignore_for_file: unused_import, avoid_web_libraries_in_flutter, unused_element
+=======
+// ignore_for_file: unused_import, unused_element, avoid_web_libraries_in_flutter
+>>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
 
 import 'dart:html';
 

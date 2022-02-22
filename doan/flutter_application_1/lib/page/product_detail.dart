@@ -1,5 +1,9 @@
 //import 'dart:html';
-// ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field
+
+import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
+import 'package:provider/provider.dart';
 
 import 'package:flutter_application_1/api/api_giohang_create.dart';
 import 'package:flutter_application_1/main.dart';
@@ -17,6 +21,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../Models/product.dart';
 import '../Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
 
 import '../Navbar.dart';
 import 'cmt.dart';
@@ -40,7 +45,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget currentSceent = Home();
 
   List listmau = ["Xanh", "Đỏ", "Tím", "Vàng"];
-
+  Future<SanPhamYeuThich>? _futureAlbum;
   @override
   Widget build(BuildContext context) {
     var apiThem = Provider.of<ApiThemGioHang>(context, listen: false);
@@ -95,6 +100,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           )
         ],
       ),
+      // body:   Container(
+      //     alignment: Alignment.center,
+      //     padding: const EdgeInsets.all(8.0),
+      //     child: (_futureAlbum == null) ? buildColumn() : buildFutureBuilder(),
+      //   ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: SingleChildScrollView(
@@ -123,12 +133,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             child: Image(
                               height: 400,
                               width: 400,
-                              image: NetworkImage(
-                                widget.product.hinhAnh,
+                              image: AssetImage( 'assets'+widget.product.hinhAnh),
+                                fit: BoxFit.cover,
                               ),
-                              fit: BoxFit.cover,
+                             
                             ),
-                          ),
+                          
                           // Giá sản phẩm
                           Positioned(
                             bottom: 5,
@@ -301,7 +311,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         children: <Widget>[
                           Positioned(
                             left: 0,
-                            child: FavoriteWidget(),
+                            child: FavoriteWidget(
+                              product: widget.product,
+                            ),
                           ),
                           Positioned(
                             left: 450,
@@ -350,6 +362,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                             ),
                           ),
+
+                          // ElevatedButton(
+                          //   onPressed: () {
+                          //     setState(() {
+                          //       Provider.of<APIThemSPYT>(context, listen: false).ThemSPyeuthich(1,widget.product.id);
+                          //     });
+                          //   },
+                          //   child: const Text('Create Data'),
+                          // ),
                         ],
                       ),
                     ),
@@ -424,8 +445,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         vertical: 40.0,
                       ),
                     ),
+                    //test nút thêm vào danh sách yêu thích
+                          // Container(
+                          //   alignment: Alignment.center,
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: (_futureAlbum == null)
+                          //       ? buildColumn()
+                          //       : buildFutureBuilder(),
+                          // ),
 
-                    //
                   ],
                 ),
               ),
@@ -539,4 +567,36 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       ),
     );
   }
+
+  // Column buildColumn() {
+  //   return Column(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //     children: <Widget>[
+  //       ElevatedButton(
+  //         onPressed: () {
+  //           setState(() {
+  //             _futureAlbum = Provider.of<APIXoaSPYT>(context, listen: false)
+  //                 .XoaSPYT(widget.product);
+  //           });
+  //         },
+  //         child: const Text('Xóa'),
+  //       ),
+  //     ],
+  //   );
+  // }
+
+  // FutureBuilder<SanPhamYeuThich> buildFutureBuilder() {
+  //   return FutureBuilder<SanPhamYeuThich>(
+  //     future: _futureAlbum,
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasData) {
+  //         return Text(snapshot.data!.id.toString());
+  //       } else if (snapshot.hasError) {
+  //         return Text('${snapshot.error}');
+  //       }
+
+  //       return const CircularProgressIndicator();
+  //     },
+  //   );
+  // }
 }

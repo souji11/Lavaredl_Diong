@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, unnecessary_new, prefer_collection_literals
+
 class User {
   int? id;
   String? name;
