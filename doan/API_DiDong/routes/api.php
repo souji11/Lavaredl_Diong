@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\APIcthoadon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIsanphamController;
 use App\Http\Controllers\APIuserController;
+use App\Http\Controllers\APIhoadonController;
+use App\Http\Controllers\APIcthoadonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +36,7 @@ route::post('User/logout',[APIuserController::class,'logout']);
 route::post('User/update/{User}',[APIuserController::class,'update']);
 route::post('User/changepass/{User}',[APIuserController::class,'changepass']);
 route::post('User/forgotpass',[APIuserController::class,'forgotpass']);
+route::get('User/{User}/HoaDon/all', [APIhoadonController::class,'index']);
+route::post('User/{User}/HoaDon/updateHoaDon/{HoaDon}',[APIhoadonController::class,'updateHoaDon']);
+route::get('User/{User}/HoaDon', [APIhoadonController::class,'TrangThai']);
+route::get('CTHoaDon/CTHoaDon', [APIcthoadon::class,'index']);
