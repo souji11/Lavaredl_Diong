@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/URL.dart';

@@ -14,7 +14,6 @@ import '../page/product_detail.dart';
 import '../page/product_Tui_Sach.dart';
 import '../Models/product.dart';
 
-
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
 
@@ -23,7 +22,6 @@ class Home extends StatefulWidget {
 }
 
 class FavoriteWidget extends StatefulWidget {
-  
   const FavoriteWidget({Key? key}) : super(key: key);
 
   @override
@@ -70,7 +68,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int _selectedPage = 0;
- @override
+  @override
   Widget build(BuildContext contextq) {
     Provider.of<Api>(context, listen: false).fetchProduct_main();
     var api = Provider.of<Api>(context, listen: false);
@@ -102,7 +100,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Banner('images/anh3.jpg')
                   ],
                 ),
-// nút phân loại
+                // nút phân loại
                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Row(
@@ -122,7 +120,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             primary: Colors.white,
                             backgroundColor: Colors.blue,
                           ),
-                          
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -181,7 +178,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             primary: Colors.black,
                             backgroundColor: Colors.yellow,
                           ),
-                          
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -246,12 +242,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: List.generate(api.lst.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.red,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(0),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -359,12 +355,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: List.generate(api.lst.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.red,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(0),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -472,19 +468,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: List.generate(api.lst.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.red,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(0),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ProductDetailScreen(
-                                  
                                     product: api.lst[index]),
                               ),
                             );
@@ -510,7 +505,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                               image: NetworkImage(
-                                                 api.lst[index].hinhAnh),
+                                                  api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -525,7 +520,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                              
                                                   '${api.lst[index].gia} VNĐ',
                                                   style: const TextStyle(
                                                     color: Colors.red,

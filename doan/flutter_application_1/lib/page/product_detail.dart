@@ -1,7 +1,9 @@
 //import 'dart:html';
 // ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace
 
+import 'package:flutter_application_1/api/api_giohang_create.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:provider/provider.dart';
 
 import '../appbar/cart.dart';
 import '../appbar/favorite.dart';
@@ -41,6 +43,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var apiThem = Provider.of<ApiThemGioHang>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -365,12 +368,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 backgroundColor: Colors.yellow,
                               ),
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => Home(),
-                                  ),
-                                );
+                                setState(() {
+                                  apiThem.ThemGioHang(1, widget.product.id, 1);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => Cart(),
+                                    ),
+                                  );
+                                });
                               },
                               child: Text(
                                 'Thêm vào giỏ hàng',

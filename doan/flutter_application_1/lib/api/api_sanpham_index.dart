@@ -32,23 +32,7 @@ class Api extends ChangeNotifier {
 
       lst = tmpList;
       notifyListeners();
-    }
-    // final response2 =
-    //     await http.get(Uri.parse('http://192.168.1.9:8000/api/SanPham/ao'));
-    // if (response2.statusCode == 200) {
-    //   try {
-    //     dynamic object = json.decode(response2.body);
-    //     dynamic dataao = object['dataao'];
-    //     dataao.forEach((item) {
-    //       tmpLista.add(Product_main.fromJson(item));
-    //     });
-    //   } catch (e) {
-    //     print(e);
-    //   }
-    //   lsta = tmpLista;
-    //   notifyListeners();
-    // }
-    else {
+    } else {
       throw Exception('Failed to load data');
     }
   }

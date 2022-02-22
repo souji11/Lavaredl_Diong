@@ -5,6 +5,7 @@ import 'dart:convert';
 import '../Models/user.dart';
 
 class Apidangky extends ChangeNotifier {
+  // ignore: non_constant_identifier_names
   Future<User> DangKyUser(String SDT, String password, String Email) async {
     final response = await http.post(Uri.parse(registerURL), body: {
       'SDT': SDT.toString(),

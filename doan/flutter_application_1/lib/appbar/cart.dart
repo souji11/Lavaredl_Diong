@@ -1,8 +1,11 @@
-// ignore_for_file: deprecated_member_use, unused_import, prefer_const_constructors, non_constant_identifier_names, prefer_const_literals_to_create_immutables
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore
 
-// import 'dart:ffi';
-
+import 'dart:html';
+import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/api/api_giohang_index.dart';
+import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:provider/provider.dart';
 
 import '../Models/cart.dart';
 import '../Models/product.dart';
@@ -39,11 +42,6 @@ class _CartState extends State<Cart> {
               color: Colors.white,
             ),
           ),
-          Text(
-            "${cart.length} sản phẩm",
-            //textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.caption,
-          )
         ],
       ),
     );
@@ -57,6 +55,8 @@ class CheckOutCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
+    var api = Provider.of<ApiGioHang>(context, listen: false);
     return Container(
       height: 130,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
@@ -67,50 +67,17 @@ class CheckOutCart extends StatelessWidget {
       ]),
       child: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: Color(0xFFF5F6F9),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Icon(
-                  Icons.receipt,
-                  color: Colors.green,
-                ),
-              ),
-              SizedBox(
-                width: 180,
-              ),
-              Text("Nhập mã voucher"),
-              SizedBox(
-                width: 10,
-              ),
-              Icon(
-                Icons.arrow_forward_ios,
-                size: 12,
-                color: Colors.black,
-              )
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Text("Giá tiền"),
                   SizedBox(
                     height: 5,
                   ),
-                  Text('\$3000')
+                  Text('\$')
                 ],
               ),
               SizedBox(
@@ -153,42 +120,53 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
+    Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
+    var api = Provider.of<ApiGioHang>(context, listen: false);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: ListView.builder(
-          itemCount: cart.length,
-          itemBuilder: (context, index) => Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Dismissible(
-                  key: Key(cart[index].product.ID.toString()),
-                  direction: DismissDirection.startToEnd,
-                  background: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFFE6E6),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.delete_outline,
-                          color: Colors.red,
+      child: Consumer<ApiGioHang>(builder: (_, value, child) {
+        return ListView.builder(
+            itemCount: api.lst.length,
+            itemBuilder: (context, index) => Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Dismissible(
+                      key: Key(api.lst[index].id.toString()),
+                      direction: DismissDirection.startToEnd,
+                      background: Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFE6E6),
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                      ],
-                    ),
-                  ),
-                  onDismissed: (direction) {
-                    setState(() {
-                      cart.removeAt(index);
-                    });
-                  },
-                  child: CartItem(index),
-                ),
-              )),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.delete_outline,
+                              color: Colors.red,
+                            ),
+                          ],
+                        ),
+                      ),
+                      onDismissed: (direction) {
+                        setState(() {
+                          //cart.removeAt(index);
+                          api.XoaGioHang(api.lst[index].idTaiKhoan,
+                              api.lst[index].idSanPham);
+                        });
+                      },
+                      child: CartItem(
+                          api.lst[index].hinhAnh,
+                          api.lst[index].tenSanPham,
+                          api.lst[index].gia,
+                          api.lst[index].so_Luong)),
+                ));
+      }),
     );
   }
 
-  Row CartItem(int index) {
+  // ignore: non_constant_identifier_names
+  Row CartItem(String link, String Ten, int gia, int soluong) {
     return Row(
       children: [
         SizedBox(
@@ -197,12 +175,15 @@ class _BodyState extends State<Body> {
           child: AspectRatio(
             aspectRatio: 0.88,
             child: Container(
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: Image.asset('images/' + cart[index].product.ImgUrl),
-            ),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child:
+                    //Image.asset('images/' + cart[index].product.ImgUrl),
+                    Image(
+                  image: NetworkImage(link),
+                )),
           ),
         ),
         const SizedBox(
@@ -212,7 +193,7 @@ class _BodyState extends State<Body> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              cart[index].product.TenSanPham,
+              Ten,
               style: TextStyle(fontSize: 16, color: Colors.black),
             ),
             const SizedBox(
@@ -220,11 +201,11 @@ class _BodyState extends State<Body> {
             ),
             Text.rich(
               TextSpan(
-                  text: "\$${cart[index].product.Gia}",
+                  text: "\$${gia}",
                   style: TextStyle(color: Colors.green),
                   children: [
                     TextSpan(
-                      text: " x ${cart[index].soluong}",
+                      text: " x ${soluong}",
                       style: TextStyle(color: Colors.black),
                     ),
                   ]),
