@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 // ignore_for_file: unused_import, avoid_print
-=======
 // ignore_for_file: unused_import
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/Auth.dart';

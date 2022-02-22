@@ -26,12 +26,8 @@ class Home extends StatefulWidget {
 }
 
 class FavoriteWidget extends StatefulWidget {
-<<<<<<< HEAD
-  const FavoriteWidget({Key? key}) : super(key: key);
-=======
   final Product_main product;
   const FavoriteWidget({Key? key, required this.product}) : super(key: key);
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
 
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
@@ -532,13 +528,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-<<<<<<< HEAD
-                                              image: NetworkImage(
-                                                  api.lst[index].hinhAnh),
-=======
                                                image: AssetImage(
                                                'assets'+api.lst[index].hinhAnh),
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
