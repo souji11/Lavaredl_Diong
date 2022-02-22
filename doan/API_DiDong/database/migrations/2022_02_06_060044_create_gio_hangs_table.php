@@ -17,7 +17,7 @@ class CreateGioHangsTable extends Migration
             $table->id();
             $table->unsignedBiginteger('IdSanPham');
             $table->unsignedBiginteger('IdTaiKhoan');
-            $table->integer('SoLuong');
+            $table->integer('so_luong');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIsanphamController;
 use App\Http\Controllers\APIuserController;
+use App\Http\Controllers\GioHangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,3 +34,7 @@ route::post('User/logout',[APIuserController::class,'logout']);
 route::post('User/update/{User}',[APIuserController::class,'update']);
 route::post('User/changepass/{User}',[APIuserController::class,'changepass']);
 route::post('User/forgotpass',[APIuserController::class,'forgotpass']);
+
+route::get('GioHang', [GioHangController::class,'index']);
+route::post('GioHang/them', [GioHangController::class,'create']);
+route::post('GioHang/xoa', [GioHangController::class,'destroy']);
