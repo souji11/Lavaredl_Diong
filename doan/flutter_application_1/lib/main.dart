@@ -27,6 +27,9 @@ import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/api/api_sanpham_tui.dart';
+import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
+import 'package:flutter_application_1/api/api_yeuthich_index.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 
 import 'api/api_sanpham_trangsuc.dart';
@@ -52,6 +55,9 @@ void main() {
       ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
       ChangeNotifierProvider(create: (_)=>Apigiay()),
       ChangeNotifierProvider(create: (_)=>Apitui()),
+      ChangeNotifierProvider(create: (_)=>APIThemSPYT()),
+      ChangeNotifierProvider(create: (_)=>APIXoaSPYT()),
+      ChangeNotifierProvider(create: (_)=>ApiYT()),
     ],
     
     child: MyApp(),

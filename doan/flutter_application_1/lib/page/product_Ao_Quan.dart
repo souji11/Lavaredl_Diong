@@ -241,8 +241,8 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                           child: Image(
                                             height: 150,
                                             width: 150,
-                                            image: NetworkImage(
-                                              apiao.lsta[index].hinhAnh,
+                                            image:  AssetImage(
+                                             'assets'+ apiao.lsta[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -312,7 +312,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: AssetImage(link),
+          image: NetworkImage(link),
           fit: BoxFit.cover,
         ),
       ),

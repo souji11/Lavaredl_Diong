@@ -33,7 +33,7 @@ class _NavbarState extends State<Navbar> {
             decoration: BoxDecoration(
               color: Colors.blue,
               image: DecorationImage(
-                image: NetworkImage(
+                image:  NetworkImage(
                     'https://staticproxy.mytourcdn.com/480x360,q90/resources/pictures/locations/8xw1483352776.jpg'),
                 fit: BoxFit.cover,
               ),
