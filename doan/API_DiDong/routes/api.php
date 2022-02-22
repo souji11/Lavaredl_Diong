@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIsanphamController;
+use App\Http\Controllers\SanPhamYeuThichController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,8 @@ route::get('SanPham/giay', [APIsanphamController::class,'chonGiay']);
 route::get('SanPham/ao', [APIsanphamController::class,'chonAo']);
 route::get('SanPham/trangsuc', [APIsanphamController::class,'chonTrangSuc']);
 route::get('SanPham/tui', [APIsanphamController::class,'chonTui']);
+
+route::post('SanPhamYeuThich/ThemMoi', [SanPhamYeuThichController::class,'create']);
+route::get('SanPhamYeuThich', [SanPhamYeuThichController::class,'index']);
+// route::delete('SanPhamYeuThich/Xoa', [SanPhamYeuThichController::class,'destroy']);
+route::delete('SanPhamYeuThich/Xoa/{IdSanPham}', [SanPhamYeuThichController::class,'xoa']);
