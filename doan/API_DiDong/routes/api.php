@@ -40,10 +40,7 @@ route::post('User/logout',[APIuserController::class,'logout']);
 route::post('User/update/{User}',[APIuserController::class,'update']);
 route::post('User/changepass/{User}',[APIuserController::class,'changepass']);
 route::post('User/forgotpass',[APIuserController::class,'forgotpass']);
-<<<<<<< HEAD
 
 route::get('GioHang', [GioHangController::class,'index']);
 route::post('GioHang/them', [GioHangController::class,'create']);
 route::post('GioHang/xoa', [GioHangController::class,'destroy']);
-=======
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
