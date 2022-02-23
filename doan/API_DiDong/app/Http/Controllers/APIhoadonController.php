@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CtHoaDon;
 use Illuminate\Http\Request;
 use App\Models\HoaDon;
 use App\Models\User;
+use App\Models\SanPham;
+use Hamcrest\Core\HasToString;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class APIhoadonController extends Controller
 {
-    public function updateHoaDon(Request $request, HoaDon $HoaDon, User $User){
-
+    public function updateHoaDon(Request $request, HoaDon $HoaDon){
+        // dd($HoaDon);
         $validate = Validator::make($request->all(), [
             'IDTrangThai' => ["required"],
         ]);
@@ -22,7 +26,7 @@ class APIhoadonController extends Controller
             'IDTrangThai' => $request->IDTrangThai,
         ]);
         $HoaDon->save();
-        dd($HoaDon);
+        
         $data = $HoaDon;
         if (!empty($data))
             return response()->json($data, 200);
@@ -33,9 +37,9 @@ class APIhoadonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(User $User)
+    // public function index(Request $request)
     {
-        $dsHoaDon = HoaDon::where('IdTaikhoan', $User->id)->get();
-        
+        $dsHoaDon = HoaDon::where('IdTaikhoan', $User->id)->with("CtHoaDon")->with("CtHoaDon.SanPham")->get();
         return json_encode([
             'ThanhCong'=>true,
             'data'=>$dsHoaDon,
@@ -44,7 +48,7 @@ class APIhoadonController extends Controller
 
     public function TrangThai(Request $request,User $User)
     {   
-        $dsHoaDon = HoaDon::where('IdTaikhoan', $User->id)->where('IdTrangThai','=',$request['IdTrangThai'])->get();
+        $dsHoaDon = HoaDon::where('IdTaikhoan', $User->id)->with("CtHoaDon")->with("CtHoaDon.SanPham")->where('IdTrangThai','=',$request['IdTrangThai'])->get();
         // dd($dsHoaDon);
             return json_encode([
                 'ThanhCong'=>true,

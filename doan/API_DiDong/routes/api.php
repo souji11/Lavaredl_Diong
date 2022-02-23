@@ -43,10 +43,8 @@ route::post('User/update/{User}',[APIuserController::class,'update']);
 route::post('User/changepass/{User}',[APIuserController::class,'changepass']);
 route::post('User/forgotpass',[APIuserController::class,'forgotpass']);
 route::get('User/{User}/HoaDon/all', [APIhoadonController::class,'index']);
-route::post('User/{User}/HoaDon/updateHoaDon/{HoaDon}',[APIhoadonController::class,'updateHoaDon']);
+route::post('HoaDon/updateHoaDon/{HoaDon}',[APIhoadonController::class,'updateHoaDon']);
 route::get('User/{User}/HoaDon', [APIhoadonController::class,'TrangThai']);
-route::get('CTHoaDon/CTHoaDon', [APIcthoadon::class,'index']);
-
 route::get('GioHang', [GioHangController::class,'index']);
 route::post('GioHang/them', [GioHangController::class,'create']);
 route::post('GioHang/xoa', [GioHangController::class,'destroy']);

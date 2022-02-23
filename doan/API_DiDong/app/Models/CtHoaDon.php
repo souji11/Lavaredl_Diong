@@ -15,4 +15,12 @@ class CtHoaDon extends Model
         'SoLuong',
         'DonGia',
     ];
+    public function HoaDon()
+    {
+        return $this->belongsTo(HoaDon::class, 'IdHoaDon');
+    }
+    public function SanPham()
+    {
+        return $this->belongsTo(SanPham::class, 'IdSanPham');
+    }
 }

@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class SanPham extends Model
 {
     use HasFactory;
+
+    public function CtSanPham()
+    {
+        return $this->hasMany(CtSanPham::class, 'IdSanPham');
+    }
+
+    public function CtHoaDon()
+    {
+        return $this->hasMany(CtHoaDon::class, 'IdSanPham');
+    }
 }

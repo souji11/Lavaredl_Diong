@@ -20,4 +20,12 @@ class HoaDon extends Model
         'TongTien',
         'IDTrangThai',
     ];
+    public function CtHoaDon()
+    {
+        return $this->hasMany(CtHoaDon::class, 'IdHoaDon');
+    }
+    public function User()
+    {
+        return $this->belongsTo(User::class, 'IdTaiKhoan');
+    }
 }

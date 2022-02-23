@@ -30,6 +30,11 @@ class User extends Authenticatable
         'TrangThai',
     ];
 
+    public function HoaDon()
+    {
+        return $this->hasMany(HoaDon::class, 'IdTaiKhoan');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -48,4 +53,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
 }
