@@ -1,10 +1,7 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import, avoid_web_libraries_in_flutter, unnecessary_brace_in_string_interps, unused_local_variable, non_constant_identifier_names
 
-<<<<<<< HEAD
 // import 'dart:html';
 import 'dart:math';
-=======
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';

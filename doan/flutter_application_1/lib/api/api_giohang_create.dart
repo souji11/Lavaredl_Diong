@@ -13,11 +13,7 @@ import 'package:provider/provider.dart';
 class ApiThemGioHang extends ChangeNotifier {
   Future<Cart> ThemGioHang(int IDTaiKhoan, int IDSanPham, int so_Luong) async {
     final response = await http
-<<<<<<< HEAD
         .post(Uri.parse('http://192.168.5.192:8000/api/GioHang/them'), body: {
-=======
-        .post(Uri.parse('http://192.168.5.186:8000/api/GioHang/them'), body: {
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
       'IdSanPham': IDSanPham.toString(),
       'IdTaiKhoan': IDTaiKhoan.toString(),
       'so_luong': so_Luong.toString(),

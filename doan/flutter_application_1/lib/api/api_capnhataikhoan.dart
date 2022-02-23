@@ -10,11 +10,7 @@ import '../Models/user.dart';
 
 Future<User> apiUpdate(User user) async {
   User acc;
-<<<<<<< HEAD
   String url = "http://192.168.5.192:8000/api/User/update/${Auth.user.id}";
-=======
-  String url = "http://192.168.5.186:8000/api/User/update/${Auth.user.id}";
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
   var response = await http.post(Uri.parse(url),
       headers: _header(), body: jsonEncode(user.toJson()));
   if (response.statusCode == 200) {

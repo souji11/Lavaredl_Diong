@@ -11,11 +11,7 @@ import '../Models/user.dart';
 Future<User> apiChangePass(
     String oldPass, String newPass, String newPassConfirm) async {
   User acc;
-<<<<<<< HEAD
   String url = "http://192.168.5.192:8000/api/User/changepass/${Auth.user.id}";
-=======
-  String url = "http://192.168.5.186:8000/api/User/changepass/${Auth.user.id}";
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
   var response = await http.post(Uri.parse(url), body: {
     "oldPass": oldPass,
     "newPass": newPass,

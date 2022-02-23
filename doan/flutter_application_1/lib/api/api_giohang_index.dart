@@ -13,21 +13,12 @@ import 'package:provider/provider.dart';
 
 class ApiGioHang extends ChangeNotifier {
   List<Cart> lst = [];
-<<<<<<< HEAD
-  
-=======
-  int? total;
-
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
+  int ?total ;
   Future<void> fetchProduct_main() async {
     List<Cart> tmpList = [];
-   
+  //  int ?total = 0;
     final response = await http.get(
-<<<<<<< HEAD
       Uri.parse('http://192.168.5.192:8000/api/GioHang'),
-=======
-      Uri.parse('http://192.168.5.186:8000/api/GioHang'),
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
     );
     if (response.statusCode == 200) {
       try {
@@ -38,21 +29,13 @@ class ApiGioHang extends ChangeNotifier {
           tmpList.add(Cart.fromJson(item));
           
         });
-<<<<<<< HEAD
-        
-      } catch (e) {
-        print(e);
-      }
-         
-      lst = tmpList;     
-=======
         dynamic tmpTotal = object['total'];
         total = tmpTotal;
       } catch (e) {
         print(e);
       }
-      lst = tmpList;
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
+        
+      lst = tmpList;     
       notifyListeners();
     }
    
@@ -64,11 +47,8 @@ class ApiGioHang extends ChangeNotifier {
   Future<void> XoaGioHang(int IDTaiKhoan, int Idsanpham) async {
     List<Cart> tmpList = [];
     final response = await http
-<<<<<<< HEAD
         .post(Uri.parse('http://192.168.5.192:8000/api/GioHang/xoa'), body: {
-=======
-        .post(Uri.parse('http://192.168.5.186:8000/api/GioHang/xoa'), body: {
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
+        
       'IdTaiKhoan': IDTaiKhoan.toString(),
       'IdSanPham': Idsanpham.toString(),
     });

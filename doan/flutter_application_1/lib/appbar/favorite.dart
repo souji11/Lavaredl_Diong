@@ -31,11 +31,7 @@ class Favorite extends StatefulWidget {
 class _Favorite_screen extends State<Favorite>
     with SingleTickerProviderStateMixin {
   Widget currentSceent = Home();
-<<<<<<< HEAD
  bool _isFavorited = true;
-=======
-
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
   @override
   Widget build(BuildContext context) {
     Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();

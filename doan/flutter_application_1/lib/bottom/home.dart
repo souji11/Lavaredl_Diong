@@ -305,13 +305,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             child: Image(
                                               height: 150,
                                               width: 100,
-<<<<<<< HEAD
                                               image: AssetImage(
                                                'assets'+api.lstMoi[index].hinhAnh),
-=======
-                                              image: AssetImage('assets' +
-                                                  api.lst[index].hinhAnh),
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
                                               fit: BoxFit.cover,
                                             ),
                                             // child: Image.network('http://' + api.lst[index].hinhAnh),
@@ -421,13 +416,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-<<<<<<< HEAD
                                                image: AssetImage(
                                                'assets'+api.lstNoiBat[index].hinhAnh),
-=======
-                                              image: AssetImage('assets' +
-                                                  api.lst[index].hinhAnh),
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -539,13 +529,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-<<<<<<< HEAD
                                                image: AssetImage(
                                                'assets'+api.lstBanChay[index].hinhAnh),
-=======
-                                              image: AssetImage('assets' +
-                                                  api.lst[index].hinhAnh),
->>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
