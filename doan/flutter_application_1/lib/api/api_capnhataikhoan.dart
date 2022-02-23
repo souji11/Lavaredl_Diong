@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, avoid_print
+// ignore_for_file: unused_import, avoid_print, duplicate_ignore
 // ignore_for_file: unused_import
 
 import 'package:flutter/cupertino.dart';
@@ -11,7 +11,7 @@ import '../Models/user.dart';
 Future<User> apiUpdate(User user) async {
  
   User acc;
-  String url = "http://127.0.0.1:8000/api/User/update/${Auth.user.id}";
+  String url = "http://192.168.5.192:8000/api/User/update/${Auth.user.id}";
   var response = await http.post(Uri.parse(url),
       headers: _header(), body: jsonEncode(user.toJson()));
   if (response.statusCode == 200) {

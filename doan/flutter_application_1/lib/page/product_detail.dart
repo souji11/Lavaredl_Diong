@@ -1,5 +1,5 @@
 //import 'dart:html';
-// ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field
+// ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field, duplicate_import
 
 import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
@@ -115,15 +115,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   Container(
                     // margin: const EdgeInsets.all(15),
                     padding: const EdgeInsets.only(
-                      left: 30.0,
-                      right: 30.0,
-                      top: 60.0,
+                      left: 0,
+                      right: 0,
+                      top: 30.0,
                     ),
                     color: Colors.greenAccent,
 
                     child: SizedBox(
                       height: Curves.easeInOut.transform(1) * 500,
                       width: double.infinity,
+                      // width:  Curves.easeInOut.transform(1) * 5000,
                       child: Stack(
                         children: <Widget>[
                           // Hình sản phẩn
@@ -302,7 +303,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // Mua ngay (chưa có trang thanh toán)
+                    // Mua ngay 
                     Container(
                       height: 80,
                       width: 1000,
@@ -323,12 +324,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 backgroundColor: Colors.green,
                               ),
                               onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => MyHomePage(),
-                                  ),
-                                );
+                                setState(() {
+                                  apiThem.ThemGioHang(1, widget.product.id, 1);
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (_) => Cart(),
+                                  //   ),
+                                  // );
+                                  });
                               },
                               child: Text(
                                 'Mua ngay',

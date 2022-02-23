@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_giohang_create.dart';
 import 'package:flutter_application_1/api/api_yeuthich_index.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
 
@@ -29,7 +31,7 @@ class Favorite extends StatefulWidget {
 class _Favorite_screen extends State<Favorite>
     with SingleTickerProviderStateMixin {
   Widget currentSceent = Home();
- 
+ bool _isFavorited = true;
   @override
   Widget build(BuildContext context) {
     Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
@@ -140,11 +142,21 @@ class _Favorite_screen extends State<Favorite>
                                             primary: Colors.white,
                                             backgroundColor: Colors.green,
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                  Provider.of<ApiThemGioHang>(context, listen: false).ThemGioHang(1, api.lst[index].id, 1);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => Cart(),
+                                    ),
+                                  );
+                                          });
+                                          },
                                           child: Text(
                                             'Mua ngay',
                                             style: TextStyle(
-                                              fontSize: 10,
+                                              fontSize: 15,
                                               fontWeight: FontWeight.w300,
                                             ),
                                           ),
@@ -153,9 +165,26 @@ class _Favorite_screen extends State<Favorite>
                                     ),
                                     Positioned(
                                       right: 10,
-                                      top: 5,
-                                      child: FavoriteWidget(
-                                        product: api.lstProduct[index],
+                                      bottom: 50,
+                                       child: Container(
+                                        height: 30,
+                                        width: 100,
+                                        child: ElevatedButton(
+                                          style: TextButton.styleFrom(
+                                            primary: Colors.white,
+                                            backgroundColor: Colors.green,
+                                          ),
+                                          onPressed: () {
+                                            Provider.of<APIXoaSPYT>(context, listen: false).XoaSPYT(api.lstProduct[index]);
+                                          },
+                                          child: Text(
+                                            'Xóa',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     )
                                   ],

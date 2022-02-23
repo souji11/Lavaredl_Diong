@@ -97,6 +97,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext contextq) {
     Provider.of<Api>(context, listen: false).fetchProduct_main();
+    Provider.of<Api>(context, listen: false).fetchProduct_BanChay();
+    Provider.of<Api>(context, listen: false).fetchProduct_NoiBat();
+    Provider.of<Api>(context, listen: false).fetchProduct_Moi();
     var api = Provider.of<Api>(context, listen: false);
 
     return Scaffold(
@@ -265,7 +268,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   width: double.infinity,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: List.generate(api.lst.length, (index) {
+                    children: List.generate(api.lstMoi.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -280,7 +283,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ProductDetailScreen(
-                                    product: api.lst[index]),
+                                    product: api.lstMoi[index]),
                               ),
                             );
                           },
@@ -305,7 +308,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               image: AssetImage(
-                                               'assets'+api.lst[index].hinhAnh),
+                                               'assets'+api.lstMoi[index].hinhAnh),
                                               fit: BoxFit.cover,
                                             ),
                                             // child: Image.network('http://' + api.lst[index].hinhAnh),
@@ -318,7 +321,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  '${api.lst[index].gia} VNĐ',
+                                                  '${api.lstMoi[index].gia} VNĐ',
                                                   style: const TextStyle(
                                                     color: Colors.red,
                                                     fontSize: 15,
@@ -337,7 +340,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               children: <Widget>[
                                                 const SizedBox(height: 5.0),
                                                 Text(
-                                                  api.lst[index].tenSanPham,
+                                                  api.lstMoi[index].tenSanPham,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.0,
@@ -376,7 +379,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   width: double.infinity,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: List.generate(api.lst.length, (index) {
+                    children: List.generate(api.lstNoiBat.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -391,7 +394,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ProductDetailScreen(
-                                    product: api.lst[index]),
+                                    product: api.lstNoiBat[index]),
                               ),
                             );
                           },
@@ -416,7 +419,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                                image: AssetImage(
-                                               'assets'+api.lst[index].hinhAnh),
+                                               'assets'+api.lstNoiBat[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -431,7 +434,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  '${api.lst[index].gia} VNĐ',
+                                                  '${api.lstNoiBat[index].gia} VNĐ',
                                                   style: const TextStyle(
                                                     color: Colors.red,
                                                     fontSize: 15,
@@ -450,7 +453,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               children: <Widget>[
                                                 const SizedBox(height: 5.0),
                                                 Text(
-                                                  api.lst[index].tenSanPham,
+                                                  api.lstNoiBat[index].tenSanPham,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.0,
@@ -489,7 +492,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   width: double.infinity,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
-                    children: List.generate(api.lst.length, (index) {
+                    children: List.generate(api.lstBanChay.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
                           border: Border.all(
@@ -504,7 +507,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ProductDetailScreen(
-                                    product: api.lst[index]),
+                                    product: api.lstBanChay[index]),
                               ),
                             );
                           },
@@ -529,7 +532,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
                                                image: AssetImage(
-                                               'assets'+api.lst[index].hinhAnh),
+                                               'assets'+api.lstBanChay[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -544,7 +547,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                                  '${api.lst[index].gia} VNĐ',
+                                                  '${api.lstBanChay[index].gia} VNĐ',
                                                   style: const TextStyle(
                                                     color: Colors.red,
                                                     fontSize: 15,
@@ -563,7 +566,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               children: <Widget>[
                                                 const SizedBox(height: 5.0),
                                                 Text(
-                                                  api.lst[index].tenSanPham,
+                                                  api.lstBanChay[index].tenSanPham,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.0,

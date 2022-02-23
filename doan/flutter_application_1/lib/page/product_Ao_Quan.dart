@@ -312,7 +312,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: NetworkImage(link),
+          image: AssetImage(link),
           fit: BoxFit.cover,
         ),
       ),

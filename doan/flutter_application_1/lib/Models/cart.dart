@@ -1,5 +1,5 @@
 // import 'package:flutter/material.dart';
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, unnecessary_this, prefer_collection_literals, unnecessary_new, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'product.dart';
@@ -108,7 +108,7 @@ class Cart {
     data['id'] = this.id;
     data['IdSanPham'] = this.idSanPham;
     data['IdTaiKhoan'] = this.idTaiKhoan;
-    data['so_luong'] = this.soLuong;
+    data['so_luong'] = this.so_Luong;
     data['TenSanPham'] = this.tenSanPham;
     data['Gia'] = this.gia;
     data['MoTa'] = this.moTa;

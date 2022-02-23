@@ -1,6 +1,6 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import, avoid_web_libraries_in_flutter
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import, avoid_web_libraries_in_flutter, unnecessary_brace_in_string_interps, unused_local_variable, non_constant_identifier_names
 
-import 'dart:html';
+// import 'dart:html';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
@@ -122,8 +122,10 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
     var api = Provider.of<ApiGioHang>(context, listen: false);
-
+    // print(api.lst[].gia);
+    print('aksdkasd');
     return Padding(
+      
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Consumer<ApiGioHang>(builder: (_, value, child) {
         return ListView.builder(
@@ -155,6 +157,7 @@ class _BodyState extends State<Body> {
                               api.lst[index].idSanPham);
                         });
                       },
+                     
                       child: CartItem(
                           api.lst[index].hinhAnh,
                           api.lst[index].tenSanPham,
@@ -167,6 +170,7 @@ class _BodyState extends State<Body> {
 
   // ignore: non_constant_identifier_names
   Row CartItem(String link, String Ten, int gia, int soluong) {
+    
     return Row(
       children: [
         SizedBox(

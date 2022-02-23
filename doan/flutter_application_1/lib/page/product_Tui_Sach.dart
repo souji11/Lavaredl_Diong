@@ -103,6 +103,7 @@ class _Product_TuiSach_screen extends State<Product_TuiSach_screen>
         value: SystemUiOverlayStyle.dark,
         child: Column(
           children: <Widget>[
+            // BANNER
             CarouselSlider(
               options: CarouselOptions(
                 height: 180.0,
@@ -320,7 +321,7 @@ class _Product_TuiSach_screen extends State<Product_TuiSach_screen>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: NetworkImage(link),
+          image: AssetImage(link),
           fit: BoxFit.cover,
         ),
       ),
