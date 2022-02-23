@@ -6,8 +6,8 @@ import 'package:flutter_application_1/page/invoice_detail.dart';
 import 'package:provider/provider.dart';
 
 class PageOrderAll extends StatelessWidget {
-  PageOrderAll({@required this.TrangThai});
   final TrangThai;
+  PageOrderAll({@required this.TrangThai});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,67 +29,53 @@ class PageOrderAll extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return Positioned(
-                            top: 300,
+                          return Container(
+                            height: 60,
+                            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30), boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey,
+                                offset: Offset(1, 1),
+                                blurRadius: 20.0,
+                              ),
+                            ]),
                             child: Container(
-                              height: 60,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(30),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(1, 1),
-                                      blurRadius: 20.0,
-                                    ),
-                                  ]),
-                              child: Container(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '#${snapshot.data![0].Code}',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                        )
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 90,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '${setTrangThai(snapshot.data![index].IDTrangThai)}',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              color: Colors.orange),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      InvoiceDetail(snapshot
-                                                          .data![index].ID)));
-                                        },
-                                        icon: const Icon(
-                                            Icons.arrow_forward_ios)),
-                                  ],
-                                ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '#${snapshot.data![index].ID}',
+                                        style: TextStyle(fontSize: 16, color: Colors.black),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 90,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '${setTrangThai(snapshot.data![index].IDTrangThai)}',
+                                        style: TextStyle(fontSize: 16, color: Colors.orange),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => InvoiceDetail(snapshot.data![index].ctHoaDon, snapshot.data![index].TongTien,
+                                                    snapshot.data![index].IDTrangThai, snapshot.data![index].ID)));
+                                      },
+                                      icon: const Icon(Icons.arrow_forward_ios)),
+                                ],
                               ),
                             ),
                           );

@@ -1,3 +1,6 @@
+
+// ignore_for_file: unused_import, file_names, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/user.dart';
 import 'package:flutter_application_1/api/Auth.dart';

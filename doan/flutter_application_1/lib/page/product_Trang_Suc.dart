@@ -248,9 +248,9 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                           child: Image(
                                             height: 130,
                                             width: 150,
-                                            image: NetworkImage(
+                                            image:  AssetImage(
                                              
-                                                  api.lst[index].hinhAnh,
+                                                 'assets'+ api.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -318,7 +318,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: AssetImage(link),
+          image: NetworkImage(link),
           fit: BoxFit.cover,
         ),
       ),

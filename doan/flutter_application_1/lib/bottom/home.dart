@@ -1,9 +1,13 @@
-// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new, unnecessary_string_interpolations
+// ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new, unnecessary_string_interpolations, unused_local_variable
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Models/Product_main.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
+import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 import '../page/product_Ao_Quan.dart';
 import '../page/product_Giay_Dep.dart';
@@ -14,7 +18,6 @@ import '../page/product_detail.dart';
 import '../page/product_Tui_Sach.dart';
 import '../Models/product.dart';
 
-
 class Home extends StatefulWidget {
   Home({Key? key}) : super(key: key);
 
@@ -23,54 +26,75 @@ class Home extends StatefulWidget {
 }
 
 class FavoriteWidget extends StatefulWidget {
-  
-  const FavoriteWidget({Key? key}) : super(key: key);
+  final Product_main product;
+  const FavoriteWidget({Key? key, required this.product}) : super(key: key);
 
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
 }
 
 class _FavoriteWidgetState extends State<FavoriteWidget> {
-  bool _isFavorited = true;
+  bool _isFavorited = false;
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Api>(context, listen: false).fetchProduct_main();
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(0),
-          child: IconButton(
-            padding: const EdgeInsets.all(0),
-            alignment: Alignment.centerRight,
-            icon: (_isFavorited
-                ? const Icon(Icons.favorite_border)
-                : const Icon(Icons.favorite)),
-            color: Colors.red[500],
-            iconSize: 30,
-            onPressed: _toggleFavorite,
-          ),
-        ),
-      ],
-    );
+    // Provider.of<Api>(context, listen: false).fetchProduct_main();
+    // Provider.of<APIThemSPYT>(context, listen: false).ThemSPyeuthich(1, widget.product.id);
+    var apithem = Provider.of<APIThemSPYT>(context, listen: false);
+    var apixoa = Provider.of<APIXoaSPYT>(context, listen: false);
+    // return Scaffold(body: Consumer<APIThemSPYT>(
+      // builder: (_, value, child) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(0),
+              child: IconButton(
+                padding: const EdgeInsets.all(0),
+                alignment: Alignment.centerRight,
+                icon: (_isFavorited
+                    ? const Icon(Icons.favorite)
+                    : const Icon(Icons.favorite_border)),
+                color: Colors.red[500],
+                iconSize: 30,
+                // onPressed: _toggleFavorite,
+                onPressed: () => setState(() {
+                  if (_isFavorited) {
+                    // apithem.ThemSPyeuthich(1, widget.product.id);
+                    apixoa.XoaSPYT(widget.product);
+                    _isFavorited = false;
+                  } else {
+                    // Provider.of<APIThemSPYT>(context, listen: false)
+                    //     .ThemSPyeuthich(1, widget.product.id);
+                    apithem.ThemSPyeuthich(1, widget.product.id);
+                    _isFavorited = true;
+                  }
+                }),
+              ),
+            ),
+          ],
+        );
+    //   },
+    // ));
+    
   }
 
-  void _toggleFavorite() {
-    setState(() {
-      if (_isFavorited) {
-        _isFavorited = false;
-      } else {
-        _isFavorited = true;
-      }
-    });
-  }
+  // void _toggleFavorite() {
+  //   setState(() {
+  //     if (_isFavorited) {
+  //       _isFavorited = false;
+  //       Provider.of<APIThemSPYT>(context, listen: false).ThemSPyeuthich(1, 2);
+  //     } else {
+  //       _isFavorited = true;
+  //     }
+  //   });
+  // }
   // ···
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   int _selectedPage = 0;
- @override
+  @override
   Widget build(BuildContext contextq) {
     Provider.of<Api>(context, listen: false).fetchProduct_main();
     var api = Provider.of<Api>(context, listen: false);
@@ -102,7 +126,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     Banner('images/anh3.jpg')
                   ],
                 ),
-// nút phân loại
+                // nút phân loại
                 Padding(
                   padding: EdgeInsets.all(10.0),
                   child: Row(
@@ -122,7 +146,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             primary: Colors.white,
                             backgroundColor: Colors.blue,
                           ),
-                          
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -181,7 +204,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             primary: Colors.black,
                             backgroundColor: Colors.yellow,
                           ),
-                          
                           onPressed: () {
                             Navigator.push(
                               context,
@@ -246,12 +268,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: List.generate(api.lst.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.red,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(0),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -264,6 +286,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           },
                           child: Consumer<Api>(
                             builder: (_, value, child) {
+                           
                               return Stack(
                                 alignment: Alignment.topCenter,
                                 children: <Widget>[
@@ -281,14 +304,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             child: Image(
                                               height: 150,
                                               width: 100,
-                                              // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                              image: NetworkImage(
-                                                  api.lst[index].hinhAnh),
-                                              //  image: AssetImage(
-                                              //     'images/' + api.lst[index].hinhAnh,
-                                              //   ),
+                                              image: AssetImage(
+                                               'assets'+api.lst[index].hinhAnh),
                                               fit: BoxFit.cover,
                                             ),
+                                            // child: Image.network('http://' + api.lst[index].hinhAnh),
                                           ),
                                           Positioned(
                                             left: 10.0,
@@ -359,12 +379,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: List.generate(api.lst.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.red,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(0),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
@@ -395,8 +415,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                              image: NetworkImage(
-                                                  api.lst[index].hinhAnh),
+                                               image: AssetImage(
+                                               'assets'+api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -472,19 +492,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     children: List.generate(api.lst.length, (index) {
                       return Container(
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.red,
-                              width: 2,
-                            ),
-                            borderRadius: BorderRadius.circular(0),
+                          border: Border.all(
+                            color: Colors.red,
+                            width: 2,
                           ),
+                          borderRadius: BorderRadius.circular(0),
+                        ),
                         child: GestureDetector(
                           onTap: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ProductDetailScreen(
-                                  
                                     product: api.lst[index]),
                               ),
                             );
@@ -509,8 +528,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                              image: NetworkImage(
-                                                 api.lst[index].hinhAnh),
+                                               image: AssetImage(
+                                               'assets'+api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -525,7 +544,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                   CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
-                                              
                                                   '${api.lst[index].gia} VNĐ',
                                                   style: const TextStyle(
                                                     color: Colors.red,

@@ -163,7 +163,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.12.11"
-<<<<<<< HEAD
   material_color_utilities:
     dependency: transitive
     description:
@@ -171,8 +170,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3"
-=======
->>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
   meta:
     dependency: transitive
     description:
@@ -256,14 +253,14 @@ packages:
       name: shared_preferences_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.11"
+    version: "2.0.10"
   shared_preferences_ios:
     dependency: transitive
     description:
       name: shared_preferences_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.9"
   shared_preferences_linux:
     dependency: transitive
     description:
@@ -345,11 +342,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< HEAD
     version: "0.4.8"
-=======
-    version: "0.4.3"
->>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
   typed_data:
     dependency: transitive
     description:
@@ -364,14 +357,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-<<<<<<< HEAD
   win32:
     dependency: transitive
     description:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.11"
+    version: "2.3.6"
   xdg_directories:
     dependency: transitive
     description:
@@ -379,8 +371,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0+1"
-=======
->>>>>>> 32e3f687107c8048f4f362656a6269c0625f2ef7
 sdks:
-  dart: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  dart: ">=2.14.0 <3.0.0"
+  flutter: ">=2.5.0"

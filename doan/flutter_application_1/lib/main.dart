@@ -23,12 +23,16 @@
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import
 
 import 'package:flutter_application_1/Models/Product_main.dart';
-import 'package:flutter_application_1/api/api_cthoadon.dart';
 import 'package:flutter_application_1/api/api_hoadon.dart';
+import 'package:flutter_application_1/api/api_giohang_create.dart';
+import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/api/api_sanpham_tui.dart';
+import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
+import 'package:flutter_application_1/api/api_yeuthich_index.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:flutter_application_1/page/login.dart';
 import 'api/api_dangnhap.dart';
 import 'api/api_dangky.dart';
@@ -57,9 +61,17 @@ void main() {
       ChangeNotifierProvider(create: (_) => Apitrangsuc()),
       ChangeNotifierProvider(create: (_) => Apigiay()),
       ChangeNotifierProvider(create: (_) => Apitui()),
-      // ChangeNotifierProvider(create: (_) => ApiHoaDon()),
-      // ChangeNotifierProvider(create: (_) => ApiHoaDonTrangThai()),
-      // ChangeNotifierProvider(create: (_) => ApiCTHoaDon()),
+      ChangeNotifierProvider(create: (_) => Apidangky()),
+      ChangeNotifierProvider(create: (_) => ApiGioHang()),
+      ChangeNotifierProvider(create: (_) => ApiThemGioHang()),
+      ChangeNotifierProvider(create: (_) => Apiao()),
+      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
+      ChangeNotifierProvider(create: (_) => Apigiay()),
+      ChangeNotifierProvider(create: (_) => Apitui()),
+      ChangeNotifierProvider(create: (_) => APIThemSPYT()),
+      ChangeNotifierProvider(create: (_) => APIXoaSPYT()),
+      ChangeNotifierProvider(create: (_) => ApiYT()),
+      ChangeNotifierProvider(create: (_) => Apidangky()),
     ],
     child: MyApp(),
   ));
@@ -73,6 +85,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       title: 'GUCCI',
       home: Login(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -174,8 +187,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trang chủ',
-                      style: TextStyle(
-                          color: currentTab == 0 ? Colors.blue : Colors.green),
+                      style: TextStyle(color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -197,8 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trò chuyện',
-                      style: TextStyle(
-                          color: currentTab == 1 ? Colors.blue : Colors.green),
+                      style: TextStyle(color: currentTab == 1 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -243,8 +254,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Tài khoản',
-                      style: TextStyle(
-                          color: currentTab == 3 ? Colors.blue : Colors.green),
+                      style: TextStyle(color: currentTab == 3 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),

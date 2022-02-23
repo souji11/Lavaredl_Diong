@@ -5,10 +5,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\APIsanphamController;
+use App\Http\Controllers\SanPhamYeuThichController; 
 use App\Http\Controllers\APIuserController;
 use App\Http\Controllers\APIhoadonController;
 use App\Http\Controllers\APIcthoadonController;
-
+use App\Http\Controllers\GioHangController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +29,11 @@ route::get('SanPham/giay', [APIsanphamController::class,'chonGiay']);
 route::get('SanPham/ao', [APIsanphamController::class,'chonAo']);
 route::get('SanPham/trangsuc', [APIsanphamController::class,'chonTrangSuc']);
 route::get('SanPham/tui', [APIsanphamController::class,'chonTui']);
+
+route::post('SanPhamYeuThich/ThemMoi', [SanPhamYeuThichController::class,'create']);
+route::get('SanPhamYeuThich', [SanPhamYeuThichController::class,'index']);
+// route::delete('SanPhamYeuThich/Xoa', [SanPhamYeuThichController::class,'destroy']);
+route::delete('SanPhamYeuThich/Xoa/{IdSanPham}', [SanPhamYeuThichController::class,'xoa']);
 route::get('User', [APIuserController::class,'index']);
 route::post('User/register',[APIuserController::class,'register']);
 route::post('User/login',[APIuserController::class,'login']);
@@ -40,3 +46,7 @@ route::get('User/{User}/HoaDon/all', [APIhoadonController::class,'index']);
 route::post('User/{User}/HoaDon/updateHoaDon/{HoaDon}',[APIhoadonController::class,'updateHoaDon']);
 route::get('User/{User}/HoaDon', [APIhoadonController::class,'TrangThai']);
 route::get('CTHoaDon/CTHoaDon', [APIcthoadon::class,'index']);
+
+route::get('GioHang', [GioHangController::class,'index']);
+route::post('GioHang/them', [GioHangController::class,'create']);
+route::post('GioHang/xoa', [GioHangController::class,'destroy']);

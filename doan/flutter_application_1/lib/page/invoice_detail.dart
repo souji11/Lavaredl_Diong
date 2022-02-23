@@ -3,14 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/order_details.dart';
 import 'package:flutter_application_1/api/Auth.dart';
-import 'package:flutter_application_1/api/api_cthoadon.dart';
+import 'package:flutter_application_1/api/api_huyhoadon.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
 import '../Models/order.dart';
 
 class InvoiceDetail extends StatefulWidget {
-  final int number;
-  InvoiceDetail(this.number, {Key? key}) : super(key: key);
+  final List<OrderDetails> listCtHoaDon;
+  final double? S;
+  final int? TrangThai;
+  final int? IDHoaDon;
+  InvoiceDetail(this.listCtHoaDon, this.S, this.TrangThai, this.IDHoaDon, {Key? key}) : super(key: key);
   @override
   _InvoiceDetailState createState() => _InvoiceDetailState();
 }
@@ -18,7 +21,6 @@ class InvoiceDetail extends StatefulWidget {
 class _InvoiceDetailState extends State<InvoiceDetail> {
   @override
   Widget build(BuildContext context) {
-    final IdHoaDon = widget.number;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -39,224 +41,177 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
           const SizedBox(
             height: 20,
           ),
-          FutureBuilder<List<OrderDetails>>(
-              future: fetchCTHoaDon_main(IdHoaDon),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(snapshot.error.toString()),
-                  );
-                }
-                return snapshot.hasData
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 1,
-                        itemBuilder: (context, index) {
-                          return Positioned(
-                            top: 320,
-                            child: Container(
-                                height: 60,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Colors.grey,
-                                        offset: Offset(1, 1),
-                                        blurRadius: 20.0,
-                                      ),
-                                    ]),
-                                child: Container(
-                                    child: Row(children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(15),
-                                    child: Icon(
-                                      Icons.shop_2_rounded,
-                                      color: Colors.teal.shade300,
+          ListView.builder(
+              shrinkWrap: true,
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return Container(
+                    height: 60,
+                    decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(1, 1),
+                        blurRadius: 20.0,
+                      ),
+                    ]),
+                    child: Container(
+                        child: Row(children: [
+                      Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Icon(
+                          Icons.shop_2_rounded,
+                          color: Colors.teal.shade300,
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            ' Mã đơn hàng: #${widget.listCtHoaDon[index].IdHoaDon}',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          )
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Icon(
+                          Icons.copy_rounded,
+                          color: Colors.teal.shade300,
+                        ),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Trạng thái: ${setTrangThai(widget.TrangThai)}',
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ])));
+              }),
+          ListView.builder(
+              shrinkWrap: true,
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 120,
+                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(1, 1),
+                      blurRadius: 20.0,
+                    ),
+                  ]),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.teal.shade300,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              'Thông tin người mua : ',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              ' + ${Auth.user.name}',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              ' + ${Auth.user.SDT} ',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                            Text(
+                              ' + ${Auth.user.DiaChi1} ',
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }),
+          ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.listCtHoaDon.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  height: 140,
+                  decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(1, 1),
+                      blurRadius: 20.0,
+                    ),
+                  ]),
+                  child: Container(
+                    child: Row(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Container(
+                                  height: 100,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 2,
+                                      color: Colors.grey,
                                     ),
+                                    image: DecorationImage(fit: BoxFit.cover, image: AssetImage(widget.listCtHoaDon[index].sanPham.hinhAnh)),
                                   ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        ' Mã đơn hàng: #${snapshot.data![index].IdHoaDon}',
-                                        style: TextStyle(
-                                            fontSize: 16, color: Colors.black),
-                                      )
-                                    ],
-                                  )
-                                ]))),
-                          );
-                        })
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      );
-              }),
-          FutureBuilder<List<OrderDetails>>(
-              future: fetchCTHoaDon_main(IdHoaDon),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(snapshot.error.toString()),
-                  );
-                }
-                return snapshot.hasData
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: 1,
-                        itemBuilder: (context, index) {
-                          return Positioned(
-                            top: 320,
-                            child: Container(
-                              height: 120,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(1, 1),
-                                      blurRadius: 20.0,
-                                    ),
-                                  ]),
-                              child: Container(
-                                child: Row(
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Icon(
-                                          Icons.location_on,
-                                          color: Colors.teal.shade300,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Text(
-                                          'Thông tin người mua : ',
-                                          style: TextStyle(fontSize: 16),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          ' + ${Auth.user.name}',
-                                          style: TextStyle(fontSize: 14),
-                                        ),
-                                        Text(
-                                          ' + ${Auth.user.SDT} ',
-                                          style: TextStyle(fontSize: 14),
-                                        ),
-                                        Text(
-                                          ' + ${Auth.user.DiaChi1} ',
-                                          style: TextStyle(fontSize: 14),
-                                        ),
-                                      ],
-                                    ),
+                                    Text('Tên sản phẩm : ${widget.listCtHoaDon[index].sanPham.tenSanPham}'),
+                                    Text('Sô lượng    : ${widget.listCtHoaDon[index].SoLuong}'),
+                                    Text('Đơn giá       : ${widget.listCtHoaDon[index].sanPham.gia}'),
                                   ],
                                 ),
-                              ),
-                            ),
-                          );
-                        })
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               }),
-          FutureBuilder<List<OrderDetails>>(
-              future: fetchCTHoaDon_main(IdHoaDon),
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text(snapshot.error.toString()),
-                  );
-                }
-                return snapshot.hasData
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          return Positioned(
-                            top: 320,
-                            child: Container(
-                              height: 140,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey,
-                                      offset: Offset(1, 1),
-                                      blurRadius: 20.0,
-                                    ),
-                                  ]),
-                              child: Container(
-                                child: Row(
-                                  children: [
-                                    Column(
-                                      children: [
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          children: [
-                                            SizedBox(
-                                              width: 20,
-                                            ),
-                                            Container(
-                                              height: 100,
-                                              width: 100,
-                                              decoration: BoxDecoration(
-                                                border: Border.all(
-                                                  width: 2,
-                                                  color: Colors.grey,
-                                                ),
-                                                // image: DecorationImage(
-                                                // fit: BoxFit.cover,
-                                                // image: AssetImage(images/' + oder[0].product.ImgUrl)
-                                                // ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 20,
-                                            ),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                // Text(
-                                                //     'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                                // Text('Sô lượng    : ${oder[0].soluong}'),
-                                                // Text('Size        : ${oder[0].product.Size}'),
-                                                // Text('Màu         : ${oder[0].product.Mau}'),
-                                                // Text('Đơn giá     : \$${oder[0].product.Gia}'),
-                                              ],
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        })
-                    : const Center(
-                        child: CircularProgressIndicator(),
-                      );
-              })
         ],
       ),
       bottomNavigationBar: BottomAppBar(
@@ -264,8 +219,6 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
           height: 130,
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(
-              //offset: Offset(0, -15),
-              //blurRadius: 10,
               color: Colors.grey,
             ),
           ]),
@@ -281,7 +234,7 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                     height: 20,
                   ),
                   Text(
-                    'Tổng tiền: ',
+                    'Tổng tiền: ${widget.S}',
                     style: TextStyle(color: Colors.orange, fontSize: 20),
                   ),
                 ],
@@ -294,26 +247,19 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                   SizedBox(
                     height: 10,
                   ),
-                  RaisedButton(
-                    onPressed: () {},
-                    color: Colors.green,
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Text(
-                      'Thanh toán',
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
-                    ),
-                  ),
                   SizedBox(
                     height: 10,
                   ),
                   RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        if (widget.TrangThai != 1) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Đơn hàng mới đặt mới được hủy")));
+                        } else {
+                          final kq = apiUpdateHoaDon(widget.IDHoaDon);
+                        }
+                      });
+                    },
                     color: Colors.orange,
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     shape: RoundedRectangleBorder(
@@ -321,10 +267,7 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                     ),
                     child: const Text(
                       'Hủy đơn',
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.white),
+                      style: TextStyle(fontSize: 14, letterSpacing: 2.2, color: Colors.white),
                     ),
                   ),
                 ],
@@ -334,5 +277,21 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
         ),
       ),
     );
+  }
+
+  String setTrangThai(int? IDTrangThai) {
+    String trangthai = "Error";
+    if (IDTrangThai == 1) {
+      trangthai = "Đơn mới đặt";
+    } else if (IDTrangThai == 2) {
+      trangthai = "Đơn đã xử lý";
+    } else if (IDTrangThai == 3) {
+      trangthai = "Đơn đang vận chuyển";
+    } else if (IDTrangThai == 4) {
+      trangthai = "Đơn đã hoàn thành";
+    } else if (IDTrangThai == 5) {
+      trangthai = "Đơn đã hủy";
+    }
+    return trangthai;
   }
 }

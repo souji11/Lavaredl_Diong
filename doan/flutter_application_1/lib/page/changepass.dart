@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unused_import, unnecessary_null_comparison, non_constant_identifier_names, empty_statements
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/Auth.dart';
@@ -20,6 +20,7 @@ class _ChangesPass extends State<ChangePass> {
   TextEditingController txtNewPass = TextEditingController();
   TextEditingController TxtNewPassConfirm = TextEditingController();
 
+  //Ẩn hiện mật khẩu
   bool isPassWord1 = true;
   bool isPassWord2 = true;
   bool isPassWord3 = true;
@@ -28,9 +29,9 @@ class _ChangesPass extends State<ChangePass> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        //background
         decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/qmk2.jpg'), fit: BoxFit.cover),
+          image: DecorationImage(image: AssetImage('images/qmk2.jpg'), fit: BoxFit.cover),
         ),
         child: ListView(
           children: <Widget>[
@@ -46,83 +47,6 @@ class _ChangesPass extends State<ChangePass> {
                 textAlign: TextAlign.center,
               ),
             ),
-            // Padding(
-            //   padding: EdgeInsets.all(15),
-            //   child: Row(
-            //     children: <Widget>[
-            //       Expanded(
-            //         child: Padding(
-            //           padding: EdgeInsets.only(
-            //               top: 20, bottom: 20, right: 50, left: 50),
-            //           child: Text("Lấy mã OTD qua sdt"),
-            //         ),
-            //       ),
-            //       Expanded(
-            //         child: Padding(
-            //           padding: const EdgeInsets.only(
-            //               top: 20, bottom: 20, right: 50, left: 50),
-            //           child: SizedBox(
-            //             width: double.infinity,
-            //             height: 35,
-            //             child: ElevatedButton(
-            //               style: TextButton.styleFrom(
-            //                 backgroundColor: Colors.teal[300],
-            //               ),
-            //               onPressed: () {},
-            //               child: const Text("Lấy"),
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            // const Padding(
-            //   padding: EdgeInsets.all(15),
-            //   child: Text(
-            //     "Mã OTD chỉ có hiệu lực trong vòng 5 phút",
-            //     style: TextStyle(
-            //       fontSize: 20,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //     textAlign: TextAlign.center,
-            //   ),
-            // ),
-            // Padding(
-            //   padding: EdgeInsets.all(20),
-            //   child: Container(
-            //     alignment: Alignment.centerLeft,
-            //     decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(10),
-            //         boxShadow: [
-            //           BoxShadow(
-            //             color: Colors.black26,
-            //             blurRadius: 6,
-            //             offset: Offset(0, 2),
-            //           ),
-            //         ]),
-            //     height: 60,
-            //     child: TextField(
-            //       keyboardType: TextInputType.number,
-            //       style: TextStyle(
-            //         color: Colors.black87,
-            //       ),
-            //       decoration: InputDecoration(
-            //         border: InputBorder.none,
-            //         contentPadding: EdgeInsets.only(top: 14),
-            //         prefixIcon: Icon(
-            //           Icons.sms,
-            //           color: Color(0xff99cccc),
-            //         ),
-            //         hintText: "Nhập mã OTD",
-            //         hintStyle: TextStyle(
-            //           color: Colors.black87,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             Form(
               key: formkey,
               child: Column(
@@ -131,23 +55,18 @@ class _ChangesPass extends State<ChangePass> {
                     padding: EdgeInsets.only(right: 20, left: 20, top: 35),
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6,
-                              offset: Offset(0, 2),
-                            ),
-                          ]),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ]),
                       height: 60,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         controller: txtOldPass,
-                        validator: (val) => val!.isEmpty
-                            ? 'Mật khẩu không được bỏ trống'
-                            : null,
+                        validator: (val) => val!.isEmpty ? 'Mật khẩu không được bỏ trống' : null,
                         obscureText: isPassWord1,
                         style: TextStyle(
                           color: Colors.black87,
@@ -162,9 +81,7 @@ class _ChangesPass extends State<ChangePass> {
                                 isPassWord1 = !isPassWord1;
                               });
                             },
-                            child: Icon(isPassWord1
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                            child: Icon(isPassWord1 ? Icons.visibility : Icons.visibility_off),
                           ),
                           prefixIcon: Icon(
                             Icons.password,
@@ -182,23 +99,18 @@ class _ChangesPass extends State<ChangePass> {
                     padding: EdgeInsets.only(right: 20, left: 20, top: 35),
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6,
-                              offset: Offset(0, 2),
-                            ),
-                          ]),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ]),
                       height: 60,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         controller: txtNewPass,
-                        validator: (val) => val!.isEmpty
-                            ? 'Mật khẩu không được bỏ trống'
-                            : null,
+                        validator: (val) => val!.isEmpty ? 'Mật khẩu không được bỏ trống' : null,
                         obscureText: isPassWord2,
                         style: TextStyle(
                           color: Colors.black87,
@@ -213,9 +125,7 @@ class _ChangesPass extends State<ChangePass> {
                                 isPassWord2 = !isPassWord2;
                               });
                             },
-                            child: Icon(isPassWord2
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                            child: Icon(isPassWord2 ? Icons.visibility : Icons.visibility_off),
                           ),
                           prefixIcon: Icon(
                             Icons.password,
@@ -233,23 +143,18 @@ class _ChangesPass extends State<ChangePass> {
                     padding: EdgeInsets.only(right: 20, left: 20, top: 35),
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6,
-                              offset: Offset(0, 2),
-                            ),
-                          ]),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ]),
                       height: 60,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
                         controller: TxtNewPassConfirm,
-                        validator: (val) => val != txtNewPass.text
-                            ? 'Mật khẩu không khớp'
-                            : null,
+                        validator: (val) => val != txtNewPass.text ? 'Mật khẩu không khớp' : null,
                         obscureText: isPassWord3,
                         style: TextStyle(
                           color: Colors.black87,
@@ -264,9 +169,7 @@ class _ChangesPass extends State<ChangePass> {
                                 isPassWord3 = !isPassWord3;
                               });
                             },
-                            child: Icon(isPassWord3
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                            child: Icon(isPassWord3 ? Icons.visibility : Icons.visibility_off),
                           ),
                           prefixIcon: Icon(
                             Icons.password,
@@ -297,36 +200,21 @@ class _ChangesPass extends State<ChangePass> {
                           },
                           child: const Text(
                             'Quay lại',
-                            style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 2.2,
-                                color: Colors.black),
+                            style: TextStyle(fontSize: 14, letterSpacing: 2.2, color: Colors.black),
                           ),
                         ),
                         // ignore: deprecated_member_use
                         RaisedButton(
                           onPressed: () async {
                             if (formkey.currentState!.validate()) {
-                              if (txtOldPass.text == null ||
-                                  txtNewPass.text == null) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text(
-                                            "Mật khẩu không được bỏ trống")));
-                              } else if (txtNewPass.text !=
-                                  TxtNewPassConfirm.text) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content: Text("Mật khẩu không khớp")));
+                              if (txtOldPass.text == null || txtNewPass.text == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Mật khẩu không được bỏ trống")));
+                              } else if (txtNewPass.text != TxtNewPassConfirm.text) {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Mật khẩu không khớp")));
                               } else {
-                                Auth.user = await apiChangePass(txtOldPass.text,
-                                    txtNewPass.text, TxtNewPassConfirm.text);
+                                Auth.user = await apiChangePass(txtOldPass.text, txtNewPass.text, TxtNewPassConfirm.text);
                                 setState(() {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              UpdateSuccess()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateSuccess()));
                                 });
                               }
                             }
@@ -339,10 +227,7 @@ class _ChangesPass extends State<ChangePass> {
                           ),
                           child: const Text(
                             'Cập nhật',
-                            style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 2.2,
-                                color: Colors.white),
+                            style: TextStyle(fontSize: 14, letterSpacing: 2.2, color: Colors.white),
                           ),
                         ),
                       ],

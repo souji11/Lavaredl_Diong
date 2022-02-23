@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, non_constant_identifier_names, unused_field, prefer_final_fields
+// ignore_for_file: prefer_const_constructors_in_immutables, non_constant_identifier_names, unused_field, prefer_final_fields, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/Auth.dart';
@@ -88,7 +88,7 @@ class _Payment2 extends State<Payment2> {
               const SizedBox(
                 height: 35,
               ),
-              // ignore: prefer_const_constructors
+             
               Padding(
                 padding: EdgeInsets.all(5),
                 child: Container(
@@ -96,7 +96,7 @@ class _Payment2 extends State<Payment2> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black26,
                           blurRadius: 6,
@@ -134,7 +134,7 @@ class _Payment2 extends State<Payment2> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black26,
                           blurRadius: 6,
@@ -176,7 +176,7 @@ class _Payment2 extends State<Payment2> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black26,
                           blurRadius: 6,

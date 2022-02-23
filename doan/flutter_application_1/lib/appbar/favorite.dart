@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_yeuthich_index.dart';
+import 'package:provider/provider.dart';
 import '../Models/product.dart';
 
 import 'cart.dart';
@@ -27,135 +29,150 @@ class Favorite extends StatefulWidget {
 class _Favorite_screen extends State<Favorite>
     with SingleTickerProviderStateMixin {
   Widget currentSceent = Home();
-  _ChonTrangSuc1(int index) {
-    return Container(
-      child: GestureDetector(
-        onTap: () {
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(
-          //     builder: (_) => ProductDetailScreen(product: products[index]),
-          //   ),
-          // );
-        },
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: <Widget>[
-            Container(
-              margin: const EdgeInsets.all(5),
-              child: SizedBox(
-                height: Curves.easeInOut.transform(1) * 150,
-                width: Curves.easeInOut.transform(1) * 3000,
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      top: 0,
-                      child: Image(
-                        height: 130,
-                        width: 150,
-                        image: AssetImage(
-                          'images/' + products[index].ImgUrl,
-                        ),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    Positioned(
-                      left: 165,
-                      top: 20,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            '${products[index].Gia} VNĐ',
-                            style: const TextStyle(
-                              color: Colors.red,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: 165,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const SizedBox(height: 5.0),
-                          Text(
-                            products[index].TenSanPham,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 17.0,
-                      right: 10.0,
-                      child: Container(
-                        height: 30,
-                        width: 100,
-                        child: ElevatedButton(
-                          style: TextButton.styleFrom(
-                            primary: Colors.white,
-                            backgroundColor: Colors.green,
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Mua ngay',
-                            style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
+    Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
+    var api = Provider.of<ApiYT>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
-      body: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: SystemUiOverlayStyle.dark,
-        child: ListView(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(25),
-              child: Text(
-                'Sản phẩm yêu thích',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30,
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.bold,
+      body: Consumer<ApiYT>(builder: (_, value, child) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.dark,
+          child: ListView(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(25),
+                child: Text(
+                  'Sản phẩm yêu thích',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontStyle: FontStyle.italic,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            _ChonTrangSuc1(1),
-            _ChonTrangSuc1(2),
-            _ChonTrangSuc1(0),
-            _ChonTrangSuc1(3),
-            _ChonTrangSuc1(2),
-            _ChonTrangSuc1(1),
-            _ChonTrangSuc1(0),
-          ],
-        ),
-      ),
+              Container(
+                height: 600,
+                width: double.infinity,
+                child: ListView(
+                  // scrollDirection: Axis.horizontal,
+                  // physics: NeverScrollableScrollPhysics (),
+                  addAutomaticKeepAlives: false,
+                  children: List.generate(api.lst.length, (index) {
+                    return Container(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProductDetailScreen(product: api.lstProduct[index]),
+                            ),
+                          );
+                        },
+                        child: Stack(
+                          alignment: Alignment.topCenter,
+                          children: <Widget>[
+                            Container(
+                              margin: const EdgeInsets.all(5),
+                              child: SizedBox(
+                                height: Curves.easeInOut.transform(1) * 150,
+                                width: Curves.easeInOut.transform(1) * 400,
+                                child: Stack(
+                                  children: <Widget>[
+                                    Positioned(
+                                      top: 0,
+                                      child: Image(
+                                        height: 130,
+                                        width: 150,
+                                        image: AssetImage(
+                                          'assets'+api.lstProduct[index].hinhAnh,
+                                        ),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Positioned(
+                                      left: 165,
+                                      top: 20,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Text(
+                                            '${api.lstProduct[index].gia} VNĐ',
+                                            style: const TextStyle(
+                                              color: Colors.red,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 0,
+                                      left: 165,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          const SizedBox(height: 5.0),
+                                          Text(
+                                            api.lstProduct[index].tenSanPham,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 15.0,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Positioned(
+                                      bottom: 17.0,
+                                      right: 10.0,
+                                      child: Container(
+                                        height: 30,
+                                        width: 100,
+                                        child: ElevatedButton(
+                                          style: TextButton.styleFrom(
+                                            primary: Colors.white,
+                                            backgroundColor: Colors.green,
+                                          ),
+                                          onPressed: () {},
+                                          child: Text(
+                                            'Mua ngay',
+                                            style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      right: 10,
+                                      top: 5,
+                                      child: FavoriteWidget(
+                                        product: api.lstProduct[index],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

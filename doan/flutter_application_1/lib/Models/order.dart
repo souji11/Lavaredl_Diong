@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
+import '../Models/order_details.dart';
 
 class Order {
   late int ID;
@@ -12,6 +13,7 @@ class Order {
   late int? IdMaGiamGia;
   late double? TongTien;
   late int IDTrangThai;
+  late List<OrderDetails> ctHoaDon;
 
   Order(
       {required this.ID,
@@ -21,19 +23,19 @@ class Order {
       this.SDTGiaoHang,
       this.IdMaGiamGia,
       this.TongTien,
-      required this.IDTrangThai});
+      required this.IDTrangThai,
+      required this.ctHoaDon});
 
   Order.fromJson(Map<String, dynamic> json) {
-    ID = json['ID'] ?? 1;
+    ID = json['id'] as int;
     Code = json['Code'];
-    NgayLap = json['NgayLap'] == null
-        ? null
-        : DateTime.parse(json['NgayLap'] as String);
+    NgayLap = json['NgayLap'] == null ? null : DateTime.parse(json['NgayLap'] as String);
     DiaChiGiaoHang = json['DiaChiGiaoHang'];
     SDTGiaoHang = json['SDTGiaoHang'];
     IdMaGiamGia = json['IdMaGiamGia'];
     TongTien = json['TongTien'];
-    IDTrangThai = json['IDTrangThai'] ?? 1;
+    IDTrangThai = json['IDTrangThai'] ?? int;
+    ctHoaDon = (json['ct_hoa_don'] as List).map((e) => OrderDetails.fromJson(e)).toList();
   }
 
   Map<String, dynamic> toJson() {
@@ -46,17 +48,20 @@ class Order {
     data['IdMaGiamGia'] = IdMaGiamGia;
     data['TongTien'] = TongTien;
     data['IDTrangThai'] = IDTrangThai;
+    if (this.ctHoaDon != null) {
+      data['ct_hoa_don'] = this.ctHoaDon.map((v) => v.toJson()).toList();
+    }
     return data;
   }
-
-  Order.empty() {
-    ID = -1;
-    Code = "";
-    NgayLap = null;
-    DiaChiGiaoHang = "";
-    SDTGiaoHang = "";
-    IdMaGiamGia = -1;
-    TongTien = -1;
-    IDTrangThai = -1;
-  }
 }
+  // Order.empty() {
+  //   ID = -1;
+  //   Code = "";
+  //   NgayLap = null;
+  //   DiaChiGiaoHang = "";
+  //   SDTGiaoHang = "";
+  //   IdMaGiamGia = -1;
+  //   TongTien = -1;
+  //   IDTrangThai = -1;
+  //   ctHoaDon = null;
+  // }

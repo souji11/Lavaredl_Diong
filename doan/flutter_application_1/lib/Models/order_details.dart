@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'product.dart';
+import 'Product_main.dart';
 
 class OrderDetails {
   late int? id;
@@ -9,6 +10,7 @@ class OrderDetails {
   late int? IdSanPham;
   late int? SoLuong;
   late double? DonGia;
+  late Product_main sanPham;
 
   OrderDetails({
     this.id,
@@ -16,6 +18,7 @@ class OrderDetails {
     this.IdSanPham,
     this.SoLuong,
     this.DonGia,
+    required this.sanPham,
   });
 
   OrderDetails.fromJson(Map<String, dynamic> json) {
@@ -24,6 +27,7 @@ class OrderDetails {
     IdSanPham = json['IdSanPham'];
     SoLuong = json['SoLuong'];
     DonGia = json['DonGia'];
+    sanPham = (json['san_pham'] != null ? new Product_main.fromJson(json['san_pham']) : null)!;
   }
 
   Map<String, dynamic> toJson() {
@@ -33,6 +37,9 @@ class OrderDetails {
     data['IdSanPham'] = IdSanPham;
     data['SoLuong'] = SoLuong;
     data['DonGia'] = DonGia;
+    if (this.sanPham != null) {
+      data['san_pham'] = this.sanPham.toJson();
+    }
     return data;
   }
 

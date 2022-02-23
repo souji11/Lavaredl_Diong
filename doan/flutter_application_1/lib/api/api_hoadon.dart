@@ -15,12 +15,12 @@ import '../Models/order.dart';
 Future<List<Order>> fetchHoaDon_main(int TrangThai) async {
   List<Order> lst = [];
   if (TrangThai == 0) {
-    final response = await http.get(
-        Uri.parse('http://127.0.0.1:8000/api/User/${Auth.user.id}/HoaDon/all'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/User/${Auth.user.id}/HoaDon/all'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
         List data = object['data'];
+        //lst = data.map((value) => Order.fromJson(value)).toList();
         data.forEach((item) {
           lst.add(Order.fromJson(item));
         });
@@ -31,8 +31,7 @@ Future<List<Order>> fetchHoaDon_main(int TrangThai) async {
       throw Exception('Failed to load data');
     }
   } else {
-    final response = await http.get(Uri.parse(
-        'http://127.0.0.1:8000/api/User/${Auth.user.id}/HoaDon?IdTrangThai=$TrangThai'));
+    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/User/${Auth.user.id}/HoaDon?IdTrangThai=$TrangThai'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
