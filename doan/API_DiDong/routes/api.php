@@ -27,6 +27,9 @@ route::get('SanPham/giay', [APIsanphamController::class,'chonGiay']);
 route::get('SanPham/ao', [APIsanphamController::class,'chonAo']);
 route::get('SanPham/trangsuc', [APIsanphamController::class,'chonTrangSuc']);
 route::get('SanPham/tui', [APIsanphamController::class,'chonTui']);
+route::get('SanPham/moi', [APIsanphamController::class,'chonsanphammoi']);
+route::get('SanPham/banchay', [APIsanphamController::class,'chonsanphambanchay']);
+route::get('SanPham/noibat', [APIsanphamController::class,'chonsanphamnoibat']);
 
 route::post('SanPhamYeuThich/ThemMoi', [SanPhamYeuThichController::class,'create']);
 route::get('SanPhamYeuThich', [SanPhamYeuThichController::class,'index']);

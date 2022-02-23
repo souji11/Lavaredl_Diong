@@ -124,16 +124,19 @@ class SanPhamYeuThichController extends Controller
     }
     public function xoa($id)
     {
-        $SanPhamYT=SanPhamYeuThich::where('IdSanPham','=',$id)->get();
+        $SanPhamYT=SanPhamYeuThich::where('IdSanPham',$id)->delete();
         
-        foreach($SanPhamYT as $SanPhamYT){
-            $SanPhamYT->delete();
-        }
-
+        // foreach($SanPhamYT as $SanPhamYT){
+        //     $SanPhamYT->delete();
+        // }
+        $dsSanPhamYT=DB::select('select * from san_pham_yeu_thiches,san_phams where san_pham_yeu_thiches.IdSanPham = san_phams.id');
         return json_encode([
             'ThanhCong'=>true,
-            'data'=>$SanPhamYT,
+            'data'=>$dsSanPhamYT,
+            
         ]);
+        
+        
     }
     
 }
