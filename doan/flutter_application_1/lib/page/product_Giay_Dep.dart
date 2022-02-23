@@ -250,15 +250,17 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                           child: Image(
                                             height: 130,
                                             width: 150,
-                                            image:  AssetImage(
-                                              
-                                                'assets'+  api.lst[index].hinhAnh,
+                                            image: AssetImage(
+                                              'assets' + api.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
                                         Positioned(
-                                          top: 10,bottom: 40,left: 10,right: 10,
+                                          top: 10,
+                                          bottom: 40,
+                                          left: 10,
+                                          right: 10,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,

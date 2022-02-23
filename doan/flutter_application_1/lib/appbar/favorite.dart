@@ -31,30 +31,49 @@ class Favorite extends StatefulWidget {
 class _Favorite_screen extends State<Favorite>
     with SingleTickerProviderStateMixin {
   Widget currentSceent = Home();
+<<<<<<< HEAD
  bool _isFavorited = true;
+=======
+
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
   @override
   Widget build(BuildContext context) {
     Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
     var api = Provider.of<ApiYT>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.green,
+        title: Column(
+          //crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              "Sản phẩm yêu thích",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Consumer<ApiYT>(builder: (_, value, child) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.dark,
           child: ListView(
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(25),
-                child: Text(
-                  'Sản phẩm yêu thích',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.all(25),
+              //   child: Text(
+              //     'Sản phẩm yêu thích',
+              //     textAlign: TextAlign.center,
+              //     style: TextStyle(
+              //       fontSize: 30,
+              //       fontStyle: FontStyle.italic,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
               Container(
                 height: 600,
                 width: double.infinity,
@@ -69,7 +88,8 @@ class _Favorite_screen extends State<Favorite>
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ProductDetailScreen(product: api.lstProduct[index]),
+                              builder: (_) => ProductDetailScreen(
+                                  product: api.lstProduct[index]),
                             ),
                           );
                         },
@@ -89,7 +109,8 @@ class _Favorite_screen extends State<Favorite>
                                         height: 130,
                                         width: 150,
                                         image: AssetImage(
-                                          'assets'+api.lstProduct[index].hinhAnh,
+                                          'assets' +
+                                              api.lstProduct[index].hinhAnh,
                                         ),
                                         fit: BoxFit.cover,
                                       ),

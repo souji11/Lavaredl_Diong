@@ -44,10 +44,8 @@ class _Product_TuiSach_screen extends State<Product_TuiSach_screen>
     _Product_Tui_Sach2 = PageController(initialPage: 0, viewportFraction: 0.8);
   }
 
-
-
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     Provider.of<Apitui>(context, listen: false).fetchProduct_tui();
     var api = Provider.of<Apitui>(context, listen: false);
     return Scaffold(
@@ -247,13 +245,15 @@ class _Product_TuiSach_screen extends State<Product_TuiSach_screen>
                                     child: Stack(
                                       children: <Widget>[
                                         Positioned(
-                                          top: 10,bottom: 40,left: 10,right: 10,
+                                          top: 10,
+                                          bottom: 40,
+                                          left: 10,
+                                          right: 10,
                                           child: Image(
                                             height: 130,
                                             width: 150,
-                                            image:  AssetImage(
-                                              
-                                                'assets'+  api.lst[index].hinhAnh,
+                                            image: AssetImage(
+                                              'assets' + api.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),

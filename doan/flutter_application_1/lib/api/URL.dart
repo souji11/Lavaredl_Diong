@@ -1,4 +1,3 @@
-
 // ignore_for_file: unused_import, file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
@@ -6,7 +5,11 @@ import 'package:flutter_application_1/Models/user.dart';
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
+<<<<<<< HEAD
 const baseURL = "http://192.168.5.192:8000/api";
+=======
+const baseURL = "http://192.168.5.186:8000/api";
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
 const loginURL = baseURL + "/User/login";
 const registerURL = baseURL + "/User/register";
 const logoutURL = baseURL + "User/logout";

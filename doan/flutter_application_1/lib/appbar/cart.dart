@@ -1,7 +1,10 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import, avoid_web_libraries_in_flutter, unnecessary_brace_in_string_interps, unused_local_variable, non_constant_identifier_names
 
+<<<<<<< HEAD
 // import 'dart:html';
 import 'dart:math';
+=======
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
@@ -57,56 +60,57 @@ class CheckOutCart extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
     var api = Provider.of<ApiGioHang>(context, listen: false);
-    return Container(
-      height: 130,
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-            offset: Offset(0, -15),
-            blurRadius: 20,
-            color: Color(0xFFDADADA).withOpacity(0.15)),
-      ]),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Text("Giá tiền"),
-                  SizedBox(
-                    height: 5,
+    // return Container(
+    //     height: 130,
+    //     decoration: BoxDecoration(color: Colors.white, boxShadow: [
+    //       BoxShadow(
+    //           offset: Offset(0, -15),
+    //           blurRadius: 20,
+    //           color: Color(0xFFDADADA).withOpacity(0.15)),
+    //     ]),
+    //     child: Consumer<ApiGioHang>(
+    //       builder: (_, value, child) {
+    //         return Container(
+    //           decoration: BoxDecoration(),
+    //         );
+    //       },
+    //     )
+    //     );
+    return Consumer<ApiGioHang>(builder: (_, value, child) {
+      return SizedBox(
+        height: 60,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Giá :${api.total}đ'),
+            SizedBox(
+              width: 50,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => PageThanhToan(),
                   ),
-                  Text('\$')
-                ],
-              ),
-              SizedBox(
-                width: 190,
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const PageThanhToan()),
-                    );
-                  },
+                );
+              },
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
                   color: Colors.green,
-                  padding: const EdgeInsets.symmetric(horizontal: 40),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: const Text(
-                    'Thanh toán',
-                    style: TextStyle(
-                        fontSize: 14, letterSpacing: 2.2, color: Colors.white),
-                  ),
+                ),
+                child: Center(
+                  child: Text('Thanh toán'),
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            )
+          ],
+        ),
+      );
+    });
   }
 }
 
@@ -186,7 +190,7 @@ class _BodyState extends State<Body> {
                 child:
                     //Image.asset('images/' + cart[index].product.ImgUrl),
                     Image(
-                  image: NetworkImage(link),
+                  image: AssetImage('assets' + link),
                 )),
           ),
         ),

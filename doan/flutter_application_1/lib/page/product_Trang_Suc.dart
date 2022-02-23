@@ -42,10 +42,8 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
     super.initState();
   }
 
- 
   @override
-  
-     Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     Provider.of<Apitrangsuc>(context, listen: false).fetchProduct_trangsuc();
     var api = Provider.of<Apitrangsuc>(context, listen: false);
     return Scaffold(
@@ -244,13 +242,15 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                     child: Stack(
                                       children: <Widget>[
                                         Positioned(
-                                          top: 10,bottom: 40,left: 10,right: 10,
+                                          top: 10,
+                                          bottom: 40,
+                                          left: 10,
+                                          right: 10,
                                           child: Image(
                                             height: 130,
                                             width: 150,
-                                            image:  AssetImage(
-                                             
-                                                 'assets'+ api.lst[index].hinhAnh,
+                                            image: AssetImage(
+                                              'assets' + api.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),

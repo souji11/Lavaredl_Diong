@@ -2,6 +2,7 @@
 // ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field, duplicate_import
 
 import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
+import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 
@@ -49,6 +50,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     var apiThem = Provider.of<ApiThemGioHang>(context, listen: false);
+    var apigh = Provider.of<ApiGioHang>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -71,7 +73,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           IconButton(
             onPressed: () {
               setState(() {
-                currentSceent = Notifi();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => Notifi()),
+                );
                 currentTab = 4;
               });
             },
@@ -81,7 +86,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           IconButton(
             onPressed: () {
               setState(() {
-                currentSceent = Favorite();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => Favorite()),
+                );
                 currentTab = 5;
               });
             },
@@ -91,7 +99,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           IconButton(
             onPressed: () {
               setState(() {
-                currentSceent = Cart();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => Cart()),
+                );
                 currentTab = 6;
               });
             },
@@ -134,12 +145,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             child: Image(
                               height: 400,
                               width: 400,
-                              image: AssetImage( 'assets'+widget.product.hinhAnh),
-                                fit: BoxFit.cover,
-                              ),
-                             
+                              image:
+                                  AssetImage('assets' + widget.product.hinhAnh),
+                              fit: BoxFit.cover,
                             ),
-                          
+                          ),
+
                           // Giá sản phẩm
                           Positioned(
                             bottom: 5,
@@ -395,6 +406,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               onPressed: () {
                                 setState(() {
                                   apiThem.ThemGioHang(1, widget.product.id, 1);
+                                  apigh.fetchProduct_main();
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -450,14 +462,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       ),
                     ),
                     //test nút thêm vào danh sách yêu thích
-                          // Container(
-                          //   alignment: Alignment.center,
-                          //   padding: const EdgeInsets.all(8.0),
-                          //   child: (_futureAlbum == null)
-                          //       ? buildColumn()
-                          //       : buildFutureBuilder(),
-                          // ),
-
+                    // Container(
+                    //   alignment: Alignment.center,
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: (_futureAlbum == null)
+                    //       ? buildColumn()
+                    //       : buildFutureBuilder(),
+                    // ),
                   ],
                 ),
               ),
@@ -477,7 +488,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentSceent = Home();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => Home()),
+                    );
                     currentTab = 0;
                   });
                 },
@@ -523,7 +537,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentSceent = Setting();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => Setting()),
+                    );
                     currentTab = 2;
                   });
                 },
@@ -546,7 +563,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
-                    currentSceent = AccountS();
+                    //currentSceent = AccountS();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => AccountS()),
+                    );
                     currentTab = 3;
                   });
                 },

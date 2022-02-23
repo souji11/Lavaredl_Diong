@@ -10,7 +10,11 @@ import '../Models/user.dart';
 Future<User> apiForGotPass(String email, String SDT, String oldPass,
     String newPass, String newPassConfirm) async {
   User acc;
+<<<<<<< HEAD
   String url = "http://192.168.5.192:8000/api/User/forgotpass";
+=======
+  String url = "http://192.168.5.186:8000/api/User/forgotpass";
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
   var response = await http.post(Uri.parse(url), body: {
     "email": email,
     "SDT": SDT,

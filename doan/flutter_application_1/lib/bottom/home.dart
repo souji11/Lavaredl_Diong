@@ -43,40 +43,39 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
     var apithem = Provider.of<APIThemSPYT>(context, listen: false);
     var apixoa = Provider.of<APIXoaSPYT>(context, listen: false);
     // return Scaffold(body: Consumer<APIThemSPYT>(
-      // builder: (_, value, child) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(0),
-              child: IconButton(
-                padding: const EdgeInsets.all(0),
-                alignment: Alignment.centerRight,
-                icon: (_isFavorited
-                    ? const Icon(Icons.favorite)
-                    : const Icon(Icons.favorite_border)),
-                color: Colors.red[500],
-                iconSize: 30,
-                // onPressed: _toggleFavorite,
-                onPressed: () => setState(() {
-                  if (_isFavorited) {
-                    // apithem.ThemSPyeuthich(1, widget.product.id);
-                    apixoa.XoaSPYT(widget.product);
-                    _isFavorited = false;
-                  } else {
-                    // Provider.of<APIThemSPYT>(context, listen: false)
-                    //     .ThemSPyeuthich(1, widget.product.id);
-                    apithem.ThemSPyeuthich(1, widget.product.id);
-                    _isFavorited = true;
-                  }
-                }),
-              ),
-            ),
-          ],
-        );
+    // builder: (_, value, child) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            padding: const EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border)),
+            color: Colors.red[500],
+            iconSize: 30,
+            // onPressed: _toggleFavorite,
+            onPressed: () => setState(() {
+              if (_isFavorited) {
+                // apithem.ThemSPyeuthich(1, widget.product.id);
+                apixoa.XoaSPYT(widget.product);
+                _isFavorited = false;
+              } else {
+                // Provider.of<APIThemSPYT>(context, listen: false)
+                //     .ThemSPyeuthich(1, widget.product.id);
+                apithem.ThemSPyeuthich(1, widget.product.id);
+                _isFavorited = true;
+              }
+            }),
+          ),
+        ),
+      ],
+    );
     //   },
     // ));
-    
   }
 
   // void _toggleFavorite() {
@@ -289,7 +288,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           },
                           child: Consumer<Api>(
                             builder: (_, value, child) {
-                           
                               return Stack(
                                 alignment: Alignment.topCenter,
                                 children: <Widget>[
@@ -307,8 +305,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             child: Image(
                                               height: 150,
                                               width: 100,
+<<<<<<< HEAD
                                               image: AssetImage(
                                                'assets'+api.lstMoi[index].hinhAnh),
+=======
+                                              image: AssetImage('assets' +
+                                                  api.lst[index].hinhAnh),
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
                                               fit: BoxFit.cover,
                                             ),
                                             // child: Image.network('http://' + api.lst[index].hinhAnh),
@@ -418,8 +421,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
+<<<<<<< HEAD
                                                image: AssetImage(
                                                'assets'+api.lstNoiBat[index].hinhAnh),
+=======
+                                              image: AssetImage('assets' +
+                                                  api.lst[index].hinhAnh),
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -531,8 +539,13 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
+<<<<<<< HEAD
                                                image: AssetImage(
                                                'assets'+api.lstBanChay[index].hinhAnh),
+=======
+                                              image: AssetImage('assets' +
+                                                  api.lst[index].hinhAnh),
+>>>>>>> 4d3ebf402b8ec72ba627c8fe014d1ce527f45d2a
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),

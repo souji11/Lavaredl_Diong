@@ -63,16 +63,14 @@ void main() {
       ChangeNotifierProvider(create: (_) => Apidangky()),
       ChangeNotifierProvider(create: (_) => ApiGioHang()),
       ChangeNotifierProvider(create: (_) => ApiThemGioHang()),
-      ChangeNotifierProvider(create: (_)=>Apiao()),
-      ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
-      ChangeNotifierProvider(create: (_)=>Apigiay()),
-      ChangeNotifierProvider(create: (_)=>Apitui()),
-      ChangeNotifierProvider(create: (_)=>APIThemSPYT()),
-      ChangeNotifierProvider(create: (_)=>APIXoaSPYT()),
-      ChangeNotifierProvider(create: (_)=>ApiYT()),
-
+      ChangeNotifierProvider(create: (_) => Apiao()),
+      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
+      ChangeNotifierProvider(create: (_) => Apigiay()),
+      ChangeNotifierProvider(create: (_) => Apitui()),
+      ChangeNotifierProvider(create: (_) => APIThemSPYT()),
+      ChangeNotifierProvider(create: (_) => APIXoaSPYT()),
+      ChangeNotifierProvider(create: (_) => ApiYT()),
       ChangeNotifierProvider(create: (_) => Apidangky()),
-
     ],
     child: MyApp(),
   ));

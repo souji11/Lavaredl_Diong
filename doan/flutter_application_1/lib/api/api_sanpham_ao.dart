@@ -14,26 +14,23 @@ class Apiao extends ChangeNotifier {
   List<Product_main> lsta = [];
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
-  final response = await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/ao'));
-  if (response.statusCode == 200) {
-   try{
-     dynamic object = json.decode(response.body);
-     dynamic dataao = object['dataao'];
-     dataao.forEach((item){
-       tmpList.add(Product_main.fromJson(item));
-     });
-   }
-   catch(e)
-   {
-     print(e);
-   }
-    
-    lsta = tmpList;
-    notifyListeners();
-    
-  } 
-  else {
-    
-    throw Exception('Failed to load data');
+    final response =
+        await http.get(Uri.parse('http://192.168.5.186:8000/api/SanPham/ao'));
+    if (response.statusCode == 200) {
+      try {
+        dynamic object = json.decode(response.body);
+        dynamic dataao = object['dataao'];
+        dataao.forEach((item) {
+          tmpList.add(Product_main.fromJson(item));
+        });
+      } catch (e) {
+        print(e);
+      }
+
+      lsta = tmpList;
+      notifyListeners();
+    } else {
+      throw Exception('Failed to load data');
+    }
   }
-}}
+}

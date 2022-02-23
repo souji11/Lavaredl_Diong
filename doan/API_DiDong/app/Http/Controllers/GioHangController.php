@@ -20,9 +20,15 @@ class GioHangController extends Controller
     {
         $gh=DB::select('select * from gio_hangs, san_phams where gio_hangs.IdSanPham=san_phams.id');
         //$gh=GioHang::all();
+        $total = 0;
+       foreach($gh as $sp)
+       {
+           $total += $sp->so_luong * $sp->Gia;
+       }
         return json_encode([
             'ThanhCong'=>true,
             'data'=>$gh,
+            'total' => $total
         ]);
     }
 
