@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_giohang_create.dart';
 import 'package:flutter_application_1/api/api_yeuthich_index.dart';
+import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
 
@@ -29,30 +31,45 @@ class Favorite extends StatefulWidget {
 class _Favorite_screen extends State<Favorite>
     with SingleTickerProviderStateMixin {
   Widget currentSceent = Home();
- 
+ bool _isFavorited = true;
   @override
   Widget build(BuildContext context) {
     Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
     var api = Provider.of<ApiYT>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.green,
+        title: Column(
+          //crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              "Sản phẩm yêu thích",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Consumer<ApiYT>(builder: (_, value, child) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: SystemUiOverlayStyle.dark,
           child: ListView(
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(25),
-                child: Text(
-                  'Sản phẩm yêu thích',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontStyle: FontStyle.italic,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsets.all(25),
+              //   child: Text(
+              //     'Sản phẩm yêu thích',
+              //     textAlign: TextAlign.center,
+              //     style: TextStyle(
+              //       fontSize: 30,
+              //       fontStyle: FontStyle.italic,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
               Container(
                 height: 600,
                 width: double.infinity,
@@ -67,7 +84,8 @@ class _Favorite_screen extends State<Favorite>
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => ProductDetailScreen(product: api.lstProduct[index]),
+                              builder: (_) => ProductDetailScreen(
+                                  product: api.lstProduct[index]),
                             ),
                           );
                         },
@@ -87,7 +105,8 @@ class _Favorite_screen extends State<Favorite>
                                         height: 130,
                                         width: 150,
                                         image: AssetImage(
-                                          'assets'+api.lstProduct[index].hinhAnh,
+                                          'assets' +
+                                              api.lstProduct[index].hinhAnh,
                                         ),
                                         fit: BoxFit.cover,
                                       ),
@@ -140,11 +159,21 @@ class _Favorite_screen extends State<Favorite>
                                             primary: Colors.white,
                                             backgroundColor: Colors.green,
                                           ),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            setState(() {
+                                  Provider.of<ApiThemGioHang>(context, listen: false).ThemGioHang(1, api.lst[index].id, 1);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => Cart(),
+                                    ),
+                                  );
+                                          });
+                                          },
                                           child: Text(
                                             'Mua ngay',
                                             style: TextStyle(
-                                              fontSize: 10,
+                                              fontSize: 15,
                                               fontWeight: FontWeight.w300,
                                             ),
                                           ),
@@ -153,9 +182,26 @@ class _Favorite_screen extends State<Favorite>
                                     ),
                                     Positioned(
                                       right: 10,
-                                      top: 5,
-                                      child: FavoriteWidget(
-                                        product: api.lstProduct[index],
+                                      bottom: 50,
+                                       child: Container(
+                                        height: 30,
+                                        width: 100,
+                                        child: ElevatedButton(
+                                          style: TextButton.styleFrom(
+                                            primary: Colors.white,
+                                            backgroundColor: Colors.green,
+                                          ),
+                                          onPressed: () {
+                                            Provider.of<APIXoaSPYT>(context, listen: false).XoaSPYT(api.lstProduct[index]);
+                                          },
+                                          child: Text(
+                                            'Xóa',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     )
                                   ],

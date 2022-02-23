@@ -267,7 +267,11 @@ class _PageThanhToan extends State<PageThanhToan> {
                 icon: const Icon(Icons.payment),
               ),
             ),
+<<<<<<< HEAD
           )
+=======
+          ),
+>>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
         ],
       ),
     );

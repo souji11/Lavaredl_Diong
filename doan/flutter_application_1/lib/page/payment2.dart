@@ -88,7 +88,7 @@ class _Payment2 extends State<Payment2> {
               const SizedBox(
                 height: 35,
               ),
-             
+
               Padding(
                 padding: EdgeInsets.all(5),
                 child: Container(
@@ -261,4 +261,9 @@ class _Payment2 extends State<Payment2> {
       ),
     );
   }
+<<<<<<< HEAD
+=======
+
+  // }
+>>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
 }

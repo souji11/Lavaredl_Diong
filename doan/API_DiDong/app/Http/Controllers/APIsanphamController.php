@@ -120,4 +120,30 @@ class APIsanphamController extends Controller
     {
         //
     }
+public function chonsanphammoi()
+{   
+    // $dsSanPham=SanPham::all();
+    $dsSanPhamMoi=SanPham::orderBy('created_at')->take(10)->get();
+    return json_encode([
+        'ThanhCong'=>true,
+        'data'=>$dsSanPhamMoi,
+    ]);
+}
+public function chonsanphamnoibat()
+{
+    $dsSanPhamNoiBat=SanPham::orderBy('Gia','desc')->take(10)->get();
+    // $dsSanPhamNoiBat=DB::table('san_phams')->orderBy('Gia','asc')->get();
+    return json_encode([
+        'ThanhCong'=>true,
+        'data'=>$dsSanPhamNoiBat,
+    ]);
+}
+public function chonsanphambanchay()
+{
+    $dsSanPhamBanChay=SanPham::orderBy('Gia','asc')->take(10)->get();
+    return json_encode([
+        'ThanhCong'=>true,
+        'data'=>$dsSanPhamBanChay,
+    ]);
+}
 }

@@ -1,6 +1,6 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import, avoid_web_libraries_in_flutter
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, unused_import, avoid_web_libraries_in_flutter, unnecessary_brace_in_string_interps, unused_local_variable, non_constant_identifier_names
 
-import 'dart:html';
+// import 'dart:html';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
@@ -57,6 +57,7 @@ class CheckOutCart extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
     var api = Provider.of<ApiGioHang>(context, listen: false);
+<<<<<<< HEAD
     return Container(
       height: 130,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
@@ -95,13 +96,59 @@ class CheckOutCart extends StatelessWidget {
                     'Thanh toán',
                     style: TextStyle(fontSize: 14, letterSpacing: 2.2, color: Colors.white),
                   ),
+=======
+    // return Container(
+    //     height: 130,
+    //     decoration: BoxDecoration(color: Colors.white, boxShadow: [
+    //       BoxShadow(
+    //           offset: Offset(0, -15),
+    //           blurRadius: 20,
+    //           color: Color(0xFFDADADA).withOpacity(0.15)),
+    //     ]),
+    //     child: Consumer<ApiGioHang>(
+    //       builder: (_, value, child) {
+    //         return Container(
+    //           decoration: BoxDecoration(),
+    //         );
+    //       },
+    //     )
+    //     );
+    return Consumer<ApiGioHang>(builder: (_, value, child) {
+      return SizedBox(
+        height: 60,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Giá :${api.total}đ'),
+            SizedBox(
+              width: 50,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => PageThanhToan(),
+                  ),
+                );
+              },
+              child: Container(
+                width: 200,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25),
+                  color: Colors.green,
+                ),
+                child: Center(
+                  child: Text('Thanh toán'),
+>>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            )
+          ],
+        ),
+      );
+    });
   }
 }
 
@@ -117,8 +164,10 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
     var api = Provider.of<ApiGioHang>(context, listen: false);
-
+    // print(api.lst[].gia);
+    print('aksdkasd');
     return Padding(
+      
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Consumer<ApiGioHang>(builder: (_, value, child) {
         return ListView.builder(
@@ -149,7 +198,16 @@ class _BodyState extends State<Body> {
                           api.XoaGioHang(api.lst[index].idTaiKhoan, api.lst[index].idSanPham);
                         });
                       },
+<<<<<<< HEAD
                       child: CartItem(api.lst[index].hinhAnh, api.lst[index].tenSanPham, api.lst[index].gia, api.lst[index].so_Luong)),
+=======
+                     
+                      child: CartItem(
+                          api.lst[index].hinhAnh,
+                          api.lst[index].tenSanPham,
+                          api.lst[index].gia,
+                          api.lst[index].so_Luong)),
+>>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
                 ));
       }),
     );
@@ -157,6 +215,7 @@ class _BodyState extends State<Body> {
 
   // ignore: non_constant_identifier_names
   Row CartItem(String link, String Ten, int gia, int soluong) {
+    
     return Row(
       children: [
         SizedBox(
@@ -172,7 +231,7 @@ class _BodyState extends State<Body> {
                 child:
                     //Image.asset('images/' + cart[index].product.ImgUrl),
                     Image(
-                  image: NetworkImage(link),
+                  image: AssetImage('assets' + link),
                 )),
           ),
         ),

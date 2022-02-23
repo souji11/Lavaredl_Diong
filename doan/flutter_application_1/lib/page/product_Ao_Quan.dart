@@ -236,13 +236,16 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                     child: Stack(
                                       children: <Widget>[
                                         Positioned(
-                                          top: 10,bottom: 40,left: 10,right: 10,
-                                          
+                                          top: 10,
+                                          bottom: 40,
+                                          left: 10,
+                                          right: 10,
                                           child: Image(
                                             height: 150,
                                             width: 150,
-                                            image:  AssetImage(
-                                             'assets'+ apiao.lsta[index].hinhAnh,
+                                            image: AssetImage(
+                                              'assets' +
+                                                  apiao.lsta[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -312,7 +315,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         image: DecorationImage(
-          image: NetworkImage(link),
+          image: AssetImage(link),
           fit: BoxFit.cover,
         ),
       ),
