@@ -9,33 +9,30 @@ import 'dart:convert';
 import '../Models/product.dart';
 import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
-class Apigiay extends ChangeNotifier{
+
+class Apigiay extends ChangeNotifier {
   List<Product_main> lst = [];
   Future<void> fetchProduct_giay() async {
     List<Product_main> tmpList = [];
-  final response = await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/giay'));
-  if (response.statusCode == 200) {
-   try{
-     dynamic object = json.decode(response.body);
-     dynamic data = object['data'];
-     data.forEach((item){
-       tmpList.add(Product_main.fromJson(item));
-     });
-   }
-   catch(e)
-   {
-     print(e);
-   }
-    // List ProductMains = jsonDecode(response.body);
-    // return ProductMains.map<Product_main>((json) => Product_main.fromJson(json))
-    //     .toList();
-    lst = tmpList;
-    notifyListeners();
-   
-  } 
-  else {
-    
-    throw Exception('Failed to load data');
+    final response =
+        await http.get(Uri.parse('http://192.168.5.186:8000/api/SanPham/giay'));
+    if (response.statusCode == 200) {
+      try {
+        dynamic object = json.decode(response.body);
+        dynamic data = object['data'];
+        data.forEach((item) {
+          tmpList.add(Product_main.fromJson(item));
+        });
+      } catch (e) {
+        print(e);
+      }
+      // List ProductMains = jsonDecode(response.body);
+      // return ProductMains.map<Product_main>((json) => Product_main.fromJson(json))
+      //     .toList();
+      lst = tmpList;
+      notifyListeners();
+    } else {
+      throw Exception('Failed to load data');
+    }
   }
-}
 }

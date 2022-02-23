@@ -26,12 +26,8 @@ class Home extends StatefulWidget {
 }
 
 class FavoriteWidget extends StatefulWidget {
-<<<<<<< HEAD
-  const FavoriteWidget({Key? key}) : super(key: key);
-=======
   final Product_main product;
   const FavoriteWidget({Key? key, required this.product}) : super(key: key);
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
 
   @override
   _FavoriteWidgetState createState() => _FavoriteWidgetState();
@@ -47,40 +43,39 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
     var apithem = Provider.of<APIThemSPYT>(context, listen: false);
     var apixoa = Provider.of<APIXoaSPYT>(context, listen: false);
     // return Scaffold(body: Consumer<APIThemSPYT>(
-      // builder: (_, value, child) {
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(0),
-              child: IconButton(
-                padding: const EdgeInsets.all(0),
-                alignment: Alignment.centerRight,
-                icon: (_isFavorited
-                    ? const Icon(Icons.favorite)
-                    : const Icon(Icons.favorite_border)),
-                color: Colors.red[500],
-                iconSize: 30,
-                // onPressed: _toggleFavorite,
-                onPressed: () => setState(() {
-                  if (_isFavorited) {
-                    // apithem.ThemSPyeuthich(1, widget.product.id);
-                    apixoa.XoaSPYT(widget.product);
-                    _isFavorited = false;
-                  } else {
-                    // Provider.of<APIThemSPYT>(context, listen: false)
-                    //     .ThemSPyeuthich(1, widget.product.id);
-                    apithem.ThemSPyeuthich(1, widget.product.id);
-                    _isFavorited = true;
-                  }
-                }),
-              ),
-            ),
-          ],
-        );
+    // builder: (_, value, child) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(0),
+          child: IconButton(
+            padding: const EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited
+                ? const Icon(Icons.favorite)
+                : const Icon(Icons.favorite_border)),
+            color: Colors.red[500],
+            iconSize: 30,
+            // onPressed: _toggleFavorite,
+            onPressed: () => setState(() {
+              if (_isFavorited) {
+                // apithem.ThemSPyeuthich(1, widget.product.id);
+                apixoa.XoaSPYT(widget.product);
+                _isFavorited = false;
+              } else {
+                // Provider.of<APIThemSPYT>(context, listen: false)
+                //     .ThemSPyeuthich(1, widget.product.id);
+                apithem.ThemSPyeuthich(1, widget.product.id);
+                _isFavorited = true;
+              }
+            }),
+          ),
+        ),
+      ],
+    );
     //   },
     // ));
-    
   }
 
   // void _toggleFavorite() {
@@ -290,7 +285,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           },
                           child: Consumer<Api>(
                             builder: (_, value, child) {
-                           
                               return Stack(
                                 alignment: Alignment.topCenter,
                                 children: <Widget>[
@@ -308,8 +302,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             child: Image(
                                               height: 150,
                                               width: 100,
-                                              image: AssetImage(
-                                               'assets'+api.lst[index].hinhAnh),
+                                              image: AssetImage('assets' +
+                                                  api.lst[index].hinhAnh),
                                               fit: BoxFit.cover,
                                             ),
                                             // child: Image.network('http://' + api.lst[index].hinhAnh),
@@ -419,8 +413,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                               image: AssetImage(
-                                               'assets'+api.lst[index].hinhAnh),
+                                              image: AssetImage('assets' +
+                                                  api.lst[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -532,13 +526,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-<<<<<<< HEAD
-                                              image: NetworkImage(
+                                              image: AssetImage('assets' +
                                                   api.lst[index].hinhAnh),
-=======
-                                               image: AssetImage(
-                                               'assets'+api.lst[index].hinhAnh),
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),

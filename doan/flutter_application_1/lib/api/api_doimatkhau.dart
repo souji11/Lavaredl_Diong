@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 // ignore_for_file: unused_element, unused_import
 
 import 'package:flutter/cupertino.dart';
-=======
 // ignore_for_file: unused_element
 
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -14,7 +11,7 @@ import '../Models/user.dart';
 Future<User> apiChangePass(
     String oldPass, String newPass, String newPassConfirm) async {
   User acc;
-  String url = "http://127.0.0.1:8000/api/User/changepass/${Auth.user.id}";
+  String url = "http://192.168.5.186:8000/api/User/changepass/${Auth.user.id}";
   var response = await http.post(Uri.parse(url), body: {
     "oldPass": oldPass,
     "newPass": newPass,

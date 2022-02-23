@@ -56,7 +56,6 @@ void main() {
       ChangeNotifierProvider(
         create: (_) => Api(),
       ),
-<<<<<<< HEAD
       ChangeNotifierProvider(create: (_) => Apiao()),
       ChangeNotifierProvider(create: (_) => Apitrangsuc()),
       ChangeNotifierProvider(create: (_) => Apigiay()),
@@ -64,18 +63,14 @@ void main() {
       ChangeNotifierProvider(create: (_) => Apidangky()),
       ChangeNotifierProvider(create: (_) => ApiGioHang()),
       ChangeNotifierProvider(create: (_) => ApiThemGioHang()),
-=======
-      ChangeNotifierProvider(create: (_)=>Apiao()),
-      ChangeNotifierProvider(create: (_)=>Apitrangsuc()),
-      ChangeNotifierProvider(create: (_)=>Apigiay()),
-      ChangeNotifierProvider(create: (_)=>Apitui()),
-      ChangeNotifierProvider(create: (_)=>APIThemSPYT()),
-      ChangeNotifierProvider(create: (_)=>APIXoaSPYT()),
-      ChangeNotifierProvider(create: (_)=>ApiYT()),
-
+      ChangeNotifierProvider(create: (_) => Apiao()),
+      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
+      ChangeNotifierProvider(create: (_) => Apigiay()),
+      ChangeNotifierProvider(create: (_) => Apitui()),
+      ChangeNotifierProvider(create: (_) => APIThemSPYT()),
+      ChangeNotifierProvider(create: (_) => APIXoaSPYT()),
+      ChangeNotifierProvider(create: (_) => ApiYT()),
       ChangeNotifierProvider(create: (_) => Apidangky()),
-
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
     ],
     child: MyApp(),
   ));
@@ -88,12 +83,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
-<<<<<<< HEAD
-
-      //home: Login(),
-
-=======
->>>>>>> 78495d986ce2ada033d5881f7d0eae31995b59cd
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
