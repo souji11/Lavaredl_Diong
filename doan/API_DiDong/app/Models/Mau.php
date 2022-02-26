@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Mau extends Model
 {
     use HasFactory;
+    public function CtSanPham()
+    {
+        return $this->belongsTo(CtSanPham::class, 'IdMau');
+    }
 }

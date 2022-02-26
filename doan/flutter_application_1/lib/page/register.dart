@@ -24,9 +24,6 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  // TextEditingController phoneController = TextEditingController();
-  // TextEditingController firstPassWord = TextEditingController();
-  // TextEditingController lastPassWord = TextEditingController();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   TextEditingController txtSDT = TextEditingController();
   TextEditingController txtEmail = TextEditingController();
@@ -172,56 +169,6 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(
-                      //       top: 5, bottom: 5, right: 170, left: 170),
-                      //   child: SizedBox(
-                      //     width: double.infinity,
-                      //     height: 35,
-                      //     child: ElevatedButton(
-                      //       style: TextButton.styleFrom(
-                      //         backgroundColor: Colors.teal[300],
-                      //       ),
-                      //       onPressed: () {},
-                      //       child: const Text("Lấy mã OTD"),
-                      //     ),
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: EdgeInsets.all(5),
-                      //   child: Container(
-                      //     alignment: Alignment.centerLeft,
-                      //     decoration: BoxDecoration(
-                      //         color: Colors.white,
-                      //         borderRadius: BorderRadius.circular(10),
-                      //         boxShadow: [
-                      //           BoxShadow(
-                      //             color: Colors.black26,
-                      //             blurRadius: 6,
-                      //             offset: Offset(0, 2),
-                      //           ),
-                      //         ]),
-                      //     height: 60,
-                      //     child: TextField(
-                      //       keyboardType: TextInputType.number,
-                      //       style: TextStyle(
-                      //         color: Colors.black87,
-                      //       ),
-                      //       decoration: InputDecoration(
-                      //         border: InputBorder.none,
-                      //         contentPadding: EdgeInsets.only(top: 14),
-                      //         prefixIcon: Icon(
-                      //           Icons.sms,
-                      //           color: Color(0xff99cccc),
-                      //         ),
-                      //         hintText: "Nhập mã OTD",
-                      //         hintStyle: TextStyle(
-                      //           color: Colors.black87,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       Padding(
                         padding: EdgeInsets.all(5),
                         child: Container(
@@ -330,45 +277,6 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
-                      // Row(
-                      //   children: [
-                      //     Checkbox(
-                      //       value: checkbox1,
-                      //       onChanged: (value) {
-                      //         setState(() {
-                      //           checkbox1 = !checkbox1;
-                      //         });
-                      //       },
-                      //     ),
-                      //     const Text("Điều khoản 1"),
-                      //   ],
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     Checkbox(
-                      //       value: checkbox2,
-                      //       onChanged: (value) {
-                      //         setState(() {
-                      //           checkbox2 = !checkbox2;
-                      //         });
-                      //       },
-                      //     ),
-                      //     const Text("Điều khoản 2"),
-                      //   ],
-                      // ),
-                      // Row(
-                      //   children: [
-                      //     Checkbox(
-                      //       value: checkbox3,
-                      //       onChanged: (value) {
-                      //         setState(() {
-                      //           checkbox3 = !checkbox3;
-                      //         });
-                      //       },
-                      //     ),
-                      //     const Text("Điều khoản 3"),
-                      //   ],
-                      // ),
                       loading
                           ? Center(
                               child: CircularProgressIndicator(
@@ -426,90 +334,10 @@ class _RegisterState extends State<Register> {
               Divider(
                 color: Colors.grey,
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       top: 5, bottom: 5, right: 100, left: 100),
-              //   child: SizedBox(
-              //     height: 30,
-              //     width: 100,
-              //     child: ElevatedButton.icon(
-              //       style: TextButton.styleFrom(
-              //         backgroundColor: Colors.teal[300],
-              //       ),
-              //       onPressed: () {},
-              //       label: const Text(
-              //         "Đăng nhập Facebook",
-              //         style: TextStyle(
-              //           color: Colors.white,
-              //         ),
-              //       ),
-              //       icon: const Icon(Icons.facebook),
-              //     ),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       top: 5, bottom: 5, right: 120, left: 120),
-              //   child: SizedBox(
-              //     height: 30,
-              //     child: ElevatedButton.icon(
-              //       style: TextButton.styleFrom(
-              //         backgroundColor: Colors.teal[300],
-              //       ),
-              //       onPressed: () {},
-              //       label: const Text(
-              //         "Đăng nhập Gmail",
-              //         style: TextStyle(
-              //           color: Colors.white,
-              //         ),
-              //       ),
-              //       icon: const Icon(Icons.email),
-              //     ),
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.only(
-              //       top: 5, bottom: 5, right: 190, left: 190),
-              //   child: SizedBox(
-              //     height: 30,
-              //     child: ElevatedButton.icon(
-              //       style: TextButton.styleFrom(
-              //         backgroundColor: Colors.teal[300],
-              //       ),
-              //       onPressed: () {
-              //         Navigator.pop(context,
-              //             MaterialPageRoute(builder: (context) => Login()));
-              //       },
-              //       label: const Text(
-              //         "Quay lại",
-              //         style: TextStyle(
-              //           color: Colors.white,
-              //         ),
-              //       ),
-              //       icon: Icon(Icons.reply),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
       ),
     );
   }
-}
-
-void showLoading() {
-  EasyLoading.instance
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..indicatorType = EasyLoadingIndicatorType.threeBounce
-    ..radius = 50
-    ..progressColor = Colors.yellow
-    ..backgroundColor = Colors.white
-    ..indicatorColor = Colors.indigo
-    ..textColor = Colors.indigo
-    ..fontSize = 20;
-  EasyLoading.show(
-    status: "Please wait...",
-    maskType: EasyLoadingMaskType.black,
-  );
 }

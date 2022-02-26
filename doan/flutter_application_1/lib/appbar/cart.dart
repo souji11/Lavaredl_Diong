@@ -154,8 +154,7 @@ class _BodyState extends State<Body> {
                       onDismissed: (direction) {
                         setState(() {
                           //cart.removeAt(index);
-                          api.XoaGioHang(api.lst[index].idTaiKhoan,
-                              api.lst[index].idSanPham);
+                          api.XoaGioHang(api.lst[index].idTaiKhoan, api.lst[index].idSanPham);
                         });
                       },
                      
@@ -205,15 +204,12 @@ class _BodyState extends State<Body> {
               height: 10,
             ),
             Text.rich(
-              TextSpan(
-                  text: "\$${gia}",
-                  style: TextStyle(color: Colors.green),
-                  children: [
-                    TextSpan(
-                      text: " x ${soluong}",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ]),
+              TextSpan(text: "\$${gia}", style: TextStyle(color: Colors.green), children: [
+                TextSpan(
+                  text: " x ${soluong}",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ]),
             ),
           ],
         ),

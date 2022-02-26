@@ -245,7 +245,7 @@ class _Payment2 extends State<Payment2> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(
-                        'Cập nhật',
+                        'Thanh toán',
                         style: TextStyle(
                             fontSize: 14,
                             letterSpacing: 2.2,

@@ -25,6 +25,7 @@
 import 'dart:ffi';
 
 import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_hoadon.dart';
 import 'package:flutter_application_1/api/api_giohang_create.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
@@ -86,8 +87,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'GUCCI',
+      home: Login(),
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
     );
   }
 }
@@ -200,8 +201,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trang chủ',
-                      style: TextStyle(
-                          color: currentTab == 0 ? Colors.blue : Colors.green),
+                      style: TextStyle(color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -223,8 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trò chuyện',
-                      style: TextStyle(
-                          color: currentTab == 1 ? Colors.blue : Colors.green),
+                      style: TextStyle(color: currentTab == 1 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -269,8 +268,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Tài khoản',
-                      style: TextStyle(
-                          color: currentTab == 3 ? Colors.blue : Colors.green),
+                      style: TextStyle(color: currentTab == 3 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),

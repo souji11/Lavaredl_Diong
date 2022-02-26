@@ -31,37 +31,13 @@ class _LoginState extends State<Login> {
   TextEditingController txtSDT = TextEditingController(text: "souji@gmail.com");
   TextEditingController txtPassWord = TextEditingController(text: "123");
 
-  // final scaffoldKey = GlobalKey<ScaffoldState>();
-  // GlobalKey<FormState> globalFormKey = new GlobalKey();
   bool isPassWord = true;
-  late LoginRequestModel requestModel;
   bool isApiCallProcess = false;
   bool loading = false;
 
   var white;
   String _sdt = "";
   String _password = "";
-
-  // void _loginUser() async {
-  //   ApiResponse response = await login(_sdt, _password);
-  //   if (response.data != null) {
-  //     _saveAndGoHome(response.data as User);
-  //   } else {
-  //     setState(() {
-  //       loading = false;
-  //     });
-  //     ScaffoldMessenger.of(context)
-  //         .showSnackBar(SnackBar(content: Text("${response.error}")));
-  //   }
-  // }
-
-  // void _saveAndGoHome(User user) async {
-  //   SharedPreferences pref = await SharedPreferences.getInstance();
-  //   await pref.setString('token', user.token ?? '');
-  //   await pref.setInt('Id', user.id ?? 0);
-  //   Navigator.of(context).pushAndRemoveUntil(
-  //       MaterialPageRoute(builder: (context) => Home()), (route) => false);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -76,22 +52,13 @@ class _LoginState extends State<Login> {
   Widget _uiSetup(BuildContext context) {
     return Scaffold(
       body: Container(
+        //background
         decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/body-iu.jpeg'), fit: BoxFit.cover),
+          image: DecorationImage(image: AssetImage('images/body-iu.jpeg'), fit: BoxFit.cover),
         ),
         child: ListView(
           children: <Widget>[
-            // ListTile(
-            //   leading: const Icon(
-            //     Icons.reply,
-            //     size: 40,
-            //   ),
-            //   tileColor: Colors.black,
-            //   onTap: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
+            //logo
             Padding(
               padding: const EdgeInsets.all(50),
               child: Image.asset('images/logo.png', height: 100, width: 350),
@@ -100,6 +67,7 @@ class _LoginState extends State<Login> {
               key: formkey,
               child: Column(
                 children: [
+                  //chữ đăng nhập
                   const Padding(
                     padding: EdgeInsets.all(20),
                     child: Text(
@@ -111,31 +79,26 @@ class _LoginState extends State<Login> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  //SDT/Email
                   Padding(
                     padding: EdgeInsets.all(5),
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6,
-                              offset: Offset(0, 2),
-                            ),
-                          ]),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ]),
                       height: 60,
                       child: TextFormField(
-                        keyboardType: TextInputType.phone,
+                        keyboardType: TextInputType.text,
                         controller: txtSDT,
-                        validator: (val) => val!.isEmpty
-                            ? 'Số điện thoại / Email không được bỏ trống'
-                            : null,
+                        validator: (val) => val!.isEmpty ? 'Số điện thoại / Email không được bỏ trống' : null,
                         style: TextStyle(
                           color: Colors.black87,
                         ),
-                        // decoration: kInputDecoration('SDT'),
                         decoration: new InputDecoration(
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.only(top: 14),
@@ -154,32 +117,27 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+                  //Mật khẩu
                   Padding(
                     padding: EdgeInsets.all(5),
                     child: Container(
                       alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 6,
-                              offset: Offset(0, 2),
-                            ),
-                          ]),
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(0, 2),
+                        ),
+                      ]),
                       height: 60,
                       child: TextFormField(
                         keyboardType: TextInputType.text,
-                        validator: (val) => val!.isEmpty
-                            ? 'Mật khẩu không được bỏ trống'
-                            : null,
+                        validator: (val) => val!.isEmpty ? 'Mật khẩu không được bỏ trống' : null,
                         controller: txtPassWord,
                         obscureText: isPassWord,
                         style: TextStyle(
                           color: Colors.black87,
                         ),
-                        // decoration: kInputDecoration('PassWord'),
                         decoration: new InputDecoration(
                           border: InputBorder.none,
                           contentPadding: EdgeInsets.only(top: 14),
@@ -190,9 +148,7 @@ class _LoginState extends State<Login> {
                                 isPassWord = !isPassWord;
                               });
                             },
-                            child: Icon(isPassWord
-                                ? Icons.visibility
-                                : Icons.visibility_off),
+                            child: Icon(isPassWord ? Icons.visibility : Icons.visibility_off),
                           ),
                           prefixIcon: Icon(
                             Icons.password,
@@ -209,9 +165,9 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+                  //nút đăng nhập
                   Padding(
-                    padding: const EdgeInsets.only(
-                        top: 5, bottom: 5, right: 150, left: 150),
+                    padding: const EdgeInsets.only(top: 5, bottom: 5, right: 150, left: 150),
                     child: SizedBox(
                       width: double.infinity,
                       height: 35,
@@ -220,27 +176,18 @@ class _LoginState extends State<Login> {
                           backgroundColor: Colors.teal[300],
                         ),
                         onPressed: () async {
-                          // showLoading();
                           if (txtSDT == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(
-                                    "Số điện thoại / Email không được bỏ trống")));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Số điện thoại / Email không được bỏ trống")));
                           }
                           if (txtPassWord == null) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text("Mật khẩu không được bỏ trống")));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Mật khẩu không được bỏ trống")));
                           } else {
-                            final kq =
-                                await apiLogin(txtSDT.text, txtPassWord.text);
+                            final kq = await apiLogin(txtSDT.text, txtPassWord.text);
                             if (kq.SDT.isNotEmpty) {
                               Auth.user = kq;
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => MyHomePage()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
                             }
                           }
-                          // EasyLoading.dismiss();
                         },
                         child: const Text("Đăng nhập"),
                       ),
@@ -252,47 +199,7 @@ class _LoginState extends State<Login> {
             Divider(
               color: Colors.grey,
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(
-            //       top: 5, bottom: 5, right: 100, left: 100),
-            //   child: SizedBox(
-            //     height: 30,
-            //     width: 100,
-            //     child: ElevatedButton.icon(
-            //       style: TextButton.styleFrom(
-            //         backgroundColor: Colors.teal[300],
-            //       ),
-            //       onPressed: () {},
-            //       label: const Text(
-            //         "Đăng nhập Facebook",
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //       icon: const Icon(Icons.facebook),
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(
-            //       top: 5, bottom: 5, right: 120, left: 120),
-            //   child: SizedBox(
-            //     height: 30,
-            //     child: ElevatedButton.icon(
-            //       style: TextButton.styleFrom(
-            //         backgroundColor: Colors.teal[300],
-            //       ),
-            //       onPressed: () {},
-            //       label: const Text(
-            //         "Đăng nhập Gmail",
-            //         style: TextStyle(
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //       icon: const Icon(Icons.email),
-            //     ),
-            //   ),
-            // ),
+            //nút quên mật khẩu
             TextButton(
               child: const Text(
                 "Quên mật khẩu ?",
@@ -318,6 +225,7 @@ class _LoginState extends State<Login> {
                 textAlign: TextAlign.center,
               ),
             ),
+            //nút đăng ký
             TextButton(
               child: const Text(
                 "Đăng ký ?",
@@ -338,20 +246,4 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-}
-
-void showLoading() {
-  EasyLoading.instance
-    ..loadingStyle = EasyLoadingStyle.custom
-    ..indicatorType = EasyLoadingIndicatorType.threeBounce
-    ..radius = 50
-    ..progressColor = Colors.yellow
-    ..backgroundColor = Colors.white
-    ..indicatorColor = Colors.indigo
-    ..textColor = Colors.indigo
-    ..fontSize = 20;
-  EasyLoading.show(
-    status: "Please wait...",
-    maskType: EasyLoadingMaskType.black,
-  );
 }

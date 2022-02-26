@@ -85,45 +85,45 @@ class _PageThanhToan extends State<PageThanhToan> {
                               SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.grey,
-                                      ),
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/' +
-                                              oder[0].product.ImgUrl)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                      Text('Sô lượng    : ${oder[0].soluong}'),
-                                      Text(
-                                          'Size        : ${oder[0].product.Size}'),
-                                      Text(
-                                          'Màu         : ${oder[0].product.Mau}'),
-                                      Text(
-                                          'Đơn giá     : \$${oder[0].product.Gia}'),
-                                    ],
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     SizedBox(
+                              //       width: 20,
+                              //     ),
+                              //     Container(
+                              //       height: 100,
+                              //       width: 100,
+                              //       decoration: BoxDecoration(
+                              //         border: Border.all(
+                              //           width: 2,
+                              //           color: Colors.grey,
+                              //         ),
+                              //         image: DecorationImage(
+                              //             fit: BoxFit.cover,
+                              //             image: AssetImage('images/' +
+                              //                 oder[0].product.ImgUrl)),
+                              //       ),
+                              //     ),
+                              //     SizedBox(
+                              //       width: 20,
+                              //     ),
+                              //     Column(
+                              //       crossAxisAlignment:
+                              //           CrossAxisAlignment.start,
+                              //       children: [
+                              //         Text(
+                              //             'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
+                              //         Text('Sô lượng    : ${oder[0].soluong}'),
+                              //         Text(
+                              //             'Size        : ${oder[0].product.Size}'),
+                              //         Text(
+                              //             'Màu         : ${oder[0].product.Mau}'),
+                              //         Text(
+                              //             'Đơn giá     : \$${oder[0].product.Gia}'),
+                              //       ],
+                              //     ),
+                              //   ],
+                              // ),
                             ],
                           ),
                         ],
@@ -134,51 +134,11 @@ class _PageThanhToan extends State<PageThanhToan> {
                     ),
                     Container(
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
                               SizedBox(
                                 height: 20,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.grey,
-                                      ),
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/' +
-                                              oder[0].product.ImgUrl)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                      Text('Sô lượng    : ${oder[0].soluong}'),
-                                      Text(
-                                          'Size        : ${oder[0].product.Size}'),
-                                      Text(
-                                          'Màu         : ${oder[0].product.Mau}'),
-                                      Text(
-                                          'Đơn giá     : \$${oder[0].product.Gia}'),
-                                    ],
-                                  ),
-                                ],
                               )
                             ],
                           ),
@@ -190,52 +150,12 @@ class _PageThanhToan extends State<PageThanhToan> {
                     ),
                     Container(
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
                               SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.grey,
-                                      ),
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/' +
-                                              oder[0].product.ImgUrl)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                      Text('Sô lượng    : ${oder[0].soluong}'),
-                                      Text(
-                                          'Size        : ${oder[0].product.Size}'),
-                                      Text(
-                                          'Màu         : ${oder[0].product.Mau}'),
-                                      Text(
-                                          'Đơn giá     : \$${oder[0].product.Gia}'),
-                                    ],
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                         ],
@@ -246,52 +166,12 @@ class _PageThanhToan extends State<PageThanhToan> {
                     ),
                     Container(
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
                               SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.grey,
-                                      ),
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/' +
-                                              oder[0].product.ImgUrl)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                      Text('Sô lượng    : ${oder[0].soluong}'),
-                                      Text(
-                                          'Size        : ${oder[0].product.Size}'),
-                                      Text(
-                                          'Màu         : ${oder[0].product.Mau}'),
-                                      Text(
-                                          'Đơn giá     : \$${oder[0].product.Gia}'),
-                                    ],
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                         ],
@@ -302,52 +182,12 @@ class _PageThanhToan extends State<PageThanhToan> {
                     ),
                     Container(
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
                               SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.grey,
-                                      ),
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/' +
-                                              oder[0].product.ImgUrl)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                      Text('Sô lượng    : ${oder[0].soluong}'),
-                                      Text(
-                                          'Size        : ${oder[0].product.Size}'),
-                                      Text(
-                                          'Màu         : ${oder[0].product.Mau}'),
-                                      Text(
-                                          'Đơn giá     : \$${oder[0].product.Gia}'),
-                                    ],
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                         ],
@@ -358,52 +198,12 @@ class _PageThanhToan extends State<PageThanhToan> {
                     ),
                     Container(
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
                               SizedBox(
                                 height: 20,
                               ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    height: 100,
-                                    width: 100,
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        width: 2,
-                                        color: Colors.grey,
-                                      ),
-                                      image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: AssetImage('images/' +
-                                              oder[0].product.ImgUrl)),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                          'Tên sản phẩm: ${oder[0].product.TenSanPham}'),
-                                      Text('Sô lượng    : ${oder[0].soluong}'),
-                                      Text(
-                                          'Size        : ${oder[0].product.Size}'),
-                                      Text(
-                                          'Màu         : ${oder[0].product.Mau}'),
-                                      Text(
-                                          'Đơn giá     : \$${oder[0].product.Gia}'),
-                                    ],
-                                  ),
-                                ],
-                              )
                             ],
                           ),
                         ],
@@ -414,7 +214,6 @@ class _PageThanhToan extends State<PageThanhToan> {
                     ),
                     Container(
                       child: Row(
-                        //mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Column(
                             children: [
