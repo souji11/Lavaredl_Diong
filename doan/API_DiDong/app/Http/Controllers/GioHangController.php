@@ -63,7 +63,7 @@ class GioHangController extends Controller
         if($cartitem != null)
         {
             echo "đã có sản phẩm trong giỏ";
-            $cartitem->so_Luong += $request->so_Luong;
+            $cartitem->so_luong += $request->so_luong;
             $cartitem->save();
         }
         else{
@@ -71,7 +71,7 @@ class GioHangController extends Controller
             $newcart->fill([
                 $newcart->IdSanPham=$request->IdSanPham,
                 $newcart->IdTaiKhoan=$request->IdTaiKhoan,
-                $newcart->so_Luong=$request->so_Luong,
+                $newcart->so_luong=$request->so_luong,
             ]);
             $newcart->save();
             echo "thêm mới thành công";
