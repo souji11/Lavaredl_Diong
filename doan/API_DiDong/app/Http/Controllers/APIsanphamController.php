@@ -4,28 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SanPham;
+use App\Models\binhluan;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB;
 class APIsanphamController extends Controller
 {
-    protected function FixImage(SanPham $SanPham)   
-    {
-        if (Storage::disk('public')->exists($SanPham->HinhAnh)) {
-            $SanPham->HinhAnh= Storage::url('/'.$SanPham->HinhAnh);
-
-        }
-        else{
-            $SanPham->HinhAnh='/assets/images/faces/face20.jpg';
-
-            // $SanPham->HinhAnh=$SanPham->HinhAnh;
-
-        }
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $dsSanPham=SanPham::all();
@@ -50,7 +33,7 @@ class APIsanphamController extends Controller
     }
     public function chonTrangSuc()
     {
-        $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->get();
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->get();
 
         return json_encode([
             'ThanhCong'=>true,
@@ -59,7 +42,7 @@ class APIsanphamController extends Controller
     }
     public function chonGiay()
     {
-        $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->get();
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->get();
 
         return json_encode([
             'ThanhCong'=>true,
@@ -68,7 +51,7 @@ class APIsanphamController extends Controller
     }
     public function chonTui()
     {
-        $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->get();
+        $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->get();
 
         return json_encode([
             'ThanhCong'=>true,
@@ -76,74 +59,55 @@ class APIsanphamController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function chonsanphammoi()
+    {   
+        // $dsSanPham=SanPham::all();
+        $dsSanPhamMoi=SanPham::orderBy('created_at','desc')->take(10)->get();
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPhamMoi,
+        ]);
+    }
+    public function chonsanphamnoibat()
     {
-        //
+        $dsSanPhamNoiBat=SanPham::orderBy('Gia','desc')->take(10)->get();
+        // $dsSanPhamNoiBat=DB::table('san_phams')->orderBy('Gia','asc')->get();
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPhamNoiBat,
+        ]);
+    }
+    public function chonsanphambanchay()
+    {
+        $dsSanPhamBanChay=SanPham::orderBy('Gia','asc')->take(10)->get();
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPhamBanChay,
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function showsize($id)
+    public function binhluan(Request $request)
     {
-       
+       $binhluan = new binhluan();
+       $binhluan->IdTaiKhoan=$request->IdTaiKhoan;
+       $binhluan->IdSanPham=$request->IdSanPham;
+       $binhluan->NoiDung=$request->NoiDung;
+       $binhluan->save();
+       return json_encode([
+        'ThanhCong'=>true,
+        'data'=>$binhluan,
+    ]);     
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function hienbinhluan(int $id)    
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-public function chonsanphammoi()
-{   
-    // $dsSanPham=SanPham::all();
-    $dsSanPhamMoi=SanPham::orderBy('created_at')->take(10)->get();
-    return json_encode([
-        'ThanhCong'=>true,
-        'data'=>$dsSanPhamMoi,
-    ]);
-}
-public function chonsanphamnoibat()
-{
-    $dsSanPhamNoiBat=SanPham::orderBy('Gia','desc')->take(10)->get();
-    // $dsSanPhamNoiBat=DB::table('san_phams')->orderBy('Gia','asc')->get();
-    return json_encode([
-        'ThanhCong'=>true,
-        'data'=>$dsSanPhamNoiBat,
-    ]);
-}
-public function chonsanphambanchay()
-{
-    $dsSanPhamBanChay=SanPham::orderBy('Gia','asc')->take(10)->get();
-    return json_encode([
-        'ThanhCong'=>true,
-        'data'=>$dsSanPhamBanChay,
-    ]);
-}
+        // $dsbinhluan=binhluan::where('IdSanPham',$request->id)->get();
+        // $dsbinhluan=binhluan::all();
+        $dsbinhluan=DB::select('select * from binh_luans where IdSanPham = ?',[$id]);
+        // $dsbinhluan=binhluan::where('IdSanPham',$request->IdSanPham)->get();
+        // $dsbinhluan= DB::table('binh_luans')->where('IdSanPham',$request->id)->get();
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsbinhluan,
+        ]);
+    }   
 }
