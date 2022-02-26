@@ -1,6 +1,6 @@
-// ignore_for_file: unused_import, avoid_web_libraries_in_flutter, unused_element
+// ignore_for_file: unused_import, avoid_web_libraries_in_flutter, unused_element, unnecessary_brace_in_string_interps, non_constant_identifier_names
 
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/Auth.dart';

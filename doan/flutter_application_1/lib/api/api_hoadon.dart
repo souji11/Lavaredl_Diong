@@ -1,4 +1,4 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe, unused_import, non_constant_identifier_names, unused_local_variable, avoid_print
+// ignore_for_file: import_of_legacy_library_into_null_safe, unused_import, non_constant_identifier_names, unused_local_variable, avoid_print, avoid_function_literals_in_foreach_calls
 
 // import 'dart:ffi';
 

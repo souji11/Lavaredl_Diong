@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors_in_immutables, unused_import, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, duplicate_ignore
+// ignore_for_file: prefer_const_constructors_in_immutables, unused_import, prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, duplicate_ignore, override_on_non_overriding_member, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/Auth.dart';

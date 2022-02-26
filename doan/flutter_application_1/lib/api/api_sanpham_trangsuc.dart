@@ -14,16 +14,10 @@ class Apitrangsuc extends ChangeNotifier {
   List<Product_main> lst = [];
   Future<void> fetchProduct_trangsuc() async {
     List<Product_main> tmpList = [];
-<<<<<<< HEAD
-    final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/SanPham/trangsuc'));
-=======
+
     final response = await http
-<<<<<<< HEAD
         .get(Uri.parse('http://192.168.5.192:8000/api/SanPham/trangsuc'));
-=======
-        .get(Uri.parse('http://192.168.5.186:8000/api/SanPham/trangsuc'));
->>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
->>>>>>> 2a1c59cb614ad4f0bdef196f563891cba29907dc
+
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);

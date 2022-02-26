@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, prefer_typing_uninitialized_variables, non_constant_identifier_names, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/order.dart';
 import 'package:flutter_application_1/api/Auth.dart';

@@ -1,12 +1,8 @@
 // ignore_for_file: unused_import, avoid_web_libraries_in_flutter, unused_element
 
 
-<<<<<<< HEAD
-import 'dart:html';
-=======
 
 // import 'dart:html';
->>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/api_response.dart';

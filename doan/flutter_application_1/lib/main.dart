@@ -22,9 +22,10 @@
 
 // ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import, unused_element, override_on_non_overriding_member
 
-import 'dart:ffi';
+// import 'dart:ffi';
 
 import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_binhluan_index.dart';
 import 'package:flutter_application_1/api/api_hoadon.dart';
 import 'package:flutter_application_1/api/api_giohang_create.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
@@ -33,6 +34,7 @@ import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/api/api_sanpham_tui.dart';
 import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
+import 'package:flutter_application_1/api/api_them_binhluan.dart';
 import 'package:flutter_application_1/api/api_yeuthich_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:flutter_application_1/page/login.dart';
@@ -57,9 +59,7 @@ import 'Models/product.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(
-        create: (_) => Api(),
-      ),
+      ChangeNotifierProvider(create: (_) => Api()),
       ChangeNotifierProvider(create: (_) => Apiao()),
       ChangeNotifierProvider(create: (_) => Apitrangsuc()),
       ChangeNotifierProvider(create: (_) => Apigiay()),
@@ -67,14 +67,11 @@ void main() {
       ChangeNotifierProvider(create: (_) => Apidangky()),
       ChangeNotifierProvider(create: (_) => ApiGioHang()),
       ChangeNotifierProvider(create: (_) => ApiThemGioHang()),
-      ChangeNotifierProvider(create: (_) => Apiao()),
-      ChangeNotifierProvider(create: (_) => Apitrangsuc()),
-      ChangeNotifierProvider(create: (_) => Apigiay()),
-      ChangeNotifierProvider(create: (_) => Apitui()),
       ChangeNotifierProvider(create: (_) => APIThemSPYT()),
       ChangeNotifierProvider(create: (_) => APIXoaSPYT()),
       ChangeNotifierProvider(create: (_) => ApiYT()),
-      ChangeNotifierProvider(create: (_) => Apidangky()),
+      ChangeNotifierProvider(create: (_) => APIThemCMT()),
+      ChangeNotifierProvider(create: (_) => APICMT()),
     ],
     child: MyApp(),
   ));
@@ -201,7 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trang chủ',
-                      style: TextStyle(color: currentTab == 0 ? Colors.blue : Colors.green),
+                      style: TextStyle(
+                          color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -223,7 +221,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trò chuyện',
-                      style: TextStyle(color: currentTab == 1 ? Colors.blue : Colors.green),
+                      style: TextStyle(
+                          color: currentTab == 1 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -268,7 +267,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Tài khoản',
-                      style: TextStyle(color: currentTab == 3 ? Colors.blue : Colors.green),
+                      style: TextStyle(
+                          color: currentTab == 3 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -277,7 +277,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-    
     );
   }
 }
@@ -366,5 +365,5 @@ class CustomSearch extends SearchDelegate {
         );
       },
     );
-}
+  }
 }

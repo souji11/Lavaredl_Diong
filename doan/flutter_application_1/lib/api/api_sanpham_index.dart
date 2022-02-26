@@ -17,17 +17,8 @@ List<Product_main> lstNoiBat = [];
 List<Product_main> lstMoi = [];
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
-
     final response = await http.get(
-<<<<<<< HEAD
       Uri.parse('http://192.168.5.192:8000/api/SanPham'),
-=======
-<<<<<<< HEAD
-      Uri.parse('http://127.0.0.1:8000/api/SanPham'),
-=======
-      Uri.parse('http://192.168.5.186:8000/api/SanPham'),
->>>>>>> dfe176d6a45deda8aa7cad8eb7257de0d5a2d893
->>>>>>> 2a1c59cb614ad4f0bdef196f563891cba29907dc
     );
     if (response.statusCode == 200) {
       try {

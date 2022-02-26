@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, non_constant_identifier_names
+// ignore_for_file: unused_import, non_constant_identifier_names, prefer_collection_literals, unnecessary_new, unnecessary_null_comparison, unnecessary_this
 
 import 'package:flutter/material.dart';
 import '../Models/order_details.dart';

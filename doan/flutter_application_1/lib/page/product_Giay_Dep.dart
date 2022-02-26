@@ -1,10 +1,11 @@
-// ignore_for_file: file_names, unused_import, camel_case_types, non_constant_identifier_names, unused_field, prefer_final_fields, unused_element, unnecessary_const, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code, empty_statements, avoid_unnecessary_containers, unused_local_variable
+// ignore_for_file: file_names, unused_import, camel_case_types, non_constant_identifier_names, unused_field, prefer_final_fields, unused_element, unnecessary_const, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code, empty_statements, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
-import 'package:flutter_application_1/main.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
+// import 'package:flutter_application_1/api/api_sanpham_trangsuc.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
 import 'product_detail.dart';
@@ -41,11 +42,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
   @override
   void initState() {
     super.initState();
-    _Product_Tui_Sach1 = PageController(initialPage: 0, viewportFraction: 0.8);
-    _Product_Tui_Sach2 = PageController(initialPage: 0, viewportFraction: 0.8);
   }
-
-  _ChonGiayDep1(int index) {}
 
   @override
   Widget build(BuildContext context) {
@@ -249,7 +246,10 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                     child: Stack(
                                       children: <Widget>[
                                         Positioned(
-                                          top: 0,
+                                          top: 10,
+                                          bottom: 40,
+                                          left: 10,
+                                          right: 10,
                                           child: Image(
                                             height: 130,
                                             width: 150,
@@ -260,10 +260,8 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                           ),
                                         ),
                                         Positioned(
-                                          top: 10,
-                                          bottom: 40,
-                                          left: 10,
-                                          right: 10,
+                                          left: 10.0,
+                                          bottom: 0,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.center,

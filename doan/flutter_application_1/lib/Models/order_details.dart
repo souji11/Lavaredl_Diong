@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import, non_constant_identifier_names
+// ignore_for_file: unused_import, non_constant_identifier_names, unnecessary_new, prefer_collection_literals, unnecessary_null_comparison, unnecessary_this
 
 import 'package:flutter/material.dart';
 import 'product.dart';

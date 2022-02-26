@@ -1,8 +1,9 @@
 //import 'dart:html';
-// ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field, duplicate_import
+// ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field, duplicate_import, unused_local_variable
 
 import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
 import 'package:flutter_application_1/api/Auth.dart';
+import 'package:flutter_application_1/api/api_binhluan_index.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   Widget build(BuildContext context) {
     var apiThem = Provider.of<ApiThemGioHang>(context, listen: false);
     var apigh = Provider.of<ApiGioHang>(context, listen: false);
+    Provider.of<APICMT>(context, listen: false).BinhLuan(widget.product);
+    var apibl = Provider.of<APICMT>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -122,11 +125,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: SingleChildScrollView(
-          child: Column(
+          child: SizedBox(
+            height: 1500,
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+              
             children: <Widget>[
               Stack(
                 children: <Widget>[
                   Container(
+                    // height: 5000,
                     // margin: const EdgeInsets.all(15),
                     padding: const EdgeInsets.only(
                       left: 0,
@@ -136,7 +144,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     color: Colors.greenAccent,
 
                     child: SizedBox(
-                      height: Curves.easeInOut.transform(1) * 500,
+                      height: 500,
                       width: double.infinity,
                       // width:  Curves.easeInOut.transform(1) * 5000,
                       child: Stack(
@@ -308,7 +316,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               // Nút thao tác
               Container(
                 margin: EdgeInsets.all(50),
-                height: 400.0,
+                height: 870,
                 transform: Matrix4.translationValues(0, -20.0, 0.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -317,7 +325,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // Mua ngay 
+                    // Mua ngay
                     Container(
                       height: 80,
                       width: 1000,
@@ -346,7 +354,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                       builder: (_) => Cart(),
                                     ),
                                   );
-                                  });
+                                });
                               },
                               child: Text(
                                 'Mua ngay',
@@ -369,7 +377,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => PageBinhLuan()));
+                                        builder: (context) => PageBinhLuan(
+                                              product: widget.product,
+                                            )));
                               },
                               child: Text(
                                 'Bình luận',
@@ -408,8 +418,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  apiThem.ThemGioHang(Auth.user.id, widget.product.id, 1);
-                                  apigh.fetchgiohang();                                  
+                                  apiThem.ThemGioHang(
+                                      Auth.user.id, widget.product.id, 1);
+                                  apigh.fetchgiohang();
                                 });
                               },
                               child: Text(
@@ -431,7 +442,11 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         right: 30.0,
                         top: 40.0,
                       ),
-                      child: Column(
+                      
+                      child: SizedBox(
+                        height: 132,
+                        width:  MediaQuery.of(context).size.width,
+                        child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           const Text(
@@ -451,27 +466,94 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ),
                         ],
                       ),
-                    ),
+                    )
+                      ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30.0,
-                        vertical: 40.0,
+                      padding: const EdgeInsets.only(
+                        left: 0.0,
+                        right: 0.0,
+                        top: 30.0,
+                      ),
+                      child: Text(
+                        'Bình luận',
+                        style: TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                    //test nút thêm vào danh sách yêu thích
-                    // Container(
-                    //   alignment: Alignment.center,
-                    //   padding: const EdgeInsets.all(8.0),
-                    //   child: (_futureAlbum == null)
-                    //       ? buildColumn()
-                    //       : buildFutureBuilder(),
-                    // ),
+                    Container(
+                      padding: const EdgeInsets.only(
+                        left: 0.0,
+                        right: 0.0,
+                        top: 10.0,
+                      ),
+                      child: Consumer<APICMT>(builder: (_, value, child) {
+                        return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            height: 500,
+                            child: ListView(
+                              addAutomaticKeepAlives: false,
+                              children:
+                                  List.generate(apibl.lst.length, (index) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(0),
+                                  ),
+                                  child: GestureDetector(
+                                    child: Stack(
+                                      alignment: Alignment.topCenter,
+                                      children: <Widget>[
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius:
+                                                BorderRadius.circular(0),
+                                          ),
+                                          margin: const EdgeInsets.all(5),
+                                          child: SizedBox(
+                                            height:
+                                                Curves.easeInOut.transform(1) *
+                                                    50,
+                                            width:
+                                                Curves.easeInOut.transform(1) *
+                                                    300,
+                                            child: Stack(
+                                              children: <Widget>[
+                                                Text(
+                                                  apibl.lst[index].noiDung,
+                                                  style: const TextStyle(
+                                                    color: Colors.black87,
+                                                    fontSize: 16.0,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                            ));
+                      }),
+                    ),
                   ],
                 ),
               ),
             ],
           ),
-        ),
+         )
+          
+         ),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -530,32 +612,32 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   ],
                 ),
               ),
-              MaterialButton(
-                minWidth: 40,
-                onPressed: () {
-                  setState(() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => Setting()),
-                    );
-                    currentTab = 2;
-                  });
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.settings,
-                      color: currentTab == 2 ? Colors.blue : Colors.green,
-                    ),
-                    Text(
-                      'Setting',
-                      style: TextStyle(
-                          color: currentTab == 2 ? Colors.blue : Colors.green),
-                    ),
-                  ],
-                ),
-              ),
+              // MaterialButton(
+              //   minWidth: 40,
+              //   onPressed: () {
+              //     setState(() {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(builder: (_) => Setting()),
+              //       );
+              //       currentTab = 2;
+              //     });
+              //   },
+              //   child: Column(
+              //     mainAxisAlignment: MainAxisAlignment.center,
+              //     children: [
+              //       Icon(
+              //         Icons.settings,
+              //         color: currentTab == 2 ? Colors.blue : Colors.green,
+              //       ),
+              //       Text(
+              //         'Setting',
+              //         style: TextStyle(
+              //             color: currentTab == 2 ? Colors.blue : Colors.green),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               MaterialButton(
                 minWidth: 40,
                 onPressed: () {

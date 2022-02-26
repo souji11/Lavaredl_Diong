@@ -1,22 +1,32 @@
-// ignore_for_file: unused_import, prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: unused_import, prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unused_field, prefer_typing_uninitialized_variables, prefer_final_fields, unused_local_variable
 
-// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// ignore: unnecessary_import
 import 'package:flutter/painting.dart';
+import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/Models/binhluan.dart';
+import 'package:flutter_application_1/api/Auth.dart';
+import 'package:flutter_application_1/api/api_them_binhluan.dart';
+import 'package:flutter_application_1/bottom/home.dart';
+import 'package:provider/provider.dart';
 import 'login.dart';
 
 class PageBinhLuan extends StatefulWidget {
-  const PageBinhLuan({Key? key}) : super(key: key);
+  final Product_main product;
+  const PageBinhLuan({Key? key, required this.product}) : super(key: key);
 
   @override
   _PageBinhLuan createState() => _PageBinhLuan();
 }
 
 class _PageBinhLuan extends State<PageBinhLuan> {
+  TextEditingController Content = TextEditingController();
+
+  var white;
+  String _content = "";
   @override
   Widget build(BuildContext context) {
+    var apibinhluan = Provider.of<APIThemCMT>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -40,8 +50,8 @@ class _PageBinhLuan extends State<PageBinhLuan> {
                 Padding(padding: EdgeInsets.all(5)),
                 Expanded(
                   child: Image.asset(
-                    "images/iu.jpg",
-                    height: 300,
+                    'assets' + widget.product.hinhAnh,
+                    fit: BoxFit.fill,
                   ),
                 ),
                 Expanded(
@@ -55,13 +65,14 @@ class _PageBinhLuan extends State<PageBinhLuan> {
                         Padding(
                           padding: EdgeInsets.all(5),
                           child: Text(
-                            "Tên sản phẩm: ...",
+                            "Tên sản phẩm: ${widget.product.tenSanPham}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,
                             ),
                           ),
                         ),
+                        // MÀU VÀ SIZES Chưa xử lý đâu
                         Padding(
                           padding: EdgeInsets.all(5),
                           child: Text(
@@ -82,10 +93,11 @@ class _PageBinhLuan extends State<PageBinhLuan> {
                             ),
                           ),
                         ),
+                        // MÀU VÀ SIZES Chưa xử lý đâu
                         Padding(
                           padding: EdgeInsets.all(5),
                           child: Text(
-                            "Giá tiền: ...",
+                            "Giá tiền:${widget.product.gia}",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 15.0,
@@ -141,9 +153,21 @@ class _PageBinhLuan extends State<PageBinhLuan> {
             ),
             Padding(
               padding: EdgeInsets.all(15),
-              child: TextField(
+              child: TextFormField(
+                keyboardType: TextInputType.text,
+                controller: Content,
+                validator: (val) =>
+                    val!.isEmpty ? 'Bạn nên ghi gì đó vào' : null,
+                style: TextStyle(
+                  color: Colors.black87,
+                ),
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(), label: Text("Bình luận")),
+                  border: OutlineInputBorder(),
+                  label: Text("Nhận xét của bạn"),
+                ),
+                onChanged: (value) {
+                  _content = value;
+                },
               ),
             ),
             Padding(
@@ -156,7 +180,11 @@ class _PageBinhLuan extends State<PageBinhLuan> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.green[400],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    apibinhluan.ThemBinhLuan(
+                        Auth.user.id, widget.product.id, Content.text);
+                    Navigator.pop(context);
+                  },
                   label: const Text(
                     "Bình luận",
                     style: TextStyle(
