@@ -193,6 +193,12 @@ class _Favorite_screen extends State<Favorite>
                                           ),
                                           onPressed: () {
                                             Provider.of<APIXoaSPYT>(context, listen: false).XoaSPYT(api.lstProduct[index]);
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) =>Home(),
+                                              ),
+                                            );
                                           },
                                           child: Text(
                                             'Xóa',

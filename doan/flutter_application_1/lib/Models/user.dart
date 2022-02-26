@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names, unnecessary_new, prefer_collection_literals
 
 class User {
-  int? id;
+  late int id;
   String? name;
   late String email;
   int? GioiTinh;
@@ -16,7 +16,7 @@ class User {
   // Null deletedAt;
 
   User({
-    this.id,
+     required this.id,
     this.name,
     required this.email,
     this.GioiTinh,
@@ -33,7 +33,7 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['id'] as int; 
     name = json['name'];
     email = json['email'];
     GioiTinh = json['GioiTinh'] as int?;

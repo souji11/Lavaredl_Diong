@@ -18,7 +18,7 @@ class ApiYT extends ChangeNotifier {
     List<SanPhamYeuThich> tmpList = [];
     List<Product_main> tmpListProduct = [];
     final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich'),
+      Uri.parse('http://192.168.5.192:8000/api/SanPhamYeuThich'),
     );
     if (response.statusCode == 200) {
       try {

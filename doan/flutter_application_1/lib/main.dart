@@ -20,7 +20,9 @@
 //   }
 // }
 
-// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace, unused_import, unused_element, override_on_non_overriding_member
+
+import 'dart:ffi';
 
 import 'package:flutter_application_1/Models/Product_main.dart';
 import 'package:flutter_application_1/api/api_giohang_create.dart';
@@ -33,6 +35,7 @@ import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
 import 'package:flutter_application_1/api/api_yeuthich_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:flutter_application_1/page/login.dart';
+import 'package:flutter_application_1/page/product_detail.dart';
 import 'api/api_dangnhap.dart';
 import 'api/api_dangky.dart';
 import 'package:provider/provider.dart';
@@ -98,9 +101,26 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+// class DataSearch() extends SearchDelegate{
+//   @override
+//   buildAction(BuildContext context){
+//     throw UnimplementedError();
+//   }
+//   @override
+//   buildLeading(BuildContext context){
+//     throw UnimplementedError();
+//   }
+//   @override
+//   buildSugegstions(BuildContext context){
+//     throw UnimplementedError();
+//   }
+//   @override
+//   buildResults(BuildContext context){
+//     throw UnimplementedError();
+//   }
+// }
 class _MyHomePageState extends State<MyHomePage> {
   int currentTab = 0;
-
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
   @override
@@ -109,31 +129,25 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: Navbar(),
       appBar: AppBar(
         backgroundColor: Colors.green,
-        // title: Text(
-        //   widget.title,
-        //   style: const TextStyle(color: Colors.white),
-        // ),
-        // leading: IconButton(
-        // icon: const Icon(Icons.menu),
-        //  color: Colors.green,
-        // onPressed: () {},
-        // ),
         actions: [
           IconButton(
-            onPressed: () {},
             icon: const Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
+
             // color: Colors.green,
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                currentSceent = Notifi();
-                currentTab = 4;
-              });
-            },
-            icon: const Icon(Icons.notifications_none),
-            color: currentTab == 4 ? Colors.red : Colors.white,
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       currentSceent = Notifi();
+          //       currentTab = 4;
+          //     });
+          //   },
+          //   icon: const Icon(Icons.notifications_none),
+          //   color: currentTab == 4 ? Colors.red : Colors.white,
+          // ),
           IconButton(
             onPressed: () {
               setState(() {
@@ -265,6 +279,94 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+    
     );
   }
+}
+
+class CustomSearch extends SearchDelegate {
+  // List<String>alldata=[
+  //   'lalaal','jasj','asjdaj','asd'
+  // ];
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: const Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, null);
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    Provider.of<Api>(context, listen: false).fetchProduct_main();
+    var api = Provider.of<Api>(context, listen: false);
+    List<Product_main> ketQua = [];
+    for (var item in api.lst) {
+      if (item.tenSanPham.toLowerCase().contains(query.toLowerCase())) {
+        ketQua.add(item);
+      }
+    }
+    return ListView.builder(
+      itemCount: ketQua.length,
+      itemBuilder: (BuildContext context, int index) {
+        var resuls = ketQua[index];
+        return TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    ProductDetailScreen(product: api.lstNoiBat[index]),
+              ),
+            );
+          },
+          child: Text(resuls.tenSanPham),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    Provider.of<Api>(context, listen: false).fetchProduct_main();
+    var api = Provider.of<Api>(context, listen: false);
+    List<Product_main> ketQua = [];
+    for (var item in api.lst) {
+      if (item.tenSanPham.toLowerCase().contains(query.toLowerCase())) {
+        ketQua.add(item);
+      }
+    }
+    return ListView.builder(
+      itemCount: ketQua.length,
+      itemBuilder: (BuildContext context, int index) {
+        var resuls = ketQua[index];
+        return TextButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                    ProductDetailScreen(product: api.lstNoiBat[index]),
+              ),
+            );
+          },
+          child: Text(resuls.tenSanPham),
+        );
+      },
+    );
+}
 }

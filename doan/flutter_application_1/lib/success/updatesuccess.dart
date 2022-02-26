@@ -59,7 +59,7 @@ class _UpdatetSuccesss extends State<UpdateSuccess> {
                 textAlign: TextAlign.center,
               ),
               Padding(
-                padding: EdgeInsets.only(top: 35, right: 150, left: 150),
+                padding: EdgeInsets.only(top: 35, right: 50, left: 50),
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.push(context,

@@ -1,5 +1,7 @@
 // ignore_for_file: unused_import, camel_case_types, prefer_const_constructors
 
+import 'package:flutter_application_1/api/Auth.dart';
+
 import 'cart.dart';
 import '../bottom/home.dart';
 import 'package:flutter/material.dart';
@@ -17,33 +19,35 @@ class AppBar_Main extends StatefulWidget {
 
 class _AppBar_MainState extends State<AppBar_Main> {
   int currentTab = 0;
-
-  //final List<Widget> screent = [
-  //const Home(),
-  //const Chat(),
-  // const Setting(),
-  //const Account(),
-  //const Favorite(),
-  //const Cart(),
-  //const Notifi(),
-  //];
-
+  TextEditingController txtName =
+      TextEditingController(text: Auth.user.name.toString());
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.green,
-      // title: Text(
-      //   widget.title,
-      //   style: const TextStyle(color: Colors.white),
-      // ),
-      // leading: IconButton(
-      // icon: const Icon(Icons.menu),
-      //  color: Colors.green,
-      // onPressed: () {},
-      // ),
-
+      title: TextFormField(
+          keyboardType: TextInputType.text,
+          // validator: (val) => val!.isEmpty ? 'Email khong duoc bo trong' : null,
+          controller: txtName,
+          style: TextStyle(
+            color: Colors.black87,
+          ),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.only(top: 14),
+            labelText: "Họ và tên",
+            prefixIcon: Icon(
+              Icons.person,
+              color: Color(0xff99cccc),
+            ),
+            hintText: Auth.user.name.toString(),
+            hintStyle: TextStyle(
+              color: Colors.black87,
+            ),
+          ),
+        ),
       actions: [
         TextButton(
           child: Text('Trang chủ'),
@@ -59,6 +63,7 @@ class _AppBar_MainState extends State<AppBar_Main> {
             );
           },
         ),
+        
         IconButton(
           onPressed: () {},
           icon: const Icon(Icons.search),

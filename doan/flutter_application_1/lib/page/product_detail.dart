@@ -2,6 +2,7 @@
 // ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field, duplicate_import
 
 import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
+import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
@@ -66,23 +67,25 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         // ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
             icon: const Icon(Icons.search),
             // color: Colors.green,
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => Notifi()),
-                );
-                currentTab = 4;
-              });
-            },
-            icon: const Icon(Icons.notifications_none),
-            color: currentTab == 4 ? Colors.red : Colors.white,
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (_) => Notifi()),
+          //       );
+          //       currentTab = 4;
+          //     });
+          //   },
+          //   icon: const Icon(Icons.notifications_none),
+          //   color: currentTab == 4 ? Colors.red : Colors.white,
+          // ),
           IconButton(
             onPressed: () {
               setState(() {
@@ -337,12 +340,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               onPressed: () {
                                 setState(() {
                                   apiThem.ThemGioHang(1, widget.product.id, 1);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (_) => Cart(),
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => Cart(),
+                                    ),
+                                  );
                                   });
                               },
                               child: Text(
@@ -405,14 +408,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  apiThem.ThemGioHang(1, widget.product.id, 1);
-                                  apigh.fetchProduct_main();
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => Cart(),
-                                    ),
-                                  );
+                                  apiThem.ThemGioHang(Auth.user.id, widget.product.id, 1);
+                                  apigh.fetchgiohang();                                  
                                 });
                               },
                               child: Text(

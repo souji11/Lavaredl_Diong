@@ -4,7 +4,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
-import 'package:flutter_application_1/api/api_sanpham_index.dart';
+// import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:provider/provider.dart';
 
 import '../Models/cart.dart';
@@ -55,7 +55,7 @@ class CheckOutCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
+    Provider.of<ApiGioHang>(context, listen: false).fetchgiohang();
     var api = Provider.of<ApiGioHang>(context, listen: false);
     // return Container(
     //     height: 130,
@@ -121,10 +121,10 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
-    Provider.of<ApiGioHang>(context, listen: false).fetchProduct_main();
+    Provider.of<ApiGioHang>(context, listen: false).fetchgiohang();
     var api = Provider.of<ApiGioHang>(context, listen: false);
     // print(api.lst[].gia);
-    print('aksdkasd');
+    
     return Padding(
       
       padding: const EdgeInsets.symmetric(horizontal: 20),

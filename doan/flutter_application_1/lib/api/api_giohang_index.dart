@@ -14,27 +14,25 @@ import 'package:provider/provider.dart';
 class ApiGioHang extends ChangeNotifier {
   List<Cart> lst = [];
   int ?total ;
-  Future<void> fetchProduct_main() async {
+  Future<void> fetchgiohang() async {
     List<Cart> tmpList = [];
   //  int ?total = 0;
     final response = await http.get(
       Uri.parse('http://192.168.5.192:8000/api/GioHang'),
     );
+    
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
-        dynamic data = object['data'];
-        
+        dynamic data = object['data'];        
         data.forEach((item) {
-          tmpList.add(Cart.fromJson(item));
-          
+          tmpList.add(Cart.fromJson(item));          
         });
         dynamic tmpTotal = object['total'];
         total = tmpTotal;
       } catch (e) {
         print(e);
-      }
-        
+      }        
       lst = tmpList;     
       notifyListeners();
     }

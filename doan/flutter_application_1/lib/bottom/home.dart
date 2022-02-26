@@ -5,10 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
+import 'package:flutter_application_1/appbar/cart.dart';
+import 'package:flutter_application_1/appbar/favorite.dart';
+import 'package:flutter_application_1/bottom/account.dart';
 import 'package:provider/provider.dart';
+import '../Navbar.dart';
+import '../main.dart';
 import '../page/product_Ao_Quan.dart';
 import '../page/product_Giay_Dep.dart';
 import '../page/product_Trang_Suc.dart';
@@ -66,7 +72,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
               } else {
                 // Provider.of<APIThemSPYT>(context, listen: false)
                 //     .ThemSPyeuthich(1, widget.product.id);
-                apithem.ThemSPyeuthich(1, widget.product.id);
+                apithem.ThemSPyeuthich(Auth.user.id, widget.product.id);
                 _isFavorited = true;
               }
             }),
@@ -92,7 +98,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  int _selectedPage = 0;
+  int _selectedPage = 0;int currentTab = 0;Widget currentSceent = Home();
   @override
   Widget build(BuildContext contextq) {
     Provider.of<Api>(context, listen: false).fetchProduct_main();
@@ -103,6 +109,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     return Scaffold(
       backgroundColor: Colors.white,
+      //  appBar: AppBar(),
       body: Consumer<Api>(
         builder: (_, value, child) {
           return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -215,7 +222,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                             );
                           },
                           child: Text(
-                            'Giày - dép',
+                            'Giày - dép   ',
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
@@ -592,6 +599,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           );
         },
       ),
+       
     );
   }
 

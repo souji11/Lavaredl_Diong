@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
+import 'package:flutter_application_1/main.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
@@ -63,20 +64,22 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
 
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearch());
+            },
             icon: const Icon(Icons.search),
             // color: Colors.green,
           ),
-          IconButton(
-            onPressed: () {
-              setState(() {
-                currentSceent = Notifi();
-                currentTab = 4;
-              });
-            },
-            icon: const Icon(Icons.notifications_none),
-            color: currentTab == 4 ? Colors.red : Colors.white,
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     setState(() {
+          //       currentSceent = Notifi();
+          //       currentTab = 4;
+          //     });
+          //   },
+          //   icon: const Icon(Icons.notifications_none),
+          //   color: currentTab == 4 ? Colors.red : Colors.white,
+          // ),
           IconButton(
             onPressed: () {
               setState(() {
