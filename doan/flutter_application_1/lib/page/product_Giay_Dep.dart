@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_SapXep.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
 // import 'package:flutter_application_1/api/api_sanpham_trangsuc.dart';
@@ -46,8 +47,9 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Apigiay>(context, listen: false).fetchProduct_giay();
-    var api = Provider.of<Apigiay>(context, listen: false);
+    // Provider.of<Apigiay>(context, listen: false).fetchProduct_giay();
+    // var api = Provider.of<Apigiay>(context, listen: false);
+    var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -122,7 +124,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
             ),
             // button
             Padding(
-              padding: EdgeInsets.all(10.0),
+                padding: EdgeInsets.only(left:200, ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -151,10 +153,11 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                       onChanged: (String? newValue) {
                         setState(() {
                           dropdownValue = newValue!;
+                          apiSapXep.SapXepGiayDep(dropdownValue);
+Navigator.pop(context);
                         });
                       },
-                      items: <String>['Sắp Xếp', 'A-Z', 'Z-A', 'Loại']
-                          .map<DropdownMenuItem<String>>((String value) {
+items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -162,43 +165,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                       }).toList(),
                     ),
                   ),
-                  Container(
-                    height: 50,
-                    width: 150,
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: DropdownButton<String>(
-                      value: dropdownValue2,
-                      dropdownColor: Colors.pink[50],
-                      underline: SizedBox(),
-                      icon: const Icon(Icons.arrow_drop_down),
-                      iconSize: 30,
-                      isExpanded: true,
-                      elevation: 16,
-                      style: const TextStyle(
-                        color: Colors.deepPurple,
-                      ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue2 = newValue!;
-                        });
-                      },
-                      items: <String>['Bộ lọc', 'GIá cao', 'Giá thấp', 'Loại']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
+               ],
               ),
             ),
             // het button
@@ -215,7 +182,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     children: List.generate(
-                      api.lst.length,
+                      apiSapXep.lstG.length,
                       (index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -231,7 +198,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => ProductDetailScreen(
-                                      product: api.lst[index]),
+                                      product: apiSapXep.lstG[index]),
                                 ),
                               );
                             },
@@ -254,7 +221,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                             height: 130,
                                             width: 150,
                                             image: AssetImage(
-                                              'assets' + api.lst[index].hinhAnh,
+                                              'assets' + apiSapXep.lstG[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -267,7 +234,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${api.lst[index].gia} VNĐ',
+                                                '${apiSapXep.lstG[index].gia} VNĐ',
                                                 style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 15,
@@ -286,7 +253,7 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                                             children: <Widget>[
                                               const SizedBox(height: 5.0),
                                               Text(
-                                                api.lst[index].tenSanPham,
+                                                apiSapXep.lstG[index].tenSanPham,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.0,

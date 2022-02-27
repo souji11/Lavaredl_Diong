@@ -1,7 +1,8 @@
-// ignore_for_file: file_names, unused_import, camel_case_types, non_constant_identifier_names, unused_field, prefer_final_fields, unused_element, unnecessary_const, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code, empty_statements, avoid_unnecessary_containers, prefer_const_constructors_in_immutables
+// ignore_for_file: file_names, unused_import, camel_case_types, non_constant_identifier_names, unused_field, prefer_final_fields, unused_element, unnecessary_const, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code, empty_statements, avoid_unnecessary_containers, prefer_const_constructors_in_immutables, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_SapXep.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/main.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
@@ -40,8 +41,9 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Apiao>(context, listen: false).fetchProduct_main();
-    var apiao = Provider.of<Apiao>(context, listen: false);
+    // Provider.of<Apiao>(context, listen: false).fetchProduct_main();
+    // var apiao = Provider.of<Apiao>(context, listen: false);
+var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -112,7 +114,9 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                 ),
                 // button
                 Padding(
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.only(
+                    left: 200,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -141,49 +145,17 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                           onChanged: (String? newValue) {
                             setState(() {
                               dropdownValue = newValue!;
-                            });
-                          },
-                          items: <String>['Sắp Xếp', 'A-Z', 'Z-A', 'Loại']
-                              .map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      Container(
-                        height: 50,
-                        width: 150,
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.red,
-                            width: 2,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: DropdownButton<String>(
-                          value: dropdownValue2,
-                          dropdownColor: Colors.pink[50],
-                          underline: SizedBox(),
-                          icon: const Icon(Icons.arrow_drop_down),
-                          iconSize: 30,
-                          isExpanded: true,
-                          elevation: 16,
-                          style: const TextStyle(
-                            color: Colors.deepPurple,
-                          ),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue2 = newValue!;
+                              apiSapXep.SapXepAo(dropdownValue);
+                              Navigator.pop(context);
+                             
                             });
                           },
                           items: <String>[
-                            'Bộ lọc',
-                            'GIá cao',
+                            'Sắp Xếp',
+                            'A-Z',
+                            'Z-A',
+                            'Giá cao',
                             'Giá thấp',
-                            'Loại'
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -208,7 +180,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     children: List.generate(
-                      apiao.lsta.length,
+                      apiSapXep.lstA.length,
                       (index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -224,7 +196,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => ProductDetailScreen(
-                                      product: apiao.lsta[index]),
+                                      product: apiSapXep.lstA[index]),
                                 ),
                               );
                             },
@@ -248,7 +220,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                             width: 150,
                                             image: AssetImage(
                                               'assets' +
-                                                  apiao.lsta[index].hinhAnh,
+                                                  apiSapXep.lstA[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -261,7 +233,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${apiao.lsta[index].gia} VNĐ',
+                                                '${apiSapXep.lstA[index].gia} VNĐ',
                                                 style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 15,
@@ -280,7 +252,7 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
                                             children: <Widget>[
                                               const SizedBox(height: 5.0),
                                               Text(
-                                                apiao.lsta[index].tenSanPham,
+                                                apiSapXep.lstA[index].tenSanPham,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.0,

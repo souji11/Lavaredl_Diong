@@ -1,7 +1,8 @@
-// ignore_for_file: file_names, unused_import, camel_case_types, non_constant_identifier_names, unused_field, prefer_final_fields, unused_element, unnecessary_const, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code, empty_statements, avoid_unnecessary_containers
+// ignore_for_file: file_names, unused_import, camel_case_types, non_constant_identifier_names, unused_field, prefer_final_fields, unused_element, unnecessary_const, sized_box_for_whitespace, prefer_const_constructors, prefer_const_literals_to_create_immutables, dead_code, empty_statements, avoid_unnecessary_containers, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/api/api_SapXep.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_trangsuc.dart';
 import 'package:flutter_application_1/main.dart';
@@ -45,8 +46,11 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Apitrangsuc>(context, listen: false).fetchProduct_trangsuc();
-    var api = Provider.of<Apitrangsuc>(context, listen: false);
+    // Provider.of<Apitrangsuc>(context, listen: false).fetchProduct_trangsuc();
+    // var api = Provider.of<Apitrangsuc>(context, listen: false);
+    //  Provider.of<ApiSapXep>(context,listen: false).SapXepTrangSuc('A-Z');//SapXepTrangSuc('A-Z');
+    var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
+    //  apiSapXep.SapXepTrangSuc(dropdownValue);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -121,7 +125,9 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
             ),
             // button
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.only(
+                left: 200,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -138,6 +144,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                     ),
                     child: DropdownButton<String>(
                       value: dropdownValue,
+
                       dropdownColor: Colors.pink[50],
                       underline: SizedBox(),
                       icon: const Icon(Icons.arrow_drop_down),
@@ -147,54 +154,41 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                       style: const TextStyle(
                         color: Colors.deepPurple,
                       ),
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
-                      },
-                      items: <String>['Sắp Xếp', 'A-Z', 'Z-A', 'Loại']
-                          .map<DropdownMenuItem<String>>((String value) {
+                      //Hiện các loại sắp xếp
+                      items: <String>[
+                        'Sắp Xếp',
+                        'A-Z',
+                        'Z-A',
+                        'Giá cao',
+                        'Giá thấp',
+                      ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList(),
-                    ),
-                  ),
-                  Container(
-                    height: 50,
-                    width: 150,
-                    padding: EdgeInsets.only(left: 10, right: 10),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.red,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: DropdownButton<String>(
-                      value: dropdownValue2,
-                      dropdownColor: Colors.pink[50],
-                      underline: SizedBox(),
-                      icon: const Icon(Icons.arrow_drop_down),
-                      iconSize: 30,
-                      isExpanded: true,
-                      elevation: 16,
-                      style: const TextStyle(
-                        color: Colors.deepPurple,
-                      ),
                       onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue2 = newValue!;
-                        });
-                      },
-                      items: <String>['Bộ lọc', 'GIá cao', 'Giá thấp', 'Loại']
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
+                        setState(
+                          () {
+                            dropdownValue = newValue!;
+                            apiSapXep.SapXepTrangSuc(dropdownValue);
+
+                            Navigator.pop(context);
+                            
+                            // Navigator.push(
+                            //   context,
+                            //   PageRouteBuilder(
+                            //      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) { 
+                            //         // Product_TrangSuc_screen();
+                            //         return Product_TrangSuc_screen();
+                            //         },
+                            //   ),
+                            // );
+                            
+                            
+                          },
                         );
-                      }).toList(),
+                      },
                     ),
                   ),
                 ],
@@ -214,7 +208,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     children: List.generate(
-                      api.lst.length,
+                      apiSapXep.lstTS.length,
                       (index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -230,7 +224,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => ProductDetailScreen(
-                                      product: api.lst[index]),
+                                      product: apiSapXep.lstTS[index]),
                                 ),
                               );
                             },
@@ -253,7 +247,9 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                             height: 130,
                                             width: 150,
                                             image: AssetImage(
-                                              'assets' + api.lst[index].hinhAnh,
+                                              'assets' +
+                                                  apiSapXep
+                                                      .lstTS[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -266,7 +262,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${api.lst[index].gia} VNĐ',
+                                                '${apiSapXep.lstTS[index].gia} VNĐ',
                                                 style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 15,
@@ -285,7 +281,8 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                             children: <Widget>[
                                               const SizedBox(height: 5.0),
                                               Text(
-                                                api.lst[index].tenSanPham,
+                                                apiSapXep
+                                                    .lstTS[index].tenSanPham,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.0,

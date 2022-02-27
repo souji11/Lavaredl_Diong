@@ -25,6 +25,7 @@
 // import 'dart:ffi';
 
 import 'package:flutter_application_1/Models/Product_main.dart';
+import 'package:flutter_application_1/api/api_SapXep.dart';
 import 'package:flutter_application_1/api/api_binhluan_index.dart';
 import 'package:flutter_application_1/api/api_hoadon.dart';
 import 'package:flutter_application_1/api/api_giohang_create.dart';
@@ -72,6 +73,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => ApiYT()),
       ChangeNotifierProvider(create: (_) => APIThemCMT()),
       ChangeNotifierProvider(create: (_) => APICMT()),
+      ChangeNotifierProvider(create: (_) => ApiSapXep()),
     ],
     child: MyApp(),
   ));
