@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 class APIsanphamController extends Controller
 {
-    public function index()
-    {
+    public function index()    {
         $dsSanPham=SanPham::all();
         // foreach($dsSanPham as $sp)
         // {
@@ -22,8 +21,7 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPham,
         ]);
     }
-    public function chonAo()
-    {
+    public function chonAo()    {
         $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->get();
 
         return json_encode([
@@ -31,8 +29,7 @@ class APIsanphamController extends Controller
             'dataao'=>$dsSanPham,
         ]);
     }
-    public function chonTrangSuc()
-    {
+    public function chonTrangSuc()    {
         $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->get();
 
         return json_encode([
@@ -40,8 +37,7 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPham,
         ]);
     }
-    public function chonGiay()
-    {
+    public function chonGiay()    {
         $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->get();
 
         return json_encode([
@@ -49,8 +45,7 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPham,
         ]);
     }
-    public function chonTui()
-    {
+    public function chonTui()    {
         $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->get();
 
         return json_encode([
@@ -58,9 +53,7 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPham,
         ]);
     }
-
-    public function chonsanphammoi()
-    {   
+    public function chonsanphammoi()    {   
         // $dsSanPham=SanPham::all();
         $dsSanPhamMoi=SanPham::orderBy('created_at','desc')->take(10)->get();
         return json_encode([
@@ -68,8 +61,7 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPhamMoi,
         ]);
     }
-    public function chonsanphamnoibat()
-    {
+    public function chonsanphamnoibat()    {
         $dsSanPhamNoiBat=SanPham::orderBy('Gia','desc')->take(10)->get();
         // $dsSanPhamNoiBat=DB::table('san_phams')->orderBy('Gia','asc')->get();
         return json_encode([
@@ -77,17 +69,14 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPhamNoiBat,
         ]);
     }
-    public function chonsanphambanchay()
-    {
+    public function chonsanphambanchay()    {
         $dsSanPhamBanChay=SanPham::orderBy('Gia','asc')->take(10)->get();
         return json_encode([
             'ThanhCong'=>true,
             'data'=>$dsSanPhamBanChay,
         ]);
     }
-
-    public function binhluan(Request $request)
-    {
+    public function binhluan(Request $request)    {
        $binhluan = new binhluan();
        $binhluan->IdTaiKhoan=$request->IdTaiKhoan;
        $binhluan->IdSanPham=$request->IdSanPham;
@@ -95,19 +84,123 @@ class APIsanphamController extends Controller
        $binhluan->save();
        return json_encode([
         'ThanhCong'=>true,
-        'data'=>$binhluan,
-    ]);     
+        'data'=>$binhluan,],);     
     }
-    public function hienbinhluan(int $id)    
-    {
+    public function hienbinhluan(int $id)      {
         // $dsbinhluan=binhluan::where('IdSanPham',$request->id)->get();
         // $dsbinhluan=binhluan::all();
         $dsbinhluan=DB::select('select * from binh_luans where IdSanPham = ?',[$id]);
         // $dsbinhluan=binhluan::where('IdSanPham',$request->IdSanPham)->get();
         // $dsbinhluan= DB::table('binh_luans')->where('IdSanPham',$request->id)->get();
+        
         return json_encode([
             'ThanhCong'=>true,
             'data'=>$dsbinhluan,
         ]);
     }   
+    public function xepAO(String $loai)    {
+        if ($loai=='A-Z')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->orderBy('TenSanPham','asc')->get();
+        }
+        elseif($loai=='Z-A')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->orderBy('TenSanPham','desc')->get();
+        }
+        elseif($loai=='Giá cao')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->orderBy('Gia','desc')->get();
+        }
+        elseif($loai=='Giá thấp')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->orderBy('Gia','asc')->get();
+        }
+        else
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',1)->get();
+        } 
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
+    public function xepTRANGSUC(String $loai)    {
+        if ($loai=='A-Z')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->orderBy('TenSanPham','asc')->get();
+        }
+        elseif($loai=='Z-A')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->orderBy('TenSanPham','desc')->get();
+        }
+        elseif($loai=='Giá cao')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->orderBy('Gia','desc')->get();
+        }
+        elseif($loai=='Giá thấp')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->orderBy('Gia','asc')->get();
+        }
+        else
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',4)->get();
+        } 
+        
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
+    public function xepGIAY(String $loai)    {
+        if ($loai=='A-Z')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->orderBy('TenSanPham','asc')->get();
+        }
+        elseif($loai=='Z-A')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->orderBy('TenSanPham','desc')->get();
+        }
+        elseif($loai=='Giá cao')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->orderBy('Gia','desc')->get();
+        }
+        elseif($loai=='Giá thấp')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->orderBy('Gia','asc')->get();
+        }
+        else
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',2)->get();
+        } 
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
+    public function xepTUI(String $loai)    {
+        if ($loai=='A-Z')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->orderBy('TenSanPham','asc')->get();
+        }
+        elseif($loai=='Z-A')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->orderBy('TenSanPham','desc')->get();
+        }
+        elseif($loai=='Giá cao')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->orderBy('Gia','desc')->get();
+        }
+        elseif($loai=='Giá thấp')
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->orderBy('Gia','asc')->get();
+        }
+        else
+        {
+            $dsSanPham=SanPham::where('IdLoaiSanPham','=',3)->get();
+        } 
+        return json_encode([
+            'ThanhCong'=>true,
+            'data'=>$dsSanPham,
+        ]);
+    }
 }

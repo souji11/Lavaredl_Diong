@@ -54,3 +54,8 @@ route::post('GioHang/xoa', [GioHangController::class,'destroy']);
 
 route::post('BinhLuan/them', [APIsanphamController::class,'binhluan']);
 route::get('BinhLuan/{id}', [APIsanphamController::class,'hienbinhluan']);
+
+route::get('SanPham/xepAO/{loai}', [APIsanphamController::class,'xepAO']);
+route::get('SanPham/xepTRANGSUC/{loai}', [APIsanphamController::class,'xepTRANGSUC']);
+route::get('SanPham/xepGIAY/{loai}', [APIsanphamController::class,'xepGIAY']);
+route::get('SanPham/xepTUI/{loai}', [APIsanphamController::class,'xepTUI']);
