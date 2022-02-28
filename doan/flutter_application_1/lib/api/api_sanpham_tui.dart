@@ -15,8 +15,12 @@ class Apitui extends ChangeNotifier {
   Future<void> fetchProduct_tui() async {
     List<Product_main> tmpList = [];
 
+<<<<<<< HEAD
     final response =
         await http.get(Uri.parse('http://192.168.5.186:8000/api/SanPham/tui'));
+=======
+    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/tui'));
+>>>>>>> 42839604db4ec7803ac69c5b42568f8c2adba0ca
 
     if (response.statusCode == 200) {
       try {

@@ -23,11 +23,13 @@ class Apiao extends ChangeNotifier {
         dataao.forEach((item) {
           tmpList.add(Product_main.fromJson(item));
         });
+        
       } catch (e) {
         print(e);
       }
 
       lsta = tmpList;
+      
       notifyListeners();
     } else {
       throw Exception('Failed to load data');

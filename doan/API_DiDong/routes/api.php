@@ -52,3 +52,13 @@ route::get('GioHang', [GioHangController::class,'index']);
 route::post('GioHang/them', [GioHangController::class,'create']);
 route::post('GioHang/xoa', [GioHangController::class,'destroy']);
 route::post('GioHang/thanhtoan', [GioHangController::class,'thanhtoan']);
+
+route::post('BinhLuan/them', [APIsanphamController::class,'binhluan']);
+route::get('BinhLuan/{id}', [APIsanphamController::class,'hienbinhluan']);
+
+route::get('SanPham/xepAO/{loai}', [APIsanphamController::class,'xepAO']);
+route::get('SanPham/xepTRANGSUC/{loai}', [APIsanphamController::class,'xepTRANGSUC']);
+route::get('SanPham/xepGIAY/{loai}', [APIsanphamController::class,'xepGIAY']);
+route::get('SanPham/xepTUI/{loai}', [APIsanphamController::class,'xepTUI']);
+
+route::get('SanPham/chitiet/mausize', [APIsanphamController::class,'LayMauSize']);

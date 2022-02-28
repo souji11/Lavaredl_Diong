@@ -13,6 +13,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call(
+            LoaiSanPhamSeeder::class,          
+        );
+        $this->call(            
+            NhaCungCapSeeder::class,            
+        );
+        $this->call(            
+            SanPhamSeeder::class,           
+        );
+        $this->call(            
+            TrangThaiSeeder::class,
+        );
+        $this->call(            
+            TaiKhoanSeeder::class,
+        );
+        
     }
 }

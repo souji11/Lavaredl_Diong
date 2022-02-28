@@ -1,5 +1,10 @@
 // ignore_for_file: unused_import, avoid_web_libraries_in_flutter, unused_element
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 42839604db4ec7803ac69c5b42568f8c2adba0ca
 // import 'dart:html';
 
 import 'package:flutter/cupertino.dart';

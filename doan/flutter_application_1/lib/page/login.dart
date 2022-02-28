@@ -28,7 +28,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  TextEditingController txtSDT = TextEditingController(text: "souji@gmail.com");
+  TextEditingController txtSDT = TextEditingController(text: "admin@gmail.com");
   TextEditingController txtPassWord = TextEditingController(text: "123");
 
   bool isPassWord = true;

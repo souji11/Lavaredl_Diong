@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, unused_import, prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, avoid_unnecessary_containers
+// ignore_for_file: deprecated_member_use, unused_import, prefer_const_constructors_in_immutables, prefer_const_constructors, prefer_const_literals_to_create_immutables, duplicate_ignore, avoid_unnecessary_containers, non_constant_identifier_names, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/order_details.dart';

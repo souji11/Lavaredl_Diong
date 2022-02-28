@@ -30,6 +30,7 @@ class Apigiay extends ChangeNotifier {
       // return ProductMains.map<Product_main>((json) => Product_main.fromJson(json))
       //     .toList();
       lst = tmpList;
+      
       notifyListeners();
     } else {
       throw Exception('Failed to load data');

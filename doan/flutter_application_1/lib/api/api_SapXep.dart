@@ -1,4 +1,4 @@
-// ignore_for_file: import_of_legacy_library_into_null_safe, unused_import, non_constant_identifier_names, unused_local_variable, avoid_print
+// ignore_for_file: import_of_legacy_library_into_null_safe, unused_import, non_constant_identifier_names, unused_local_variable, avoid_print, file_names
 
 // import 'dart:ffi';
 
@@ -10,20 +10,16 @@ import '../Models/product.dart';
 import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
 
-class Api extends ChangeNotifier {
-  List<Product_main> lst = [];
-  List<Product_main> lstBanChay = [];
-  List<Product_main> lstNoiBat = [];
-  List<Product_main> lstMoi = [];
-  Future<void> fetchProduct_main() async {
+class ApiSapXep extends ChangeNotifier {
+  List<Product_main> lstA = [];
+  List<Product_main> lstTS = [];
+  List<Product_main> lstG = [];
+  List<Product_main> lstT = [];
+  Future<void> SapXepAo(String $Loai) async {
     List<Product_main> tmpList = [];
-    final response = await http.get(
-<<<<<<< HEAD
-      Uri.parse('http://192.168.5.186:8000/api/SanPham'),
-=======
-      Uri.parse('http://192.168.5.192:8000/api/SanPham'),
->>>>>>> 42839604db4ec7803ac69c5b42568f8c2adba0ca
-    );
+
+    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepAO/'+$Loai));
+
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
@@ -33,81 +29,80 @@ class Api extends ChangeNotifier {
         });
       } catch (e) {
         print(e);
-      }
-
-      lst = tmpList;
+      }      
+      lstA = tmpList;
       notifyListeners();
     } else {
       throw Exception('Failed to load data');
     }
   }
+  Future<void> SapXepTrangSuc(String $Loai) async {
+    List<Product_main> tmpList = [];
 
-  Future<void> fetchProduct_NoiBat() async {
-    List<Product_main> tmpListNoiBat = [];
+    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepTRANGSUC/'+$Loai));
 
-    final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/noibat'),
-    );
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
         dynamic data = object['data'];
+        // print(data);
         data.forEach((item) {
-          tmpListNoiBat.add(Product_main.fromJson(item));
+          tmpList.add(Product_main.fromJson(item));
         });
       } catch (e) {
         print(e);
-      }
-
-      lstNoiBat = tmpListNoiBat;
+      }    
+      
+      lstTS = tmpList;
+// print(lstTS[0].gia);
       notifyListeners();
     } else {
       throw Exception('Failed to load data');
     }
   }
+  Future<void> SapXepTuiXach(String $Loai) async {
+    List<Product_main> tmpList = [];
 
-  Future<void> fetchProduct_BanChay() async {
-    List<Product_main> tmpListBanChay = [];
+    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepTUI/'+$Loai));
 
-    final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/banchay'),
-    );
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
         dynamic data = object['data'];
+        // print(data);
         data.forEach((item) {
-          tmpListBanChay.add(Product_main.fromJson(item));
+          tmpList.add(Product_main.fromJson(item));
         });
       } catch (e) {
         print(e);
-      }
-
-      lstBanChay = tmpListBanChay;
+      }    
+      
+      lstT = tmpList;
+// print(lstTS[0].gia);
       notifyListeners();
     } else {
       throw Exception('Failed to load data');
     }
   }
+  Future<void> SapXepGiayDep(String $Loai) async {
+    List<Product_main> tmpList = [];
 
-  Future<void> fetchProduct_Moi() async {
-    List<Product_main> tmpListMoi = [];
+    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepGIAY/'+$Loai));
 
-    final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/moi'),
-    );
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
         dynamic data = object['data'];
+        // print(data);
         data.forEach((item) {
-          tmpListMoi.add(Product_main.fromJson(item));
+          tmpList.add(Product_main.fromJson(item));
         });
       } catch (e) {
         print(e);
-      }
-
-      lstMoi = tmpListMoi;
+      }    
+      
+      lstG = tmpList;
+// print(lstTS[0].gia);
       notifyListeners();
     } else {
       throw Exception('Failed to load data');
