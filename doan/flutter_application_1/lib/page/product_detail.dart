@@ -2,8 +2,11 @@
 // ignore_for_file: unused_import, file_names, prefer_const_constructors, sized_box_for_whitespace, unused_field, duplicate_import, unused_local_variable
 
 import 'package:flutter_application_1/Models/SanPhamYeuThich.dart';
+import 'package:flutter_application_1/Models/mau.dart';
+import 'package:flutter_application_1/Models/size.dart';
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/api_binhluan_index.dart';
+import 'package:flutter_application_1/api/api_chitiet.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
 import 'package:provider/provider.dart';
@@ -47,7 +50,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentSceent = Home();
 
-  List listmau = ["Xanh", "Đỏ", "Tím", "Vàng"];
+  // List listmau = ["Xanh", "Đỏ", "Tím", "Vàng"];
+
   Future<SanPhamYeuThich>? _futureAlbum;
   @override
   Widget build(BuildContext context) {
@@ -55,6 +59,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     var apigh = Provider.of<ApiGioHang>(context, listen: false);
     Provider.of<APICMT>(context, listen: false).BinhLuan(widget.product);
     var apibl = Provider.of<APICMT>(context, listen: false);
+    Provider.of<ApiCT>(context, listen: false).fetchProduct_CT();
+    var api = Provider.of<ApiCT>(context, listen: false);
+    List<Mau> listmau = api.lstmau;
+    List<size> listsize = api.lstsize;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -125,11 +133,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle.light,
         child: SingleChildScrollView(
-          child: SizedBox(
-            height: 1500,
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              
+            child: SizedBox(
+          height: 1500,
+          width: MediaQuery.of(context).size.width,
+          child: Column(
             children: <Widget>[
               Stack(
                 children: <Widget>[
@@ -201,50 +208,52 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ),
                           //chọn màu
                           Positioned(
-                            right: 50,
-                            bottom: 5,
-                            child: Container(
-                              height: 30,
-                              width: 150,
-                              padding: EdgeInsets.only(left: 10, right: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.red,
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(15),
-                              ),
-                              child: DropdownButton<String>(
-                                value: dropdownValueMau,
-                                dropdownColor: Colors.pink[50],
-                                icon: const Icon(Icons.arrow_drop_down),
-                                iconSize: 30,
-                                isExpanded: true,
-                                elevation: 16,
-                                style: const TextStyle(
-                                  color: Colors.deepPurple,
-                                ),
-                                underline: SizedBox(),
-                                onChanged: (String? newValue) {
-                                  setState(() {
-                                    dropdownValueMau = newValue!;
-                                  });
-                                },
-                                items: <String>[
-                                  'Màu',
-                                  'Xanh',
-                                  'Đỏ',
-                                  'Tím',
-                                  'Vàng'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value),
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          ),
+                              right: 50,
+                              bottom: 5,
+                              child:Consumer<ApiCT>(builder: (_, value, child) {
+                                return Container(                                  
+                                  height: 30,
+                                  width: 150,
+                                  padding: EdgeInsets.only(left: 10, right: 10),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.red,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  child: DropdownButton<String>(
+                                    value: dropdownValueMau,
+                                    dropdownColor: Colors.pink[50],
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    iconSize: 30,
+                                    isExpanded: true,
+                                    elevation: 16,
+                                    style: const TextStyle(
+                                      color: Colors.deepPurple,
+                                    ),
+                                    underline: SizedBox(),
+                                    onChanged: (String? newValue) {
+                                      setState(() {
+                                        dropdownValueMau = newValue!;
+                                      });
+                                    },
+                                    items: <String>[
+                                      'Màu',
+                                      listmau[1].tenmau,
+                                      listmau[0].tenmau,
+                                      listmau[2].tenmau,
+                                      listmau[3].tenmau,
+                                    ].map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    }).toList(),
+                                  ),
+                                );
+                              })),
                           // chọn size
                           Positioned(
                             bottom: 50,
@@ -278,10 +287,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 },
                                 items: <String>[
                                   'Kích cỡ',
-                                  'M',
-                                  'L',
-                                  'S',
-                                  'XL'
+                                  listsize[1].tenSize,
+                                  listsize[0].tenSize,
+                                  listsize[2].tenSize,
+                                  listsize[3].tenSize,
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -437,37 +446,35 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.only(
-                        left: 30.0,
-                        right: 30.0,
-                        top: 40.0,
-                      ),
-                      
-                      child: SizedBox(
-                        height: 132,
-                        width:  MediaQuery.of(context).size.width,
-                        child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          const Text(
-                            'Mô tả sản phẩm',
-                            style: TextStyle(
-                              fontSize: 24.0,
-                              fontWeight: FontWeight.w600,
-                            ),
+                        padding: const EdgeInsets.only(
+                          left: 30.0,
+                          right: 30.0,
+                          top: 40.0,
+                        ),
+                        child: SizedBox(
+                          height: 132,
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              const Text(
+                                'Mô tả sản phẩm',
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              const SizedBox(height: 10.0),
+                              Text(
+                                widget.product.moTa,
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 16.0,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 10.0),
-                          Text(
-                            widget.product.moTa,
-                            style: const TextStyle(
-                              color: Colors.black87,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                      ),
+                        )),
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 0.0,
@@ -497,8 +504,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             height: 500,
                             child: ListView(
                               addAutomaticKeepAlives: false,
-                              children:
-                                  List.generate(apibl.lst.length, (index) {
+                              children: List.generate(apibl.lst.length, (index) {
                                 return Container(
                                   decoration: BoxDecoration(
                                     color: Colors.blue,
@@ -551,9 +557,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
             ],
           ),
-         )
-          
-         ),
+        )),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
