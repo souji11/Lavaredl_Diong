@@ -11,7 +11,7 @@ class Order {
   late String? DiaChiGiaoHang;
   late String? SDTGiaoHang;
   late int? IdMaGiamGia;
-  late double? TongTien;
+  late int? TongTien;
   late int IDTrangThai;
   late List<OrderDetails> ctHoaDon;
 

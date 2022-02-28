@@ -9,7 +9,7 @@ class OrderDetails {
   late int? IdHoaDon;
   late int? IdSanPham;
   late int? SoLuong;
-  late double? DonGia;
+  late int? DonGia;
   late Product_main sanPham;
 
   OrderDetails({

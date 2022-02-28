@@ -10,7 +10,7 @@ import '../Models/order.dart';
 
 class InvoiceDetail extends StatefulWidget {
   final List<OrderDetails> listCtHoaDon;
-  final double? S;
+  final int? S;
   final int? TrangThai;
   final int? IDHoaDon;
   InvoiceDetail(this.listCtHoaDon, this.S, this.TrangThai, this.IDHoaDon, {Key? key}) : super(key: key);
@@ -189,7 +189,7 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                                       width: 2,
                                       color: Colors.grey,
                                     ),
-                                    image: DecorationImage(fit: BoxFit.cover, image: AssetImage(widget.listCtHoaDon[index].sanPham.hinhAnh)),
+                                    image: DecorationImage(fit: BoxFit.cover, image: AssetImage('assets'+ widget.listCtHoaDon[index].sanPham.hinhAnh)),
                                   ),
                                 ),
                                 SizedBox(
