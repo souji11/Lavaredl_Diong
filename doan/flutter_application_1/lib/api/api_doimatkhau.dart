@@ -2,7 +2,6 @@
 
 import 'package:flutter/cupertino.dart';
 
-
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -26,4 +25,7 @@ Future<User> apiChangePass(
   return tk;
 }
 
-_header() => {'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json'};
+_header() => {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json'
+    };

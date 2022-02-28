@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Models/order_details.dart';
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_application_1/api/api_huyhoadon.dart';
+import 'package:flutter_application_1/success/updatesuccess.dart';
 import 'package:provider/provider.dart';
 import '../Models/product.dart';
 import '../Models/order.dart';
@@ -13,7 +14,12 @@ class InvoiceDetail extends StatefulWidget {
   final int? S;
   final int? TrangThai;
   final int? IDHoaDon;
-  InvoiceDetail(this.listCtHoaDon, this.S, this.TrangThai, this.IDHoaDon, {Key? key}) : super(key: key);
+  final String? DiaChi;
+  final String? SDT;
+  InvoiceDetail(this.listCtHoaDon, this.S, this.TrangThai, this.IDHoaDon,
+      this.DiaChi, this.SDT,
+      {Key? key})
+      : super(key: key);
   @override
   _InvoiceDetailState createState() => _InvoiceDetailState();
 }
@@ -141,11 +147,11 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                               style: TextStyle(fontSize: 14),
                             ),
                             Text(
-                              ' + ${Auth.user.SDT} ',
+                              ' + ${widget.SDT} ',
                               style: TextStyle(fontSize: 14),
                             ),
                             Text(
-                              ' + ${Auth.user.DiaChi1} ',
+                              ' + ${widget.DiaChi} ',
                               style: TextStyle(fontSize: 14),
                             ),
                           ],
@@ -198,9 +204,12 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Tên sản phẩm : ${widget.listCtHoaDon[index].sanPham.tenSanPham}'),
-                                    Text('Sô lượng    : ${widget.listCtHoaDon[index].SoLuong}'),
-                                    Text('Đơn giá       : ${widget.listCtHoaDon[index].sanPham.gia}'),
+                                    Text(
+                                        'Tên sản phẩm : ${widget.listCtHoaDon[index].sanPham.tenSanPham}'),
+                                    Text(
+                                        'Sô lượng    : ${widget.listCtHoaDon[index].SoLuong}'),
+                                    Text(
+                                        'Đơn giá       : ${widget.listCtHoaDon[index].sanPham.gia}'),
                                   ],
                                 ),
                               ],
@@ -254,9 +263,14 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                     onPressed: () {
                       setState(() {
                         if (widget.TrangThai != 1) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Đơn hàng mới đặt mới được hủy")));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Đơn hàng mới đặt mới được hủy")));
                         } else {
                           final kq = apiUpdateHoaDon(widget.IDHoaDon);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UpdateSuccess()));
                         }
                       });
                     },
@@ -267,7 +281,10 @@ class _InvoiceDetailState extends State<InvoiceDetail> {
                     ),
                     child: const Text(
                       'Hủy đơn',
-                      style: TextStyle(fontSize: 14, letterSpacing: 2.2, color: Colors.white),
+                      style: TextStyle(
+                          fontSize: 14,
+                          letterSpacing: 2.2,
+                          color: Colors.white),
                     ),
                   ),
                 ],

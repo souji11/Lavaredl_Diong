@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\GioHang;
+
+use App\Models\HoaDon;
+
+use App\Models\CtHoaDon;
+use App\Models\User;
 use App\Http\Requests\StoreGioHangRequest;
 use App\Http\Requests\UpdateGioHangRequest;
 // use GuzzleHttp\Psr7\Request;
@@ -16,10 +21,16 @@ class GioHangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $User)
     {
-        $gh=DB::select('select * from gio_hangs, san_phams where gio_hangs.IdSanPham=san_phams.id');
+        $gh=DB::select('select * 
+                        from gio_hangs, san_phams ,ct_san_phams,maus,sizes
+                        where gio_hangs.IdSanPham=san_phams.id
+                        and san_phams.id=ct_san_phams.IdSanPham
+                        and ct_san_phams.IdSize=sizes.id
+                        and ct_san_phams.IdMau=maus.id');
         //$gh=GioHang::all();
+        //$gh=GioHang::where('IdTaiKhoan',$User->id)->with("SanPham")->with("SanPham.CtSanPham")->get();
         $total = 0;
        foreach($gh as $sp)
        {
@@ -139,5 +150,41 @@ class GioHangController extends Controller
             'ThanhCong'=>true,
             'data'=>$gh,
         ]);
+    }
+
+    public function thanhtoan(Request $request)
+    {
+        $cartitem=DB::select('select * from gio_hangs, san_phams where gio_hangs.IdSanPham=san_phams.id');
+        $year = date('Yy');
+        $month = date('m');
+        $day = date('d');
+        $hour = date('h');
+        $minute = date('i');
+        $second = date('s');
+        $orderId = $year + $month + $day + $hour + $minute + $second;
+        $newHD=new HoaDon();
+        $newHD->fill([
+            $newHD->Code=$orderId,
+            $newHD->IdTaiKhoan=$request->IdTaiKhoan,
+            $newHD->NgayLap=date('Y-m-d'),
+            $newHD->DiaChiGiaoHang=$request->DiaChiGiaoHang,
+            $newHD->SDTGiaoHang=$request->SDTGiaoHang,
+          //  $newHD->IdMaGiamGia=$request->IdMaGiamGia,
+            $newHD->TongTien=$request->TongTien,
+            $newHD->IdTrangThai=$request->IDTrangThai,
+        ]);
+        $newHD->save();
+        foreach($cartitem as $c)
+        {
+            $newCTHD = new CtHoaDon();
+            $newCTHD->fill([
+                $newCTHD->IdHoaDon=$newHD->id,
+                $newCTHD->IdSanPham=$c->IdSanPham,
+                $newCTHD->SoLuong=$c->so_luong,
+                $newCTHD->DonGia=$c->Gia,            
+            ]);
+            $newCTHD->save();
+        }
+       
     }
 }

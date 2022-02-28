@@ -15,15 +15,10 @@ use Illuminate\Support\Facades\DB;
 
 class APIhoadonController extends Controller
 {
-    public function updateHoaDon(Request $request, HoaDon $HoaDon){
-        // dd($HoaDon);
-        $validate = Validator::make($request->all(), [
-            'IDTrangThai' => ["required"],
-        ]);
-        if ($validate->fails())
-            return response()->json($validate->errors(), 400);
+    public function updateHoaDon(HoaDon $HoaDon){
+        //  dd($HoaDon);
         $HoaDon->fill([
-            'IDTrangThai' => $request->IDTrangThai,
+            'IDTrangThai' => 5,
         ]);
         $HoaDon->save();
         

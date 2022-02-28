@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 class APIXoaSPYT extends ChangeNotifier {
   Future<SanPhamYeuThich> XoaSPYT(Product_main $a) async {
     final http.Response response = await http.delete(
-      Uri.parse('http://192.168.5.192:8000/api/SanPhamYeuThich/Xoa/${$a.id}'),
+      Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich/Xoa/${$a.id}'),
       // headers: <String, String>{
       //   'Content-Type': 'application/json; charset=UTF-8',
       // },

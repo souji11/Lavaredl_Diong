@@ -23,4 +23,7 @@ Future<Order> apiUpdateHoaDon(int? IdHoaDon) async {
   return order;
 }
 
-_header() => {'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json'};
+_header() => {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json'
+    };

@@ -27,4 +27,7 @@ Future<User> apiForGotPass(String email, String SDT, String oldPass,
   return tk;
 }
 
-_header() => {'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json'};
+_header() => {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json'
+    };

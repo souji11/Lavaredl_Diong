@@ -356,7 +356,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  apiThem.ThemGioHang(1, widget.product.id, 1);
+                                  apiThem.ThemGioHang(
+                                      Auth.user.id, widget.product.id, 1);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(

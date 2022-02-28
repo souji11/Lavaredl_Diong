@@ -33,13 +33,16 @@ class PageOrderAll extends StatelessWidget {
                         itemBuilder: (context, index) {
                           return Container(
                             height: 60,
-                            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(30), boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey,
-                                offset: Offset(1, 1),
-                                blurRadius: 20.0,
-                              ),
-                            ]),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey,
+                                    offset: Offset(1, 1),
+                                    blurRadius: 20.0,
+                                  ),
+                                ]),
                             child: Container(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -49,7 +52,8 @@ class PageOrderAll extends StatelessWidget {
                                     children: [
                                       Text(
                                         '#${snapshot.data![index].ID}',
-                                        style: TextStyle(fontSize: 16, color: Colors.black),
+                                        style: TextStyle(
+                                            fontSize: 16, color: Colors.black),
                                       )
                                     ],
                                   ),
@@ -61,7 +65,8 @@ class PageOrderAll extends StatelessWidget {
                                     children: [
                                       Text(
                                         '${setTrangThai(snapshot.data![index].IDTrangThai)}',
-                                        style: TextStyle(fontSize: 16, color: Colors.orange),
+                                        style: TextStyle(
+                                            fontSize: 16, color: Colors.orange),
                                       ),
                                     ],
                                   ),
@@ -73,10 +78,23 @@ class PageOrderAll extends StatelessWidget {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => InvoiceDetail(snapshot.data![index].ctHoaDon, snapshot.data![index].TongTien,
-                                                    snapshot.data![index].IDTrangThai, snapshot.data![index].ID)));
+                                                builder: (context) =>
+                                                    InvoiceDetail(
+                                                        snapshot.data![index]
+                                                            .ctHoaDon,
+                                                        snapshot.data![index]
+                                                            .TongTien,
+                                                        snapshot.data![index]
+                                                            .IDTrangThai,
+                                                        snapshot
+                                                            .data![index].ID,
+                                                        snapshot.data![index]
+                                                            .DiaChiGiaoHang,
+                                                        snapshot.data![index]
+                                                            .SDTGiaoHang)));
                                       },
-                                      icon: const Icon(Icons.arrow_forward_ios)),
+                                      icon:
+                                          const Icon(Icons.arrow_forward_ios)),
                                 ],
                               ),
                             ),

@@ -12,9 +12,9 @@ import 'package:provider/provider.dart';
 
 class Api extends ChangeNotifier {
   List<Product_main> lst = [];
-List<Product_main> lstBanChay = [];
-List<Product_main> lstNoiBat = [];
-List<Product_main> lstMoi = [];
+  List<Product_main> lstBanChay = [];
+  List<Product_main> lstNoiBat = [];
+  List<Product_main> lstMoi = [];
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
     final response = await http.get(
@@ -37,11 +37,12 @@ List<Product_main> lstMoi = [];
       throw Exception('Failed to load data');
     }
   }
+
   Future<void> fetchProduct_NoiBat() async {
     List<Product_main> tmpListNoiBat = [];
 
     final response = await http.get(
-      Uri.parse('http://192.168.5.192:8000/api/SanPham/noibat'),
+      Uri.parse('http://192.168.5.186:8000/api/SanPham/noibat'),
     );
     if (response.statusCode == 200) {
       try {
@@ -60,11 +61,12 @@ List<Product_main> lstMoi = [];
       throw Exception('Failed to load data');
     }
   }
+
   Future<void> fetchProduct_BanChay() async {
     List<Product_main> tmpListBanChay = [];
 
     final response = await http.get(
-      Uri.parse('http://192.168.5.192:8000/api/SanPham/banchay'),
+      Uri.parse('http://192.168.5.186:8000/api/SanPham/banchay'),
     );
     if (response.statusCode == 200) {
       try {
@@ -83,11 +85,12 @@ List<Product_main> lstMoi = [];
       throw Exception('Failed to load data');
     }
   }
+
   Future<void> fetchProduct_Moi() async {
     List<Product_main> tmpListMoi = [];
 
     final response = await http.get(
-      Uri.parse('http://192.168.5.192:8000/api/SanPham/moi'),
+      Uri.parse('http://192.168.5.186:8000/api/SanPham/moi'),
     );
     if (response.statusCode == 200) {
       try {
@@ -106,5 +109,4 @@ List<Product_main> lstMoi = [];
       throw Exception('Failed to load data');
     }
   }
-  
 }
