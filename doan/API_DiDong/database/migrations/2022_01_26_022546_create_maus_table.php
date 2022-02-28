@@ -15,7 +15,7 @@ class CreateMausTable extends Migration
     {
         Schema::create('maus', function (Blueprint $table) {
             $table->id();
-            $table->string('Màu');
+            $table->string('Tenmau');
             $table->timestamps();
         });
     }

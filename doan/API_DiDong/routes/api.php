@@ -59,3 +59,5 @@ route::get('SanPham/xepAO/{loai}', [APIsanphamController::class,'xepAO']);
 route::get('SanPham/xepTRANGSUC/{loai}', [APIsanphamController::class,'xepTRANGSUC']);
 route::get('SanPham/xepGIAY/{loai}', [APIsanphamController::class,'xepGIAY']);
 route::get('SanPham/xepTUI/{loai}', [APIsanphamController::class,'xepTUI']);
+
+route::get('SanPham/chitiet/mausize', [APIsanphamController::class,'LayMauSize']);

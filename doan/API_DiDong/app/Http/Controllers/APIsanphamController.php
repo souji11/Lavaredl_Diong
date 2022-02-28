@@ -203,4 +203,22 @@ class APIsanphamController extends Controller
             'data'=>$dsSanPham,
         ]);
     }
+    public function LayMauSize()    {
+        // $dsmausize=DB::select('select maus.Màu,sizes.TenSize
+        //                         from `ct_san_phams`,`san_phams`,`sizes`,`maus` 
+        //                         where san_phams.id=ct_san_phams.IdSanPham 
+        //                         and ct_san_phams.IdMau=maus.id 
+        //                         and ct_san_phams.IdSize=sizes.id 
+        //                         and san_phams.id=1');    
+        // $dsmausize=DB::select('select * from maus where id = ?', [1])    ;
+        // SELECT maus.Màu,sizes.TenSize FROM `ct_san_phams`,`san_phams`,`sizes`,`maus` WHERE san_phams.id=ct_san_phams.IdSanPham AND ct_san_phams.IdMau=maus.id AND ct_san_phams.IdSize=sizes.id AND san_phams.id=1
+        $dsmau=DB::select('select * from maus');
+        $dssize=DB::select('select * from sizes');
+        return json_encode([
+            'ThanhCong'=>true,
+            'dataMau'=>$dsmau,
+            'dataSize'=>$dssize,
+        ]);
+    }
+    
 }
