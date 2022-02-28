@@ -51,3 +51,4 @@ route::get('User/{User}/HoaDon', [APIhoadonController::class,'TrangThai']);
 route::get('GioHang', [GioHangController::class,'index']);
 route::post('GioHang/them', [GioHangController::class,'create']);
 route::post('GioHang/xoa', [GioHangController::class,'destroy']);
+route::post('GioHang/thanhtoan', [GioHangController::class,'thanhtoan']);
