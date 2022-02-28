@@ -151,20 +151,32 @@ class _MyHomePageState extends State<MyHomePage> {
           // ),
           IconButton(
             onPressed: () {
-              setState(() {
-                currentSceent = Favorite();
-                currentTab = 5;
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Favorite(),
+                ),
+                // setState(() {
+                //   currentSceent = Favorite();
+                //   currentTab = 5;
+                // }
+              );
             },
             icon: const Icon(Icons.favorite),
             color: currentTab == 5 ? Colors.red : Colors.white,
           ),
           IconButton(
             onPressed: () {
-              setState(() {
-                currentSceent = Cart();
-                currentTab = 6;
-              });
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Cart(),
+                ),
+                // setState(() {
+                //   currentSceent = Cart();
+                //   currentTab = 6;
+                // }
+              );
             },
             icon: const Icon(Icons.shopping_cart),
             color: currentTab == 6 ? Colors.red : Colors.white,
@@ -201,7 +213,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trang chủ',
-                      style: TextStyle(color: currentTab == 0 ? Colors.blue : Colors.green),
+                      style: TextStyle(
+                          color: currentTab == 0 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -223,7 +236,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Trò chuyện',
-                      style: TextStyle(color: currentTab == 1 ? Colors.blue : Colors.green),
+                      style: TextStyle(
+                          color: currentTab == 1 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -268,7 +282,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Text(
                       'Tài khoản',
-                      style: TextStyle(color: currentTab == 3 ? Colors.blue : Colors.green),
+                      style: TextStyle(
+                          color: currentTab == 3 ? Colors.blue : Colors.green),
                     ),
                   ],
                 ),
@@ -277,7 +292,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-    
     );
   }
 }
@@ -366,5 +380,5 @@ class CustomSearch extends SearchDelegate {
         );
       },
     );
-}
+  }
 }

@@ -11,7 +11,7 @@ class Order {
   late String? DiaChiGiaoHang;
   late String? SDTGiaoHang;
   late int? IdMaGiamGia;
-  late double? TongTien;
+  late int? TongTien;
   late int IDTrangThai;
   late List<OrderDetails> ctHoaDon;
 
@@ -29,13 +29,17 @@ class Order {
   Order.fromJson(Map<String, dynamic> json) {
     ID = json['id'] as int;
     Code = json['Code'];
-    NgayLap = json['NgayLap'] == null ? null : DateTime.parse(json['NgayLap'] as String);
+    NgayLap = json['NgayLap'] == null
+        ? null
+        : DateTime.parse(json['NgayLap'] as String);
     DiaChiGiaoHang = json['DiaChiGiaoHang'];
     SDTGiaoHang = json['SDTGiaoHang'];
     IdMaGiamGia = json['IdMaGiamGia'];
     TongTien = json['TongTien'];
     IDTrangThai = json['IDTrangThai'] ?? int;
-    ctHoaDon = (json['ct_hoa_don'] as List).map((e) => OrderDetails.fromJson(e)).toList();
+    ctHoaDon = (json['ct_hoa_don'] as List)
+        .map((e) => OrderDetails.fromJson(e))
+        .toList();
   }
 
   Map<String, dynamic> toJson() {

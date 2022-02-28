@@ -1,6 +1,6 @@
 // ignore_for_file: unused_import, avoid_web_libraries_in_flutter, unused_element
 
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/api/Auth.dart';
@@ -13,7 +13,10 @@ import 'URL.dart';
 
 Future<Order> apiUpdateHoaDon(int? IdHoaDon) async {
   Order order;
-  var response = await http.post(Uri.parse("http://127.0.0.1:8000/api/HoaDon/updateHoaDon/${IdHoaDon}"), headers: _header());
+  var response = await http.post(
+      Uri.parse(
+          "http://192.168.5.186:8000/api/HoaDon/updateHoaDon/${IdHoaDon}"),
+      headers: _header());
   if (response.statusCode == 200) {
     final jsondata = json.decode(response.body);
     order = Order.fromJson(jsondata);
@@ -23,4 +26,7 @@ Future<Order> apiUpdateHoaDon(int? IdHoaDon) async {
   return order;
 }
 
-_header() => {'Content-Type': 'application/json; charset=utf-8', 'Accept': 'application/json'};
+_header() => {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json'
+    };

@@ -317,7 +317,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // Mua ngay 
+                    // Mua ngay
                     Container(
                       height: 80,
                       width: 1000,
@@ -339,14 +339,15 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  apiThem.ThemGioHang(1, widget.product.id, 1);
+                                  apiThem.ThemGioHang(
+                                      Auth.user.id, widget.product.id, 1);
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (_) => Cart(),
                                     ),
                                   );
-                                  });
+                                });
                               },
                               child: Text(
                                 'Mua ngay',
@@ -408,8 +409,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                               ),
                               onPressed: () {
                                 setState(() {
-                                  apiThem.ThemGioHang(Auth.user.id, widget.product.id, 1);
-                                  apigh.fetchgiohang();                                  
+                                  apiThem.ThemGioHang(
+                                      Auth.user.id, widget.product.id, 1);
+                                  apigh.fetchgiohang();
                                 });
                               },
                               child: Text(

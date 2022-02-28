@@ -5,7 +5,7 @@ import 'package:flutter_application_1/Models/user.dart';
 import 'package:flutter_application_1/api/Auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-const baseURL = "http://192.168.5.192:8000/api";
+const baseURL = "http://192.168.5.186:8000/api";
 const loginURL = baseURL + "/User/login";
 const registerURL = baseURL + "/User/register";
 const logoutURL = baseURL + "User/logout";

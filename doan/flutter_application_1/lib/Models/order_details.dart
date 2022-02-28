@@ -9,7 +9,7 @@ class OrderDetails {
   late int? IdHoaDon;
   late int? IdSanPham;
   late int? SoLuong;
-  late double? DonGia;
+  late int? DonGia;
   late Product_main sanPham;
 
   OrderDetails({
@@ -27,7 +27,9 @@ class OrderDetails {
     IdSanPham = json['IdSanPham'];
     SoLuong = json['SoLuong'];
     DonGia = json['DonGia'];
-    sanPham = (json['san_pham'] != null ? new Product_main.fromJson(json['san_pham']) : null)!;
+    sanPham = (json['san_pham'] != null
+        ? new Product_main.fromJson(json['san_pham'])
+        : null)!;
   }
 
   Map<String, dynamic> toJson() {

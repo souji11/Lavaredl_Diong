@@ -4,6 +4,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api/api_giohang_index.dart';
+import 'package:flutter_application_1/page/payment2.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:provider/provider.dart';
 
@@ -88,7 +89,7 @@ class CheckOutCart extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => PageThanhToan(),
+                    builder: (_) => Payment2(),
                   ),
                 );
               },
@@ -124,9 +125,8 @@ class _BodyState extends State<Body> {
     Provider.of<ApiGioHang>(context, listen: false).fetchgiohang();
     var api = Provider.of<ApiGioHang>(context, listen: false);
     // print(api.lst[].gia);
-    
+
     return Padding(
-      
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Consumer<ApiGioHang>(builder: (_, value, child) {
         return ListView.builder(
@@ -154,23 +154,25 @@ class _BodyState extends State<Body> {
                       onDismissed: (direction) {
                         setState(() {
                           //cart.removeAt(index);
-                          api.XoaGioHang(api.lst[index].idTaiKhoan, api.lst[index].idSanPham);
+                          api.XoaGioHang(api.lst[index].idTaiKhoan,
+                              api.lst[index].idSanPham);
                         });
                       },
-                     
                       child: CartItem(
                           api.lst[index].hinhAnh,
                           api.lst[index].tenSanPham,
                           api.lst[index].gia,
-                          api.lst[index].so_Luong)),
+                          api.lst[index].so_Luong,
+                          api.lst[index].tenSize,
+                          api.lst[index].mU)),
                 ));
       }),
     );
   }
 
   // ignore: non_constant_identifier_names
-  Row CartItem(String link, String Ten, int gia, int soluong) {
-    
+  Row CartItem(
+      String link, String Ten, int gia, int soluong, String size, String mau) {
     return Row(
       children: [
         SizedBox(
@@ -204,13 +206,18 @@ class _BodyState extends State<Body> {
               height: 10,
             ),
             Text.rich(
-              TextSpan(text: "\$${gia}", style: TextStyle(color: Colors.green), children: [
-                TextSpan(
-                  text: " x ${soluong}",
-                  style: TextStyle(color: Colors.black),
-                ),
-              ]),
+              TextSpan(
+                  text: "\$${gia}",
+                  style: TextStyle(color: Colors.green),
+                  children: [
+                    TextSpan(
+                      text: " x ${soluong}",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ]),
             ),
+            Text("Size: " + size),
+            Text("Màu: " + mau),
           ],
         ),
       ],

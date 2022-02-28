@@ -64,16 +64,20 @@ class Cart {
   int id;
   int idSanPham;
   int idTaiKhoan;
-  int so_Luong;
+  int soLuong;
 
   String tenSanPham;
   int gia;
   String moTa;
-  int soLuong;
+  int so_Luong;
   int idLoaiSanPham;
   int idNhaCung;
   String hinhAnh;
   int trangThai;
+  int idMau;
+  int idSize;
+  String tenSize;
+  String mU;
 
   Cart(
       {required this.id,
@@ -87,7 +91,11 @@ class Cart {
       required this.idLoaiSanPham,
       required this.idNhaCung,
       required this.hinhAnh,
-      required this.trangThai});
+      required this.trangThai,
+      required this.idMau,
+      required this.idSize,
+      required this.tenSize,
+      required this.mU});
 
   Cart.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -101,7 +109,11 @@ class Cart {
         idLoaiSanPham = json['IdLoaiSanPham'],
         idNhaCung = json['IdNhaCung'],
         hinhAnh = json['HinhAnh'],
-        trangThai = json['TrangThai'];
+        trangThai = json['TrangThai'],
+        idMau = json['IdMau'],
+        idSize = json['IdSize'],
+        tenSize = json['TenSize'],
+        mU = json['Màu'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -109,6 +121,7 @@ class Cart {
     data['IdSanPham'] = this.idSanPham;
     data['IdTaiKhoan'] = this.idTaiKhoan;
     data['so_luong'] = this.so_Luong;
+
     data['TenSanPham'] = this.tenSanPham;
     data['Gia'] = this.gia;
     data['MoTa'] = this.moTa;
@@ -117,6 +130,10 @@ class Cart {
     data['IdNhaCung'] = this.idNhaCung;
     data['HinhAnh'] = this.hinhAnh;
     data['TrangThai'] = this.trangThai;
+    data['IdMau'] = this.idMau;
+    data['IdSize'] = this.idSize;
+    data['TenSize'] = this.tenSize;
+    data['Màu'] = this.mU;
     return data;
   }
 }

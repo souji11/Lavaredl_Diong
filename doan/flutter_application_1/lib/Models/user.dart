@@ -6,19 +6,19 @@ class User {
   late String email;
   int? GioiTinh;
   DateTime? NgaySinh;
-  String? DiaChi1;
+  late String DiaChi1;
   String? DiaChi2;
   late String SDT;
   int? Quyen;
   int? TrangThai;
 
   User({
-     required this.id,
+    required this.id,
     this.name,
     required this.email,
     this.GioiTinh,
     this.NgaySinh,
-    this.DiaChi1,
+    required this.DiaChi1,
     this.DiaChi2,
     required this.SDT,
     this.Quyen,
@@ -26,7 +26,7 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'] as int; 
+    id = json['id'] as int;
     name = json['name'];
     email = json['email'];
     GioiTinh = json['GioiTinh'] as int?;
