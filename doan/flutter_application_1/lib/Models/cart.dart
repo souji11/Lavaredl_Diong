@@ -77,7 +77,7 @@ class Cart {
   int idMau;
   int idSize;
   String tenSize;
-  String mU;
+  String Tenmau;
 
   Cart(
       {required this.id,
@@ -95,7 +95,7 @@ class Cart {
       required this.idMau,
       required this.idSize,
       required this.tenSize,
-      required this.mU});
+      required this.Tenmau});
 
   Cart.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -113,7 +113,7 @@ class Cart {
         idMau = json['IdMau'],
         idSize = json['IdSize'],
         tenSize = json['TenSize'],
-        mU = json['Màu'];
+        Tenmau = json['Tenmau'];
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -133,7 +133,7 @@ class Cart {
     data['IdMau'] = this.idMau;
     data['IdSize'] = this.idSize;
     data['TenSize'] = this.tenSize;
-    data['Màu'] = this.mU;
+    data['Màu'] = this.Tenmau;
     return data;
   }
 }

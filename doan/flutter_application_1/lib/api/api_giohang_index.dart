@@ -16,15 +16,16 @@ class ApiGioHang extends ChangeNotifier {
   late int total;
   Future<void> fetchgiohang() async {
     List<Cart> tmpList = [];
-    //  int ?total = 0;
+    // int ?total = 0;
     final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/GioHang'),
+      Uri.parse('http://192.168.5.192:8000/api/GioHang'),
     );
 
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
         dynamic data = object['data'];
+        print(data);
         data.forEach((item) {
           tmpList.add(Cart.fromJson(item));
         });
@@ -34,6 +35,7 @@ class ApiGioHang extends ChangeNotifier {
         print(e);
       }
       lst = tmpList;
+      
       notifyListeners();
     } else {
       throw Exception('Failed to load data');
@@ -43,7 +45,7 @@ class ApiGioHang extends ChangeNotifier {
   Future<void> XoaGioHang(int IDTaiKhoan, int Idsanpham) async {
     List<Cart> tmpList = [];
     final response = await http
-        .post(Uri.parse('http://192.168.5.186:8000/api/GioHang/xoa'), body: {
+        .post(Uri.parse('http://192.168.5.192:8000/api/GioHang/xoa'), body: {
       'IdTaiKhoan': IDTaiKhoan.toString(),
       'IdSanPham': Idsanpham.toString(),
     });
@@ -71,7 +73,7 @@ class ApiGioHang extends ChangeNotifier {
     // int IdHoaDon,
   ) async {
     final response = await http.post(
-        Uri.parse('http://192.168.5.186:8000/api/GioHang/thanhtoan'),
+        Uri.parse('http://192.168.5.192:8000/api/GioHang/thanhtoan'),
         body: {
           //'Code': Code,
           'IdTaiKhoan': IdTaiKhoan.toString(),

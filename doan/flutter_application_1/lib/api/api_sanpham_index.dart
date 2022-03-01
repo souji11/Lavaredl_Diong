@@ -42,7 +42,7 @@ class Api extends ChangeNotifier {
     List<Product_main> tmpListNoiBat = [];
 
     final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/noibat'),
+      Uri.parse('http://192.168.5.192:8000/api/SanPham/noibat'),
     );
     if (response.statusCode == 200) {
       try {
@@ -66,7 +66,7 @@ class Api extends ChangeNotifier {
     List<Product_main> tmpListBanChay = [];
 
     final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/banchay'),
+      Uri.parse('http://192.168.5.192:8000/api/SanPham/banchay'),
     );
     if (response.statusCode == 200) {
       try {
@@ -90,7 +90,7 @@ class Api extends ChangeNotifier {
     List<Product_main> tmpListMoi = [];
 
     final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/moi'),
+      Uri.parse('http://192.168.5.192:8000/api/SanPham/moi'),
     );
     if (response.statusCode == 200) {
       try {

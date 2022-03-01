@@ -164,7 +164,7 @@ class _BodyState extends State<Body> {
                           api.lst[index].gia,
                           api.lst[index].so_Luong,
                           api.lst[index].tenSize,
-                          api.lst[index].mU)),
+                          api.lst[index].Tenmau)),
                 ));
       }),
     );
