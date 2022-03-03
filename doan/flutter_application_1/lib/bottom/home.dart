@@ -1,4 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, unused_import, prefer_const_constructors_in_immutables, duplicate_import, prefer_const_constructors, sized_box_for_whitespace, unused_field, prefer_final_fields, avoid_unnecessary_containers, unnecessary_new, unnecessary_string_interpolations, unused_local_variable
+// ignore: unnecessary_import
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
             onPressed: () => setState(() {
               if (_isFavorited) {
                 // apithem.ThemSPyeuthich(1, widget.product.id);
-                apixoa.XoaSPYT(widget.product);
+                //apixoa.XoaSPYT(widget.product);
                 _isFavorited = false;
               } else {
                 // Provider.of<APIThemSPYT>(context, listen: false)
@@ -98,7 +99,9 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  int _selectedPage = 0;int currentTab = 0;Widget currentSceent = Home();
+  int _selectedPage = 0;
+  int currentTab = 0;
+  Widget currentSceent = Home();
   @override
   Widget build(BuildContext contextq) {
     Provider.of<Api>(context, listen: false).fetchProduct_main();
@@ -312,8 +315,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                             child: Image(
                                               height: 150,
                                               width: 100,
-                                              image: AssetImage(
-                                               'assets'+api.lstMoi[index].hinhAnh),
+                                              image: AssetImage('assets' +
+                                                  api.lstMoi[index].hinhAnh),
                                               fit: BoxFit.cover,
                                             ),
                                             // child: Image.network('http://' + api.lst[index].hinhAnh),
@@ -423,8 +426,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                               image: AssetImage(
-                                               'assets'+api.lstNoiBat[index].hinhAnh),
+                                              image: AssetImage('assets' +
+                                                  api.lstNoiBat[index].hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -458,7 +461,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               children: <Widget>[
                                                 const SizedBox(height: 5.0),
                                                 Text(
-                                                  api.lstNoiBat[index].tenSanPham,
+                                                  api.lstNoiBat[index]
+                                                      .tenSanPham,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.0,
@@ -536,8 +540,9 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               height: 150,
                                               width: 100,
                                               // image: NetworkImage('http://192.168.1.9:8000${api.lst[index].hinhAnh}'),
-                                               image: AssetImage(
-                                               'assets'+api.lstBanChay[index].hinhAnh),
+                                              image: AssetImage('assets' +
+                                                  api.lstBanChay[index]
+                                                      .hinhAnh),
                                               //  image: AssetImage(
                                               //     'images/' + api.lst[index].hinhAnh,
                                               //   ),
@@ -571,7 +576,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               children: <Widget>[
                                                 const SizedBox(height: 5.0),
                                                 Text(
-                                                  api.lstBanChay[index].tenSanPham,
+                                                  api.lstBanChay[index]
+                                                      .tenSanPham,
                                                   style: const TextStyle(
                                                     color: Colors.black,
                                                     fontSize: 13.0,
@@ -599,7 +605,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           );
         },
       ),
-       
     );
   }
 

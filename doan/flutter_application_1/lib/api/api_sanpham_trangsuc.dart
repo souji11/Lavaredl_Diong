@@ -16,7 +16,7 @@ class Apitrangsuc extends ChangeNotifier {
     List<Product_main> tmpList = [];
 
     final response = await http
-        .get(Uri.parse('http://192.168.5.192:8000/api/SanPham/trangsuc'));
+        .get(Uri.parse('http://192.168.5.186:8000/api/SanPham/trangsuc'));
 
     if (response.statusCode == 200) {
       try {

@@ -18,7 +18,8 @@ class ApiSapXep extends ChangeNotifier {
   Future<void> SapXepAo(String $Loai) async {
     List<Product_main> tmpList = [];
 
-    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepAO/'+$Loai));
+    final response = await http
+        .get(Uri.parse('http://192.168.5.186:8000/api/SanPham/xepAO/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -29,17 +30,19 @@ class ApiSapXep extends ChangeNotifier {
         });
       } catch (e) {
         print(e);
-      }      
+      }
       lstA = tmpList;
       notifyListeners();
     } else {
       throw Exception('Failed to load data');
     }
   }
+
   Future<void> SapXepTrangSuc(String $Loai) async {
     List<Product_main> tmpList = [];
 
-    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepTRANGSUC/'+$Loai));
+    final response = await http.get(Uri.parse(
+        'http://192.168.5.186:8000/api/SanPham/xepTRANGSUC/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -51,8 +54,8 @@ class ApiSapXep extends ChangeNotifier {
         });
       } catch (e) {
         print(e);
-      }    
-      
+      }
+
       lstTS = tmpList;
 // print(lstTS[0].gia);
       notifyListeners();
@@ -60,10 +63,12 @@ class ApiSapXep extends ChangeNotifier {
       throw Exception('Failed to load data');
     }
   }
+
   Future<void> SapXepTuiXach(String $Loai) async {
     List<Product_main> tmpList = [];
 
-    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepTUI/'+$Loai));
+    final response = await http.get(
+        Uri.parse('http://192.168.5.186:8000/api/SanPham/xepTUI/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -75,8 +80,8 @@ class ApiSapXep extends ChangeNotifier {
         });
       } catch (e) {
         print(e);
-      }    
-      
+      }
+
       lstT = tmpList;
 // print(lstTS[0].gia);
       notifyListeners();
@@ -84,10 +89,12 @@ class ApiSapXep extends ChangeNotifier {
       throw Exception('Failed to load data');
     }
   }
+
   Future<void> SapXepGiayDep(String $Loai) async {
     List<Product_main> tmpList = [];
 
-    final response =await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepGIAY/'+$Loai));
+    final response = await http.get(
+        Uri.parse('http://192.168.5.186:8000/api/SanPham/xepGIAY/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -99,8 +106,8 @@ class ApiSapXep extends ChangeNotifier {
         });
       } catch (e) {
         print(e);
-      }    
-      
+      }
+
       lstG = tmpList;
 // print(lstTS[0].gia);
       notifyListeners();

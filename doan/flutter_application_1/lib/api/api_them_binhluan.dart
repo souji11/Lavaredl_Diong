@@ -12,10 +12,11 @@ import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
 
 class APIThemCMT extends ChangeNotifier {
-  Future<binhluan> ThemBinhLuan(int IDTaiKhoan, int IDSanPham,String NoiDung) async {
+  Future<binhluan> ThemBinhLuan(
+      int IDTaiKhoan, int IDSanPham, String NoiDung) async {
     // IDTaiKhoan=1;
     final response = await http.post(
-      Uri.parse('http://192.168.5.192:8000/api/BinhLuan/them'),      
+      Uri.parse('http://192.168.5.186:8000/api/BinhLuan/them'),
       body: {
         'IdTaiKhoan': IDTaiKhoan.toString(),
         'IdSanPham': IDSanPham.toString(),

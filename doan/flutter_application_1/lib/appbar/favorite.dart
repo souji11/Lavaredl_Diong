@@ -31,7 +31,7 @@ class Favorite extends StatefulWidget {
 class _Favorite_screen extends State<Favorite>
     with SingleTickerProviderStateMixin {
   Widget currentSceent = Home();
- bool _isFavorited = true;
+  bool _isFavorited = true;
   @override
   Widget build(BuildContext context) {
     Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
@@ -161,14 +161,18 @@ class _Favorite_screen extends State<Favorite>
                                           ),
                                           onPressed: () {
                                             setState(() {
-                                  Provider.of<ApiThemGioHang>(context, listen: false).ThemGioHang(1, api.lst[index].id, 1);
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => Cart(),
-                                    ),
-                                  );
-                                          });
+                                              Provider.of<ApiThemGioHang>(
+                                                      context,
+                                                      listen: false)
+                                                  .ThemGioHang(
+                                                      1, api.lst[index].id, 1);
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) => Cart(),
+                                                ),
+                                              );
+                                            });
                                           },
                                           child: Text(
                                             'Mua ngay',
@@ -183,7 +187,7 @@ class _Favorite_screen extends State<Favorite>
                                     Positioned(
                                       right: 10,
                                       bottom: 50,
-                                       child: Container(
+                                      child: Container(
                                         height: 30,
                                         width: 100,
                                         child: ElevatedButton(
@@ -192,13 +196,20 @@ class _Favorite_screen extends State<Favorite>
                                             backgroundColor: Colors.green,
                                           ),
                                           onPressed: () {
-                                            Provider.of<APIXoaSPYT>(context, listen: false).XoaSPYT(api.lstProduct[index]);
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (_) =>Home(),
-                                              ),
-                                            );
+                                            // Provider.of<APIXoaSPYT>(context,
+                                            //         listen: false)
+                                            //     .XoaSPYT(
+                                            //         api.lst[index].idTaiKhoan,
+                                            //         api.lst[index].idSanPham);
+                                            // Navigator.push(
+                                            //   context,
+                                            //   MaterialPageRoute(
+                                            //     builder: (_) => Home(),
+                                            //   ),
+                                            // );
+                                            api.XoaSPYT(
+                                                api.lst[index].idTaiKhoan,
+                                                api.lst[index].idSanPham);
                                           },
                                           child: Text(
                                             'Xóa',

@@ -18,7 +18,7 @@ class ApiYT extends ChangeNotifier {
     List<SanPhamYeuThich> tmpList = [];
     List<Product_main> tmpListProduct = [];
     final response = await http.get(
-      Uri.parse('http://192.168.5.192:8000/api/SanPhamYeuThich'),
+      Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich'),
     );
     if (response.statusCode == 200) {
       try {
@@ -38,5 +38,27 @@ class ApiYT extends ChangeNotifier {
     } else {
       throw Exception('Failed to load data');
     }
+  }
+
+  Future<void> XoaSPYT(int IDTaiKhoan, int Idsanpham) async {
+    List<SanPhamYeuThich> tmpList = [];
+    final http.Response response = await http.post(
+        Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich/Xoa'),
+        body: {
+          'IdTaiKhoan': IDTaiKhoan.toString(),
+          'IdSanPham': Idsanpham.toString(),
+        });
+
+    if (response.statusCode == 200) {
+      dynamic object = json.decode(response.body);
+      dynamic data = object['data'];
+      data.forEach((item) {
+        tmpList.add(SanPhamYeuThich.fromJson(item));
+      });
+    } else {
+      throw Exception('khong xoa duoc');
+    }
+    lst = tmpList;
+    notifyListeners();
   }
 }

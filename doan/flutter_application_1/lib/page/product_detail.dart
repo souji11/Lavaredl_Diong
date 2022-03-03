@@ -22,6 +22,7 @@ import '../bottom/account.dart';
 import '../bottom/chat.dart';
 import '../bottom/home.dart';
 import '../bottom/setting.dart';
+// ignore: unnecessary_import
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -210,8 +211,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           Positioned(
                               right: 50,
                               bottom: 5,
-                              child:Consumer<ApiCT>(builder: (_, value, child) {
-                                return Container(                                  
+                              child:
+                                  Consumer<ApiCT>(builder: (_, value, child) {
+                                return Container(
                                   height: 30,
                                   width: 150,
                                   padding: EdgeInsets.only(left: 10, right: 10),
@@ -505,7 +507,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             height: 500,
                             child: ListView(
                               addAutomaticKeepAlives: false,
-                              children: List.generate(apibl.lst.length, (index) {
+                              children:
+                                  List.generate(apibl.lst.length, (index) {
                                 return Container(
                                   decoration: BoxDecoration(
                                     color: Colors.blue,

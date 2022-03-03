@@ -11,18 +11,26 @@ import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
 
 class APIXoaSPYT extends ChangeNotifier {
-  Future<SanPhamYeuThich> XoaSPYT(Product_main $a) async {
+  Future<void> XoaSPYT(int IDTaiKhoan, int Idsanpham) async {
+    List<SanPhamYeuThich> tmpList = [];
+    List<SanPhamYeuThich> lst = [];
     final http.Response response = await http.delete(
-      Uri.parse('http://192.168.5.192:8000/api/SanPhamYeuThich/Xoa/${$a.id}'),
-      // headers: <String, String>{
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      // },
-    );
+        Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich/Xoa'),
+        body: {
+          'IdTaiKhoan': IDTaiKhoan.toString(),
+          'IdSanPham': Idsanpham.toString(),
+        });
 
     if (response.statusCode == 200) {
-      return SanPhamYeuThich.fromJson(jsonDecode(response.body));
+      dynamic object = json.decode(response.body);
+      dynamic data = object['data'];
+      data.forEach((item) {
+        tmpList.add(SanPhamYeuThich.fromJson(item));
+      });
     } else {
-      throw Exception('Failed to delete .');
+      throw Exception('khong xoa duoc');
     }
+    lst = tmpList;
+    notifyListeners();
   }
 }

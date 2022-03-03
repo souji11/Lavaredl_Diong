@@ -280,7 +280,8 @@ class _Payment2 extends State<Payment2> {
                                           'Sô lượng    : ${api.lst[index].so_Luong}'),
                                       Text(
                                           'Đơn giá     : \$${api.lst[index].gia}'),
-                                      Text('Màu     : ${api.lst[index].Tenmau}'),
+                                      Text(
+                                          'Màu     : ${api.lst[index].Tenmau}'),
                                       Text(
                                           'Size     : ${api.lst[index].tenSize}'),
                                     ],

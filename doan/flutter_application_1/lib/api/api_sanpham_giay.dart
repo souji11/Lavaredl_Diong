@@ -15,7 +15,7 @@ class Apigiay extends ChangeNotifier {
   Future<void> fetchProduct_giay() async {
     List<Product_main> tmpList = [];
     final response =
-        await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/giay'));
+        await http.get(Uri.parse('http://192.168.5.186:8000/api/SanPham/giay'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
@@ -30,7 +30,7 @@ class Apigiay extends ChangeNotifier {
       // return ProductMains.map<Product_main>((json) => Product_main.fromJson(json))
       //     .toList();
       lst = tmpList;
-      
+
       notifyListeners();
     } else {
       throw Exception('Failed to load data');

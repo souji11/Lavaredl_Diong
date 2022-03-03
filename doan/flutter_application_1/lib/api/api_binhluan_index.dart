@@ -15,35 +15,34 @@ class APICMT extends ChangeNotifier {
   List<binhluan> lst = [];
   Future<void> BinhLuan(Product_main SanPham) async {
     // IDTaiKhoan=1;
-    List<binhluan> tmpList=[];
-    final response = await http.get(  
-      Uri.parse('http://192.168.5.192:8000/api/BinhLuan/'+SanPham.id.toString()),);
-      // headers: {
-      //   "Content-Type": "application/json",
-      //   "Accept": "application/json",
-      // },   
-      // body: {        
-      //   'IdSanPham': SanPham.id,        
-      // },
-    
+    List<binhluan> tmpList = [];
+    final response = await http.get(
+      Uri.parse(
+          'http://192.168.5.186:8000/api/BinhLuan/' + SanPham.id.toString()),
+    );
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   "Accept": "application/json",
+    // },
+    // body: {
+    //   'IdSanPham': SanPham.id,
+    // },
+
     print(response.statusCode);
     if (response.statusCode == 200) {
-     try {
+      try {
         dynamic object = json.decode(response.body);
-        dynamic data = object['data'];        
+        dynamic data = object['data'];
         data.forEach((item) {
           tmpList.add(binhluan.fromJson(item));
         });
       } catch (e) {
         print(e);
-      } 
+      }
       lst = tmpList;
       notifyListeners();
-      
     } else {
       throw Exception('Failed to load data');
     }
-    } 
-    
-  
+  }
 }
