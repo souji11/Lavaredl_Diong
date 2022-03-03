@@ -110,16 +110,11 @@ class SanPhamYeuThichController extends Controller
      */
     public function destroy(Request $request)
     {
-        $SanPhamYT=SanPhamYeuThich::where('IdSanPham','=',$request->id)->get();
-        // $SanPhamYT=SanPhamYeuThich::find($request->IdSanPham);
-        // $SanPhamYT= SanPhamYeuThich::find($request->IdSanPham)->get();
-        foreach($SanPhamYT as $SanPhamYT){
-            $SanPhamYT->delete();
-        }
-        // $SanPhamYT->delete();
+        $SanPhamYT=SanPhamYeuThich::where('IdTaiKhoan',$request->IdTaiKhoan)->where('IdSanPham',$request->IdSanPham)->delete();
+        $dsSanPhamYT=DB::select('select * from san_pham_yeu_thiches,san_phams where san_pham_yeu_thiches.IdSanPham = san_phams.id');
         return json_encode([
             'ThanhCong'=>true,
-            'data'=>$SanPhamYT,
+            'data'=>$dsSanPhamYT,
         ]);
     }
     public function xoa($id)

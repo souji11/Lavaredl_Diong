@@ -28,7 +28,8 @@ class GioHangController extends Controller
                         where gio_hangs.IdSanPham=san_phams.id
                         and san_phams.id=ct_san_phams.IdSanPham
                         and ct_san_phams.IdSize=sizes.id
-                        and ct_san_phams.IdMau=maus.id');
+                        and ct_san_phams.IdMau=maus.id
+                        ');
         //$gh=GioHang::all();
         //$gh=GioHang::where('IdTaiKhoan',$User->id)->with("SanPham")->with("SanPham.CtSanPham")->get();
         $total = 0;
@@ -88,7 +89,22 @@ class GioHangController extends Controller
             echo "thêm mới thành công";
         }
     }
-
+    
+    public function cong(Request $request)
+    {
+        $cartitem = GioHang::where('IdSanPham',$request->IdSanPham)->where('IdTaiKhoan',$request->IdTaiKhoan)->first();
+        $cartitem->so_luong+=1;
+        $cartitem->save();
+    }
+    public function tru(Request $request)
+    {
+        $cartitem = GioHang::where('IdSanPham',$request->IdSanPham)->where('IdTaiKhoan',$request->IdTaiKhoan)->first();
+        if($cartitem->so_luong>1)
+        {
+            $cartitem->so_luong-=1;
+        }       
+        $cartitem->save();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -144,7 +160,13 @@ class GioHangController extends Controller
     {
         //
         $cartitem = GioHang::where('IdTaiKhoan',$request->IdTaiKhoan)->where('IdSanPham',$request->IdSanPham)->delete();
-        $gh=DB::select('select * from gio_hangs, san_phams where gio_hangs.IdSanPham=san_phams.id');
+        $gh=DB::select('select * 
+        from gio_hangs, san_phams ,ct_san_phams,maus,sizes
+        where gio_hangs.IdSanPham=san_phams.id
+        and san_phams.id=ct_san_phams.IdSanPham
+        and ct_san_phams.IdSize=sizes.id
+        and ct_san_phams.IdMau=maus.id
+        ');
         //$gh=GioHang::all();
         return json_encode([
             'ThanhCong'=>true,
