@@ -34,7 +34,7 @@ class _Favorite_screen extends State<Favorite>
   bool _isFavorited = true;
   @override
   Widget build(BuildContext context) {
-    Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
+    // Provider.of<ApiYT>(context, listen: false).fetchProduct_YT();
     var api = Provider.of<ApiYT>(context, listen: false);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -210,6 +210,7 @@ class _Favorite_screen extends State<Favorite>
                                             api.XoaSPYT(
                                                 api.lst[index].idTaiKhoan,
                                                 api.lst[index].idSanPham);
+                                            api.fetchProduct_YT();
                                           },
                                           child: Text(
                                             'Xóa',

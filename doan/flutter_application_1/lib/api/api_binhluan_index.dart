@@ -18,7 +18,7 @@ class APICMT extends ChangeNotifier {
     List<binhluan> tmpList = [];
     final response = await http.get(
       Uri.parse(
-          'http://192.168.5.186:8000/api/BinhLuan/' + SanPham.id.toString()),
+          'http://192.168.5.192:8000/api/BinhLuan/' + SanPham.id.toString()),
     );
     // headers: {
     //   "Content-Type": "application/json",

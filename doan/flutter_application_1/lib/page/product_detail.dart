@@ -289,8 +289,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 },
                                 items: <String>[
                                   'Kích cỡ',
-                                  listsize[1].tenSize,
                                   listsize[0].tenSize,
+                                  listsize[1].tenSize,
                                   listsize[2].tenSize,
                                   listsize[3].tenSize,
                                 ].map<DropdownMenuItem<String>>((String value) {

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/api/api_SapXep.dart';
+// import 'package:flutter_application_1/api/api_SapXep.dart';
 import 'package:flutter_application_1/api/api_sanpham_giay.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
 // import 'package:flutter_application_1/api/api_sanpham_trangsuc.dart';
@@ -33,23 +33,18 @@ class Product_GiayDep_screen extends StatefulWidget {
 
 class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
     with SingleTickerProviderStateMixin {
-  late PageController _Product_Tui_Sach1;
-  late PageController _Product_Tui_Sach2;
   int _selectedPage = 0;
   int currentTab = 0;
   String dropdownValue = 'Sắp Xếp';
-  String dropdownValue2 = 'Bộ lọc';
+  // String dropdownValue2 = 'Bộ lọc';
   Widget currentSceent = Home();
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     // Provider.of<Apigiay>(context, listen: false).fetchProduct_giay();
     // var api = Provider.of<Apigiay>(context, listen: false);
-    var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
+    var apiSapXep = Provider.of<Apigiay>(context, listen: false);
+    apiSapXep.SapXepGiayDep(dropdownValue);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -124,7 +119,9 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
             ),
             // button
             Padding(
-                padding: EdgeInsets.only(left:200, ),
+              padding: EdgeInsets.only(
+                left: 200,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -154,10 +151,16 @@ class _Product_GiayDep_screen extends State<Product_GiayDep_screen>
                         setState(() {
                           dropdownValue = newValue!;
                           apiSapXep.SapXepGiayDep(dropdownValue);
-Navigator.pop(context);
+                          // Navigator.pop(context);
                         });
                       },
-items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<DropdownMenuItem<String>>((String value) {
+                      items: <String>[
+                        'Sắp Xếp',
+                        'A-Z',
+                        'Z-A',
+                        'GIá cao',
+                        'Giá thấp',
+                      ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -165,7 +168,7 @@ items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<Drop
                       }).toList(),
                     ),
                   ),
-               ],
+                ],
               ),
             ),
             // het button
@@ -182,7 +185,7 @@ items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<Drop
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     children: List.generate(
-                      apiSapXep.lstG.length,
+                      apiSapXep.lst.length,
                       (index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -198,7 +201,7 @@ items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<Drop
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => ProductDetailScreen(
-                                      product: apiSapXep.lstG[index]),
+                                      product: apiSapXep.lst[index]),
                                 ),
                               );
                             },
@@ -221,7 +224,8 @@ items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<Drop
                                             height: 130,
                                             width: 150,
                                             image: AssetImage(
-                                              'assets' + apiSapXep.lstG[index].hinhAnh,
+                                              'assets' +
+                                                  apiSapXep.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -234,7 +238,7 @@ items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<Drop
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${apiSapXep.lstG[index].gia} VNĐ',
+                                                '${apiSapXep.lst[index].gia} VNĐ',
                                                 style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 15,
@@ -253,7 +257,7 @@ items: <String>['Sắp Xếp', 'A-Z', 'Z-A','GIá cao', 'Giá thấp',].map<Drop
                                             children: <Widget>[
                                               const SizedBox(height: 5.0),
                                               Text(
-                                                apiSapXep.lstG[index].tenSanPham,
+                                                apiSapXep.lst[index].tenSanPham,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.0,

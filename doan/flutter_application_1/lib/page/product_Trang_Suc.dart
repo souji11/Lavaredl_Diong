@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/api/api_SapXep.dart';
+// import 'package:flutter_application_1/api/api_SapXep.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanpham_trangsuc.dart';
 import 'package:flutter_application_1/main.dart';
@@ -37,7 +37,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
   int _selectedPage = 0;
   int currentTab = 0;
   String dropdownValue = 'Sắp Xếp';
-  String dropdownValue2 = 'Bộ lọc';
+  // String dropdownValue2 = 'Bộ lọc';
   Widget currentSceent = Home();
   @override
   void initState() {
@@ -49,8 +49,8 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
     // Provider.of<Apitrangsuc>(context, listen: false).fetchProduct_trangsuc();
     // var api = Provider.of<Apitrangsuc>(context, listen: false);
     //  Provider.of<ApiSapXep>(context,listen: false).SapXepTrangSuc('A-Z');//SapXepTrangSuc('A-Z');
-    var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
-    //  apiSapXep.SapXepTrangSuc(dropdownValue);
+    var apiSapXep = Provider.of<Apitrangsuc>(context, listen: false);
+     apiSapXep.SapXepTrangSuc(dropdownValue);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -172,20 +172,18 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                           () {
                             dropdownValue = newValue!;
                             apiSapXep.SapXepTrangSuc(dropdownValue);
+                            // apiSapXep.fetchProduct_trangsuc();
+                            // Navigator.pop(context);
 
-                            Navigator.pop(context);
-                            
                             // Navigator.push(
                             //   context,
                             //   PageRouteBuilder(
-                            //      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) { 
+                            //      pageBuilder: (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
                             //         // Product_TrangSuc_screen();
                             //         return Product_TrangSuc_screen();
                             //         },
                             //   ),
                             // );
-                            
-                            
                           },
                         );
                       },
@@ -208,7 +206,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     children: List.generate(
-                      apiSapXep.lstTS.length,
+                      apiSapXep.lst.length,
                       (index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -224,7 +222,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => ProductDetailScreen(
-                                      product: apiSapXep.lstTS[index]),
+                                      product: apiSapXep.lst[index]),
                                 ),
                               );
                             },
@@ -248,8 +246,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                             width: 150,
                                             image: AssetImage(
                                               'assets' +
-                                                  apiSapXep
-                                                      .lstTS[index].hinhAnh,
+                                                  apiSapXep.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -262,7 +259,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${apiSapXep.lstTS[index].gia} VNĐ',
+                                                '${apiSapXep.lst[index].gia} VNĐ',
                                                 style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 15,
@@ -281,8 +278,7 @@ class _Product_TrangSuc_screen extends State<Product_TrangSuc_screen>
                                             children: <Widget>[
                                               const SizedBox(height: 5.0),
                                               Text(
-                                                apiSapXep
-                                                    .lstTS[index].tenSanPham,
+                                                apiSapXep.lst[index].tenSanPham,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.0,

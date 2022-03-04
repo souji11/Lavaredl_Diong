@@ -19,7 +19,7 @@ class ApiSapXep extends ChangeNotifier {
     List<Product_main> tmpList = [];
 
     final response = await http
-        .get(Uri.parse('http://192.168.5.186:8000/api/SanPham/xepAO/' + $Loai));
+        .get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepAO/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -42,7 +42,7 @@ class ApiSapXep extends ChangeNotifier {
     List<Product_main> tmpList = [];
 
     final response = await http.get(Uri.parse(
-        'http://192.168.5.186:8000/api/SanPham/xepTRANGSUC/' + $Loai));
+        'http://192.168.5.192:8000/api/SanPham/xepTRANGSUC/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -68,7 +68,7 @@ class ApiSapXep extends ChangeNotifier {
     List<Product_main> tmpList = [];
 
     final response = await http.get(
-        Uri.parse('http://192.168.5.186:8000/api/SanPham/xepTUI/' + $Loai));
+        Uri.parse('http://192.168.5.192:8000/api/SanPham/xepTUI/' + $Loai));
 
     if (response.statusCode == 200) {
       try {
@@ -94,7 +94,7 @@ class ApiSapXep extends ChangeNotifier {
     List<Product_main> tmpList = [];
 
     final response = await http.get(
-        Uri.parse('http://192.168.5.186:8000/api/SanPham/xepGIAY/' + $Loai));
+        Uri.parse('http://192.168.5.192:8000/api/SanPham/xepGIAY/' + $Loai));
 
     if (response.statusCode == 200) {
       try {

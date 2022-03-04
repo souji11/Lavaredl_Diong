@@ -15,7 +15,7 @@ Future<Order> apiUpdateHoaDon(int? IdHoaDon) async {
   Order order;
   var response = await http.post(
       Uri.parse(
-          "http://192.168.5.186:8000/api/HoaDon/updateHoaDon/${IdHoaDon}"),
+          "http://192.168.5.192:8000/api/HoaDon/updateHoaDon/${IdHoaDon}"),
       headers: _header());
   if (response.statusCode == 200) {
     final jsondata = json.decode(response.body);

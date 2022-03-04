@@ -128,6 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget currentSceent = Home();
   @override
   Widget build(BuildContext context) {
+    Provider.of<ApiCT>(context, listen: false).fetchProduct_CT();
     return Scaffold(
       drawer: Navbar(),
       appBar: AppBar(

@@ -16,7 +16,7 @@ Future<List<Order>> fetchHoaDon_main(int TrangThai) async {
   List<Order> lst = [];
   if (TrangThai == 0) {
     final response = await http.get(Uri.parse(
-        'http://192.168.5.186:8000/api/User/${Auth.user.id}/HoaDon/all'));
+        'http://192.168.5.192:8000/api/User/${Auth.user.id}/HoaDon/all'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
@@ -33,7 +33,7 @@ Future<List<Order>> fetchHoaDon_main(int TrangThai) async {
     }
   } else {
     final response = await http.get(Uri.parse(
-        'http://192.168.5.186:8000/api/User/${Auth.user.id}/HoaDon?IdTrangThai=$TrangThai'));
+        'http://192.168.5.192:8000/api/User/${Auth.user.id}/HoaDon?IdTrangThai=$TrangThai'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);

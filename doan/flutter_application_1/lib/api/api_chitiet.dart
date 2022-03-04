@@ -20,7 +20,7 @@ class ApiCT extends ChangeNotifier {
     List<Mau> tmpListmau = [];
     List<size> tmpListSize = [];
     final response = await http.get(
-      Uri.parse('http://192.168.5.186:8000/api/SanPham/chitiet/mausize'),
+      Uri.parse('http://192.168.5.192:8000/api/SanPham/chitiet/mausize'),
     );
     if (response.statusCode == 200) {
       try {
@@ -38,6 +38,8 @@ class ApiCT extends ChangeNotifier {
       }
       lstmau = tmpListmau;
       lstsize = tmpListSize;
+      print(lstmau[0].tenmau);
+      // print(lstsize);
       notifyListeners();
     } else {
       throw Exception('Failed to load data');

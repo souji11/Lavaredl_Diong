@@ -11,11 +11,11 @@ import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
 
 class Apiao extends ChangeNotifier {
-  List<Product_main> lsta = [];
+  List<Product_main> lst = [];
   Future<void> fetchProduct_main() async {
     List<Product_main> tmpList = [];
     final response =
-        await http.get(Uri.parse('http://192.168.5.186:8000/api/SanPham/ao'));
+        await http.get(Uri.parse('http://192.168.5.192:8000/api/SanPham/ao'));
     if (response.statusCode == 200) {
       try {
         dynamic object = json.decode(response.body);
@@ -27,8 +27,30 @@ class Apiao extends ChangeNotifier {
         print(e);
       }
 
-      lsta = tmpList;
+      lst = tmpList;
 
+      notifyListeners();
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+  Future<void> SapXepAo(String $Loai) async {
+    List<Product_main> tmpList = [];
+
+    final response = await http
+        .get(Uri.parse('http://192.168.5.192:8000/api/SanPham/xepAO/' + $Loai));
+
+    if (response.statusCode == 200) {
+      try {
+        dynamic object = json.decode(response.body);
+        dynamic data = object['data'];
+        data.forEach((item) {
+          tmpList.add(Product_main.fromJson(item));
+        });
+      } catch (e) {
+        print(e);
+      }
+      lst = tmpList;
       notifyListeners();
     } else {
       throw Exception('Failed to load data');

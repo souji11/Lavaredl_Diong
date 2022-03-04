@@ -11,15 +11,16 @@ import '../Models/Product_main.dart';
 import 'package:provider/provider.dart';
 
 class APIXoaSPYT extends ChangeNotifier {
-  Future<void> XoaSPYT(int IDTaiKhoan, int Idsanpham) async {
+  Future<void> XoaSPYT(int IdTaiKhoan, int Idsanpham) async {
     List<SanPhamYeuThich> tmpList = [];
     List<SanPhamYeuThich> lst = [];
     final http.Response response = await http.delete(
-        Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich/Xoa'),
-        body: {
-          'IdTaiKhoan': IDTaiKhoan.toString(),
-          'IdSanPham': Idsanpham.toString(),
-        });
+        Uri.parse('http://192.168.5.192:8000/api/SanPhamYeuThich/Xoa/$IdTaiKhoan/$Idsanpham'),
+        // body: {
+        //   'IdTaiKhoan': IDTaiKhoan.toString(),
+        //   'IdSanPham': Idsanpham.toString(),
+        // }
+        );
 
     if (response.statusCode == 200) {
       dynamic object = json.decode(response.body);
@@ -28,6 +29,7 @@ class APIXoaSPYT extends ChangeNotifier {
         tmpList.add(SanPhamYeuThich.fromJson(item));
       });
     } else {
+     
       throw Exception('khong xoa duoc');
     }
     lst = tmpList;

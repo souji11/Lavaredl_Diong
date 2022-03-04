@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_application_1/Models/Product_main.dart';
 import 'package:flutter_application_1/api/Auth.dart';
+import 'package:flutter_application_1/api/api_chitiet.dart';
 import 'package:flutter_application_1/api/api_sanpham_index.dart';
 import 'package:flutter_application_1/api/api_sanphamyeuthich_them.dart';
 import 'package:flutter_application_1/api/api_yeuthich_xoa.dart';
@@ -47,6 +48,7 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
   Widget build(BuildContext context) {
     // Provider.of<Api>(context, listen: false).fetchProduct_main();
     // Provider.of<APIThemSPYT>(context, listen: false).ThemSPyeuthich(1, widget.product.id);
+    
     var apithem = Provider.of<APIThemSPYT>(context, listen: false);
     var apixoa = Provider.of<APIXoaSPYT>(context, listen: false);
     // return Scaffold(body: Consumer<APIThemSPYT>(
@@ -288,13 +290,25 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                         ),
                         child: GestureDetector(
                           onTap: () {
+                            
                             Navigator.push(
+                              
                               context,
                               MaterialPageRoute(
                                 builder: (_) => ProductDetailScreen(
                                     product: api.lstMoi[index]),
                               ),
+                              
                             );
+                            
+                            // Navigator.pop(context);
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (_) => ProductDetailScreen(
+                            //         product: api.lstMoi[index]),
+                            //   ),
+                            // );
                           },
                           child: Consumer<Api>(
                             builder: (_, value, child) {

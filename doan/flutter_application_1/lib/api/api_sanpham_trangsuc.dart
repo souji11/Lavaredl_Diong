@@ -16,7 +16,7 @@ class Apitrangsuc extends ChangeNotifier {
     List<Product_main> tmpList = [];
 
     final response = await http
-        .get(Uri.parse('http://192.168.5.186:8000/api/SanPham/trangsuc'));
+        .get(Uri.parse('http://192.168.5.192:8000/api/SanPham/trangsuc'));
 
     if (response.statusCode == 200) {
       try {
@@ -32,6 +32,31 @@ class Apitrangsuc extends ChangeNotifier {
       // return ProductMains.map<Product_main>((json) => Product_main.fromJson(json))
       //     .toList();
       lst = tmpList;
+      notifyListeners();
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
+   Future<void> SapXepTrangSuc(String $Loai) async {
+    List<Product_main> tmpList = [];
+
+    final response = await http.get(Uri.parse(
+        'http://192.168.5.192:8000/api/SanPham/xepTRANGSUC/' + $Loai));
+
+    if (response.statusCode == 200) {
+      try {
+        dynamic object = json.decode(response.body);
+        dynamic data = object['data'];
+        // print(data);
+        data.forEach((item) {
+          tmpList.add(Product_main.fromJson(item));
+        });
+      } catch (e) {
+        print(e);
+      }
+
+      lst = tmpList;
+// print(lstTS[0].gia);
       notifyListeners();
     } else {
       throw Exception('Failed to load data');

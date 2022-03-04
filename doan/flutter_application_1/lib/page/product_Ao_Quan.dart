@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_application_1/api/api_SapXep.dart';
+// import 'package:flutter_application_1/api/api_SapXep.dart';
 import 'package:flutter_application_1/api/api_sanpham_ao.dart';
 import 'package:flutter_application_1/main.dart';
 // import 'package:flutter_application_1/api/api_sanpham_index.dart';
@@ -43,7 +43,8 @@ class _Product_AoQuan_screen extends State<Product_AoQuan_screen>
   Widget build(BuildContext context) {
     // Provider.of<Apiao>(context, listen: false).fetchProduct_main();
     // var apiao = Provider.of<Apiao>(context, listen: false);
-var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
+var apiSapXep = Provider.of<Apiao>(context, listen: false);
+apiSapXep.SapXepAo(dropdownValue);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -146,7 +147,7 @@ var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
                             setState(() {
                               dropdownValue = newValue!;
                               apiSapXep.SapXepAo(dropdownValue);
-                              Navigator.pop(context);
+                              // Navigator.pop(context);
                              
                             });
                           },
@@ -180,7 +181,7 @@ var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
                     mainAxisSpacing: 5,
                     crossAxisCount: 2,
                     children: List.generate(
-                      apiSapXep.lstA.length,
+                      apiSapXep.lst.length,
                       (index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -196,7 +197,7 @@ var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => ProductDetailScreen(
-                                      product: apiSapXep.lstA[index]),
+                                      product: apiSapXep.lst[index]),
                                 ),
                               );
                             },
@@ -220,7 +221,7 @@ var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
                                             width: 150,
                                             image: AssetImage(
                                               'assets' +
-                                                  apiSapXep.lstA[index].hinhAnh,
+                                                  apiSapXep.lst[index].hinhAnh,
                                             ),
                                             fit: BoxFit.cover,
                                           ),
@@ -233,7 +234,7 @@ var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
                                                 CrossAxisAlignment.center,
                                             children: <Widget>[
                                               Text(
-                                                '${apiSapXep.lstA[index].gia} VNĐ',
+                                                '${apiSapXep.lst[index].gia} VNĐ',
                                                 style: const TextStyle(
                                                   color: Colors.red,
                                                   fontSize: 15,
@@ -252,7 +253,7 @@ var apiSapXep = Provider.of<ApiSapXep>(context, listen: false);
                                             children: <Widget>[
                                               const SizedBox(height: 5.0),
                                               Text(
-                                                apiSapXep.lstA[index].tenSanPham,
+                                                apiSapXep.lst[index].tenSanPham,
                                                 style: const TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 13.0,

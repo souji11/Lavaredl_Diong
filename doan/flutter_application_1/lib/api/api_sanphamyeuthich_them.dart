@@ -14,7 +14,7 @@ class APIThemSPYT extends ChangeNotifier {
   Future<SanPhamYeuThich> ThemSPyeuthich(int IDTaiKhoan, int IDSanPham) async {
     // IDTaiKhoan=1;
     final response = await http.post(
-      Uri.parse('http://192.168.5.186:8000/api/SanPhamYeuThich/ThemMoi'),
+      Uri.parse('http://192.168.5.192:8000/api/SanPhamYeuThich/ThemMoi'),
 
       // headers: <String, String>{
       //   'Content-Type': 'application/json; charset=UTF-8',
