@@ -111,27 +111,28 @@ class SanPhamYeuThichController extends Controller
     public function destroy(Request $request)
     {
         $SanPhamYT=SanPhamYeuThich::where('IdTaiKhoan',$request->IdTaiKhoan)->where('IdSanPham',$request->IdSanPham)->delete();
+       
         $dsSanPhamYT=DB::select('select * from san_pham_yeu_thiches,san_phams where san_pham_yeu_thiches.IdSanPham = san_phams.id');
         return json_encode([
             'ThanhCong'=>true,
             'data'=>$dsSanPhamYT,
         ]);
     }
-    public function xoa($id)
-    {
-        $SanPhamYT=SanPhamYeuThich::where('IdSanPham',$id)->delete();
-        
-        // foreach($SanPhamYT as $SanPhamYT){
-        //     $SanPhamYT->delete();
-        // }
-        $dsSanPhamYT=DB::select('select * from san_pham_yeu_thiches,san_phams where san_pham_yeu_thiches.IdSanPham = san_phams.id');
-        return json_encode([
-            'ThanhCong'=>true,
-            'data'=>$dsSanPhamYT,
+    // public function xoa($idtk,$idsp)
+        // {
+        //     $SanPhamYT=SanPhamYeuThich::where('IdTaiKhoan',$idtk)->where('IdSanPham',$idsp)->delete();
+        //     print($idsp);print("hahahahahah");print($idtk);
+        //     // foreach($SanPhamYT as $SanPhamYT){
+        //     //     $SanPhamYT->delete();
+        //     // }
+        //     $dsSanPhamYT=DB::select('select * from san_pham_yeu_thiches,san_phams where san_pham_yeu_thiches.IdSanPham = san_phams.id');
+        //     return json_encode([
+        //         'ThanhCong'=>true,
+        //         'data'=>$dsSanPhamYT,
+                
+        //     ]);
             
-        ]);
-        
-        
-    }
+            
+    // }
     
 }

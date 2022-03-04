@@ -35,7 +35,11 @@ route::get('SanPham/noibat', [APIsanphamController::class,'chonsanphamnoibat']);
 
 route::post('SanPhamYeuThich/ThemMoi', [SanPhamYeuThichController::class,'create']);
 route::get('SanPhamYeuThich', [SanPhamYeuThichController::class,'index']);
+
+// route::delete('SanPhamYeuThich/Xoa/{IdTaiKhoan}/{IdSanPham}', [SanPhamYeuThichController::class,'xoa']);
+
 route::post('SanPhamYeuThich/Xoa', [SanPhamYeuThichController::class,'destroy']);
+
 //route::delete('SanPhamYeuThich/Xoa/{IdSanPham}', [SanPhamYeuThichController::class,'xoa']);
 route::get('User', [APIuserController::class,'index']);
 route::post('User/register',[APIuserController::class,'register']);
